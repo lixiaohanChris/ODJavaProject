@@ -15,8 +15,6 @@ public class HelloWorldController implements Controller {
 		
 		String hello = "lxh hello 呵呵";
 		return new ModelAndView("/welcome", "result", hello);
-		
-		
 	}
 	
 }
