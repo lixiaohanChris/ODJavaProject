@@ -22,9 +22,7 @@
 				<!-- START #fh5co-menu-wrap -->
 				<nav id="fh5co-menu-wrap" role="navigation">
 					<ul class="sf-menu" id="fh5co-primary-menu">
-						<li class="active">
-							<a href="index.jsp">首页</a>
-						</li>
+						<li><a href="index.jsp">首页</a></li>
 						<li>
 							<a href="classes.jsp" class="fh5co-sub-ddown">课程表</a>
 							<ul class="fh5co-sub-menu">
@@ -52,6 +50,7 @@
 						<li><a href="trainer.jsp">培训师</a></li>
 						<li><a href="about.jsp">关于我们</a></li>
 						<li><a href="contact.jsp">联系我们</a></li>
+						<li><a href="login.jsp"><p class="icon-user3">登录/注册</p></a></li>
 					</ul>
 				</nav>
 			</div>
