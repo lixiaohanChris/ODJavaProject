@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,7 +51,12 @@
 						<li><a href="trainer.jsp">培训师</a></li>
 						<li><a href="about.jsp">关于我们</a></li>
 						<li><a href="contact.jsp">联系我们</a></li>
-						<li><a href="login.jsp"><p class="icon-user3">登录/注册</p></a></li>
+						<c:if test="${sessionScope.Email==null }">
+							<li><a href="login.jsp"><p class="icon-user3">登录/注册</p></a></li>
+						</c:if>
+						<c:if test="${sessionScope.Email!=null }">
+							<li><a href="login.jsp"><p class="icon-user3">${Session.userName }，您好</p></a></li>
+						</c:if>
 					</ul>
 				</nav>
 			</div>
