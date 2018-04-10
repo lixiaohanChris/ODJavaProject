@@ -25,7 +25,7 @@ public class UserController {
 	@Resource
 	private UserServiceImpl userServiceImpl;
 	
-	//验证邮箱是否注册过
+	//验证邮箱是否注册过，Ajax
 	@RequestMapping(value="/registCheck",method = RequestMethod.POST)
 	@ResponseBody
 	public boolean registCheck(User user,@RequestParam("email")String email) throws ServletException, IOException{
@@ -46,7 +46,7 @@ public class UserController {
 		return "login";
 	}
 	
-	//用户登录
+	//用户登录，将信息存入session中
 	@RequestMapping(value="/userLogin",method = RequestMethod.POST)
 	public String login(@RequestParam("email")String email,
 			@RequestParam("password")String password,
@@ -63,6 +63,7 @@ public class UserController {
 			else{ 
 				session.setAttribute("userName", u.getUsername());
 				session.setAttribute("Email", u.getEmail());
+				session.setAttribute("user", u);
 				return "index";
 			}
 	}

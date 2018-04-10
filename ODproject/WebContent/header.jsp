@@ -55,7 +55,7 @@
 							<li><a href="login.jsp"><p class="icon-user3">登录/注册</p></a></li>
 						</c:if>
 						<c:if test="${sessionScope.Email!=null }">
-							<li><a href="login.jsp"><p class="icon-user3">${Session.userName }，您好</p></a></li>
+							<li><a href="info.jsp"><p class="icon-user3">${sessionScope.userName }，您好</p></a></li>
 						</c:if>
 					</ul>
 				</nav>

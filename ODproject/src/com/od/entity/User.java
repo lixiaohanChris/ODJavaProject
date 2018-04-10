@@ -14,11 +14,12 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="user")
 public class User {
 	private int id;
-	private String email;
-	private String username;
-	private String password;
-	private String phone_number;
-	private Information information;
+	private String email;   //邮箱
+	private String username;  //用户名
+	private String password;   //密码
+	private String phone_number;  //手机号
+	private Information information;   //信息表一对一
+	private ODMethod odMethod;
 	
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -36,6 +37,14 @@ public class User {
 	}
 	public void setInformation(Information information) {
 		this.information = information;
+	}
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="methodId")
+	public ODMethod getOdMethod() {
+		return odMethod;
+	}
+	public void setOdMethod(ODMethod odMethod) {
+		this.odMethod = odMethod;
 	}
 	public String getEmail() {
 		return email;

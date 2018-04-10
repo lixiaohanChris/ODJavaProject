@@ -23,5 +23,8 @@ public class UserServiceImpl {
 	public void registUser(User user) {
 		this.userDaoImpl.registUser(user);
 	}
-
+	//更新用户信息
+	public void updateUser(User u) {
+		this.userDaoImpl.updateUser(u);
+	}
 }

@@ -15,11 +15,11 @@ public class Information {
 	private int height;  //身高
 	private String birthday;  //生日 
 	private String address;   //城市
-	private String sprots_base;  //运动基础
+	private String sports_base;  //运动基础
 	private String target;  //运动目标：减脂 ， 局部塑形，增肌，保持健康
 	private String hobby;   //兴趣爱好：健身  瑜伽  跑步  骑行   行走  其他  暂无
 	private String fat_level;  //肥胖指数
-	private User user;
+	private User user;   //用户表一对一
 	
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -61,11 +61,11 @@ public class Information {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getSprots_base() {
-		return sprots_base;
+	public String getSports_base() {
+		return sports_base;
 	}
-	public void setSprots_base(String sprots_base) {
-		this.sprots_base = sprots_base;
+	public void setSports_base(String sports_base) {
+		this.sports_base = sports_base;
 	}
 	public String getTarget() {
 		return target;

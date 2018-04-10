@@ -25,4 +25,9 @@ public class UserDaoImpl {
 	public void registUser(User user) {
 		this.sessionFactory.getCurrentSession().save(user);
 	}
+	
+	//更新用户信息
+	public void updateUser(User u) {
+		this.sessionFactory.getCurrentSession().update(u);
+	}
 }
