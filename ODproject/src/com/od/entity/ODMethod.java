@@ -31,7 +31,7 @@ public class ODMethod {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@OneToMany(mappedBy="odmethod", targetEntity=Classes.class, 
+	@OneToMany(mappedBy="odMethod", targetEntity=Classes.class, 
             cascade=CascadeType.ALL)
 	public Set<Classes> getClasses() {
 		return classes;

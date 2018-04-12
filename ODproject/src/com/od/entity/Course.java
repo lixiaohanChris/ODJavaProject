@@ -39,9 +39,26 @@ public class Course {
 	public Set<Classes> getClasses() {
 		return classes;
 	}
-	
 	public void setClasses(Set<Classes> classes) {
 		this.classes = classes;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name="coursetypeId")
+	public CourseType getCourseType() {
+		return courseType;
+	}
+	public void setCourseType(CourseType courseType) {
+		this.courseType = courseType;
+	}
+	
+	@OneToMany(mappedBy="course",targetEntity=CourseContent.class,
+			cascade=CascadeType.ALL)
+	public Set<CourseContent> getCourseContents() {
+		return courseContents;
+	}
+	public void setCourseContents(Set<CourseContent> courseContents) {
+		this.courseContents = courseContents;
 	}
 	public String getName() {
 		return name;
@@ -49,23 +66,12 @@ public class Course {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public CourseType getCourseType() {
-		return courseType;
-	}
-	public void setCourseType(CourseType courseType) {
-		this.courseType = courseType;
-	}
+	
 	public String getIntroduce() {
 		return introduce;
 	}
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
-	}
-	public Set<CourseContent> getCourseContents() {
-		return courseContents;
-	}
-	public void setCourseContents(Set<CourseContent> courseContents) {
-		this.courseContents = courseContents;
 	}
 	
 }

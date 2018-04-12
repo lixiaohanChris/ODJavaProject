@@ -28,7 +28,7 @@ public class UserController {
 	//验证邮箱是否注册过，Ajax
 	@RequestMapping(value="/registCheck",method = RequestMethod.POST)
 	@ResponseBody
-	public boolean registCheck(User user,@RequestParam("email")String email) throws ServletException, IOException{
+	public boolean registCheck(@RequestParam("email")String email) throws ServletException, IOException{
 		User u=this.userServiceImpl.registCheck(email);
 		if(u!=null){
 			return false;
@@ -50,21 +50,27 @@ public class UserController {
 	@RequestMapping(value="/userLogin",method = RequestMethod.POST)
 	public String login(@RequestParam("email")String email,
 			@RequestParam("password")String password,
-			Model model,
-			HttpSession session){
-			User u=this.userServiceImpl.registCheck(email);
-			//验证email和password
-			//验证不通过
-			if(u==null||!u.getPassword().equals(password)){
-				model.addAttribute("loginError", "用户名或密码不正确");
-				return "login";
-			}
-			//验证通过
-			else{ 
-				session.setAttribute("userName", u.getUsername());
-				session.setAttribute("Email", u.getEmail());
-				session.setAttribute("user", u);
-				return "index";
-			}
+		Model model,
+		HttpSession session){
+		User u=this.userServiceImpl.registCheck(email);
+		//验证email和password
+		//验证不通过
+		if(u==null||!u.getPassword().equals(password)){
+			model.addAttribute("loginError", "用户名或密码不正确");
+			return "login";
+		}
+		//验证通过
+		else{ 
+			session.setAttribute("userName", u.getUsername());
+			session.setAttribute("Email", u.getEmail());
+			session.setAttribute("user", u);
+			return "index";
+		}
+	}
+	
+	//test，ODMethod
+	@RequestMapping(value="/userMethod",method=RequestMethod.POST)
+	public String userMethod(){
+		return null;
 	}
 }

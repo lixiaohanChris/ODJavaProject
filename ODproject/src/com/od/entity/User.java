@@ -19,7 +19,7 @@ public class User {
 	private String password;   //密码
 	private String phone_number;  //手机号
 	private Information information;   //信息表一对一
-	private ODMethod odMethod;
+	private ODMethod odMethod;  //方法表一对一
 	
 	@Id
 	@GeneratedValue(generator="my_gen")
