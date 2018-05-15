@@ -18,7 +18,9 @@ import org.hibernate.annotations.GenericGenerator;
 public class CourseType {
 	
 	private int id;
-	private String type;
+	private String typename;
+	private String img;
+	private String describe;
 	private Set<Course> courses = new HashSet<Course>();
 	private String count;
 	
@@ -31,11 +33,11 @@ public class CourseType {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getType() {
-		return type;
+	public String getTypename() {
+		return typename;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setTypename(String typename) {
+		this.typename = typename;
 	}
 	
 	@OneToMany(mappedBy="courseType", targetEntity=Course.class, 
@@ -53,5 +55,18 @@ public class CourseType {
 	public void setCount(String count) {
 		this.count = count;
 	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public String getDescribe() {
+		return describe;
+	}
+	public void setDescribe(String describe) {
+		this.describe = describe;
+	}
+	
 	
 }

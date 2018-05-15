@@ -1,4 +1,65 @@
-﻿//打开字滑入效果
+﻿var a;
+function _iframe() {
+	$.ajax({
+		async : true,
+		type : 'POST',
+		data :  $("#registerForm").serialize(),
+		url : "user/userinfo",
+		success : function(data){
+			 alert(data);
+		}
+	})
+    zeroModal.show({
+        title: 'hello world',
+        iframe: true,
+        url: 'user.jsp',
+        width: '50%',  
+        height: '50%',
+        cancel: true 
+    })
+}
+function ajaxInfo(){
+	
+}
+
+function _confirm2() {
+	zeroModal.confirm({
+		content: '是否完善个人信息',
+		contentDetail: '取消将直接注册',
+		ok:true,
+		okFn: function() {
+			a=null;
+			_iframe();
+		},
+	    cancelFn: function() {
+	    	$("#submit").removeAttr("onclick");
+			$("#submit").click();
+		},
+	});
+}
+
+function ajaxSubmit() {
+    $.ajax({
+        async : false,
+        cache : false,
+        type : 'POST',  
+        data : $("#registerForm").serialize(),
+        url : "user/registCheck",//请求的action路径  
+        error : function() {//请求失败处理函数  
+            alert('失败');
+        },
+        success : function(data) {
+        	if(a==null){
+        		a='on';
+        		$("#submit").attr("onclick","javascript:return _confirm2()");
+            	$("#submit").click();
+            }else{
+        		form.submit();
+        	}
+        }
+    });
+}
+//打开字滑入效果
 window.onload = function(){
 	$(".connect p").eq(0).animate({"left":"0%"}, 600);
 	$(".connect p").eq(1).animate({"left":"0%"}, 400);
@@ -67,10 +128,9 @@ $(document).ready(function(){
 				required:"请输入手机号码",
 				digits:"请输入正确的手机号码",
 			},
-			
-		},	
+		},
 		submitHandler: function(form) {
-			form.submit(); 
+			ajaxSubmit();
 		},
 	});
 	//添加自定义验证规则

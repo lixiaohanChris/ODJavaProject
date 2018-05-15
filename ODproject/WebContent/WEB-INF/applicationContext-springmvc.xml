@@ -12,12 +12,20 @@
 						http://www.springframework.org/schema/context 
 						http://www.springframework.org/schema/context/spring-context-4.0.xsd
 						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-						
+				
+				<!-- 	xmlns:aop="http://www.springframework.org/schema/aop" -->
+				
+				<!-- http://www.springframework.org/schema/aop
+					 http://www.springframework.org/schema/aop/spring-aop-4.0.xsd -->	
 	<!-- 自动扫描且只扫描@Controller -->
 	<context:component-scan base-package="com.od">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
+	
+	<!-- aop -->
+ 	<!-- <aop:aspectj-autoproxy proxy-target-class="true" />
+	<bean id="userLoginAOP" class="com.shop.entity.UserLoginAOP"></bean> -->
 	
 	<!-- 基于注解驱动的SpringMVC -->
 	<mvc:annotation-driven />

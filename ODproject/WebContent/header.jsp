@@ -27,35 +27,29 @@
 						<li>
 							<a href="classes.jsp" class="fh5co-sub-ddown">课程表</a>
 							<ul class="fh5co-sub-menu">
-							 	<li><a href="left-sidebar.html">标签一</a></li>
-							 	<li><a href="right-sidebar.html">标签二 &amp; 标签二</a></li>
+							 	<li><a href="left-sidebar.html">身体战斗</a></li>
+							 	<li><a href="right-sidebar.html">瑜伽课程</a></li>
 								<li>
-									<a href="#" class="fh5co-sub-ddown">标签三</a>
-									<ul class="fh5co-sub-menu">
-										<li><a href="#/preview/?item=build-free-html5-bootstrap-template" target="_blank">标签四</a></li>
-										<li><a href="#/preview/?item=work-free-html5-template-bootstrap" target="_blank">标签五</a></li>
-										<li><a href="#/preview/?item=light-free-html5-template-bootstrap" target="_blank">标签六</a></li>
-										<li><a href="#/preview/?item=relic-free-html5-template-using-bootstrap" target="_blank">标签七</a></li>
-										<li><a href="#/preview/?item=display-free-html5-template-using-bootstrap" target="_blank">标签八</a></li>
-										<li><a href="#/preview/?item=sprint-free-html5-template-bootstrap" target="_blank">标签九</a></li>
-									</ul>
+									<a href="#" class="fh5co-sub-ddown">自行车运动</a>
+									
 								</li>
-								<li><a href="#">标签十</a></li>
-								<li><a href="#">标签十一</a></li>
-								<li><a href="#">标签十二</a></li> 
+								<li><a href="#">拳击健身</a></li>
+								<li><a href="#">游泳运动</a></li>
+								<li><a href="#">仰卧起坐</a></li> 
 							</ul>
 						</li>
 						<li>
 							<a href="schedule.jsp">时间表</a>
 						</li>
-						<li><a href="trainer.jsp">培训师</a></li>
+						
 						<li><a href="about.jsp">关于我们</a></li>
 						<li><a href="contact.jsp">联系我们</a></li>
-						<c:if test="${sessionScope.Email==null }">
+						<c:if test="${sessionScope.user.email==null }">
 							<li><a href="login.jsp"><p class="icon-user3">登录/注册</p></a></li>
 						</c:if>
-						<c:if test="${sessionScope.Email!=null }">
-							<li><a href="info.jsp"><p class="icon-user3">${sessionScope.userName }，您好</p></a></li>
+						<c:if test="${sessionScope.user.email!=null }">
+							<li><a href="info.jsp"><p class="icon-user3">${sessionScope.user.username }，您好</p></a></li>
+							<li><a href="user/userExit"><p class="icon-user3">注销</p></a></li>
 						</c:if>
 					</ul>
 				</nav>

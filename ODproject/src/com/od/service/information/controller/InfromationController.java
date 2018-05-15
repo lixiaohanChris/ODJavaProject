@@ -22,6 +22,8 @@ public class InfromationController {
 	@Resource
 	private UserServiceImpl userServiceImpl;
 	
+	
+	
 	//完善用户信息,修改用户信息
 	@RequestMapping(value="/addInfo")
 	public void addInfo(@RequestParam("height")int height,
@@ -70,11 +72,8 @@ public class InfromationController {
 		info.setHobby(hobby);
 		info.setFat_level(fat_level);
 		//数据持久化
-		info.setUser(u);
-		if(info.getId()==0){
-			this.informationServiceImpl.addInfo(info);
-		}
 		u.setInformation(info);
+		info.setUser(u);
 		this.userServiceImpl.updateUser(u);
 	}
 }

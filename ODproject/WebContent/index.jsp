@@ -71,9 +71,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="container">
 						<div class="row">
 							<div class="col-md-7">
-								<h2>首页大图白色文字一行 <br>文字二行 <b>加粗文字二行</b></h2>
-								<p><span>文字三行<i class="icon-heart3"></i> 文字三行二 <a href="#" class="fh5co-site-name">文字三行三</a></span></p>
-								<span><a class="btn btn-primary" href="#">按钮</a></span>
+								<h3 style="color:white;">贵有恒，何必三更眠五更起 <br>最无益，<b>莫过一日曝十日寒</b></h3>
+								<p><span>世上无难事，只怕有<i class="icon-heart3"></i> 人 <a href="#" class="fh5co-site-name"></a></span></p>
+								<span><a class="btn btn-primary" href="#">开启你的第二人生</a></span>
 							</div>
 						</div>
 					</div>

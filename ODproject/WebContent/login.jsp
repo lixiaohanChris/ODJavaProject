@@ -43,11 +43,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<p>${NotLogged }</p>
 			<p>${loginS }</p>
 		</div>
-		<button id="submit" type="submit"><p style="font-size:20px;">登录</p></button>
+		<p><button id="submit" type="submit"><p style="font-size:20px;">登录</p></button></p>
 	</form>
 
 	<a href="register.jsp">
-		<button type="button" class="register-tis">还有没有账号？</button>
+		<p><button type="button" class="register-tis">还有没有账号？</button></p>
 	</a>
 
 </div>

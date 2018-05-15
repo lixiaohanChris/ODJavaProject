@@ -43,7 +43,7 @@ public class UserController {
 		this.userServiceImpl.registUser(user);
 		model.addAttribute("email",user.getEmail());
 		model.addAttribute("password",user.getPassword());
-		return "login";
+		return "forward:/user/userLogin";
 	}
 	
 	//用户登录，将信息存入session中
@@ -61,16 +61,35 @@ public class UserController {
 		}
 		//验证通过
 		else{ 
-			session.setAttribute("userName", u.getUsername());
-			session.setAttribute("Email", u.getEmail());
 			session.setAttribute("user", u);
 			return "index";
 		}
 	}
 	
-	//test，ODMethod
-	@RequestMapping(value="/userMethod",method=RequestMethod.POST)
-	public String userMethod(){
-		return null;
+	//注销用户
+	@RequestMapping(value="/userExit")
+	public String userExit(HttpSession session){
+		session.invalidate();
+		return "index";
 	}
+	
+	//若注册用户时完善信息
+	@RequestMapping(value="/userinfo",method=RequestMethod.POST)
+	@ResponseBody
+	public String usertest(User user,Model model){
+		User u=this.userServiceImpl.registCheck(user.getEmail());
+		if(u==null){
+			this.userServiceImpl.registUser(user);
+			model.addAttribute("email",user.getEmail());
+			model.addAttribute("password",user.getPassword());
+		}
+		String id=String.valueOf(user.getId());
+		return id;
+	}
+	
+	//展示用户信息
+	/*@RequestMapping(value="/userInfoSingle")
+	public String userInfoSingle(){
+		
+	}*/
 }

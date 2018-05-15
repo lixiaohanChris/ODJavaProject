@@ -13,7 +13,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>注册</title>
 <link rel="stylesheet" href="css/loginRegister/style.css" />
-<body>
+<!-- alert js and css -->
+<link rel="stylesheet" type="text/css" href="css/alert/zeroModal.css" />
+</head>
+<body onload="openInfo()">
 <a href="index.jsp">
 	<h1 style="position:absolute;top:20px;left:5px;color:white">Back Home</h1>
 </a>
@@ -44,13 +47,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div>
 			<input type="email" name="email" class="email" placeholder="输入邮箱地址" oncontextmenu="return false" onpaste="return false" />
 		</div>
-		<button id="submit" type="submit">注 册</button>
+		<p><button id="submit" type="submit">注 册</button></p>
 	</form>
 	
 	<a href="login.jsp">
-		<button type="button" class="register-tis">已经有账号？</button>
+		<p><button type="button" class="register-tis">已经有账号？</button></p>
 	</a>
-
 </div>
 
 <script src="js/loginRegister/jquery.min.js"></script>
@@ -60,7 +62,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/loginRegister/supersized-init.js"></script>
 <!--表单验证-->
 <script src="js/loginRegister/jquery.validate.min.js?var1.14.0"></script>
-
+<!-- alert -->
+<script src="js/alert/zeroModal.min.js"></script>
+<script src="js/alert/mustache.js"></script>
+<script src="js/alert/zeroModal.js"></script>
 </body>
 </html>
 <!--

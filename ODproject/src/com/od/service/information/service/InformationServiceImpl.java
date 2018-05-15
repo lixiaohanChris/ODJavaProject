@@ -15,12 +15,9 @@ public class InformationServiceImpl {
 	@Resource 
 	private InformationDaoImpl informationDaoImpl;
 
+	//addInfo
 	public void addInfo(Information info) {
 		this.informationDaoImpl.addInfo(info);
-	}
-
-	public void updateInfo(Information info) {
-		this.informationDaoImpl.updateInfo(info);
 	}
 
 }

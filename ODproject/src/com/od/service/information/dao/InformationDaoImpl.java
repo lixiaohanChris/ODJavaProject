@@ -12,12 +12,10 @@ public class InformationDaoImpl {
 
 	@Resource
 	private SessionFactory sessionFactory;
-
+	
+	//如果没有用户信息，添加用户信息
 	public void addInfo(Information info) {
 		this.sessionFactory.getCurrentSession().save(info);
 	}
 
-	public void updateInfo(Information info) {
-		this.sessionFactory.getCurrentSession().update(info);
-	}
 }
