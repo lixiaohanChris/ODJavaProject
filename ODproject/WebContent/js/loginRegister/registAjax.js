@@ -6,16 +6,15 @@ function _iframe() {
 		data :  $("#registerForm").serialize(),
 		url : "user/userinfo",
 		success : function(data){
-			 alert(data);
+			 
 		}
 	})
     zeroModal.show({
-        title: 'hello world',
+        title: '完善个人信息',
         iframe: true,
-        url: 'user.jsp',
-        width: '50%',  
-        height: '50%',
-        cancel: true 
+        url: 'userinfo.jsp',
+        width: '30%',  
+        height: '75%',
     })
 }
 function ajaxInfo(){

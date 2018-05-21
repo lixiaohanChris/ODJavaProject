@@ -76,20 +76,15 @@ public class UserController {
 	//若注册用户时完善信息
 	@RequestMapping(value="/userinfo",method=RequestMethod.POST)
 	@ResponseBody
-	public String usertest(User user,Model model){
+	public Boolean usertest(User user,HttpSession session){
 		User u=this.userServiceImpl.registCheck(user.getEmail());
 		if(u==null){
 			this.userServiceImpl.registUser(user);
-			model.addAttribute("email",user.getEmail());
-			model.addAttribute("password",user.getPassword());
+			session.setAttribute("user", user);
+			return true;
+		}else {
+			return false;
 		}
-		String id=String.valueOf(user.getId());
-		return id;
 	}
 	
-	//展示用户信息
-	/*@RequestMapping(value="/userInfoSingle")
-	public String userInfoSingle(){
-		
-	}*/
 }

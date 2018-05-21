@@ -5,7 +5,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.od.entity.Address;
 import com.od.entity.Information;
+import com.od.entity.User;
 import com.od.service.information.dao.InformationDaoImpl;
 
 @Service
@@ -15,9 +17,9 @@ public class InformationServiceImpl {
 	@Resource 
 	private InformationDaoImpl informationDaoImpl;
 
-	//addInfo
-	public void addInfo(Information info) {
-		this.informationDaoImpl.addInfo(info);
+	//insertInfo,完善用户信息
+	public void insertInfo(User user, Information info, Address add) {
+		this.informationDaoImpl.insertInfo(user,info,add);
 	}
 
 }
