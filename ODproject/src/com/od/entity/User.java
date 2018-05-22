@@ -18,6 +18,8 @@ public class User {
 	private String username;  //用户名
 	private String password;   //密码
 	private String phone_number;  //手机号
+	private String role; //用户的角色
+	private String state; //用户的登陆状态
 	private Information information;   //信息表一对一
 	private ODMethod odMethod;  //方法表一对一
 	
@@ -70,5 +72,18 @@ public class User {
 	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
 	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	
 	
 }

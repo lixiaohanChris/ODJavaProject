@@ -16,13 +16,10 @@ public class InformationDaoImpl {
 	private SessionFactory sessionFactory;
 	
 	//完善用户信息（user表内没有informationId）
-	public void insertInfo(User user, Information info, Address add) {
-		info.setAddress(add);
-		add.setInformation(info);
-		this.sessionFactory.getCurrentSession().save(info);
-		user.setInformation(info);
-		info.setUser(user);
-		this.sessionFactory.getCurrentSession().update(user);
+	public void insertInfo(User user, Information info, Address Add) {
+		info.setAddress(Add);
+		Add.setInformation(info);
+		this.sessionFactory.getCurrentSession().update(info);
 	}
 
 }

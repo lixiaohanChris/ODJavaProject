@@ -6,6 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import com.od.entity.Information;
+import com.od.entity.ODMethod;
 import com.od.entity.User;
 
 @Repository
@@ -22,7 +24,11 @@ public class UserDaoImpl {
 	}
 	
 	//用户注册
-	public void registUser(User user) {
+	public void registUser(User user,Information info,ODMethod odm) {
+		user.setInformation(info);
+		user.setOdMethod(odm);
+		odm.setUser(user);
+		info.setUser(user);
 		this.sessionFactory.getCurrentSession().save(user);
 	}
 	

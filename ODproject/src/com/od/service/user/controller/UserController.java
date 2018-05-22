@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.od.service.user.service.UserServiceImpl;
+import com.od.entity.Address;
+import com.od.entity.Information;
+import com.od.entity.ODMethod;
 import com.od.entity.User;
 
 @Controller
@@ -40,7 +43,9 @@ public class UserController {
 	//用户注册
 	@RequestMapping(value="/userRegist",method=RequestMethod.POST)
 	public String userRegist(User user,Model model){
-		this.userServiceImpl.registUser(user);
+		Information info = new Information();
+		ODMethod odm = new ODMethod();
+		this.userServiceImpl.registUser(user,info,odm);
 		model.addAttribute("email",user.getEmail());
 		model.addAttribute("password",user.getPassword());
 		return "forward:/user/userLogin";
@@ -61,6 +66,8 @@ public class UserController {
 		}
 		//验证通过
 		else{ 
+			//数据库改变用户登录状态
+			u.setState("on");
 			session.setAttribute("user", u);
 			return "index";
 		}
@@ -76,10 +83,10 @@ public class UserController {
 	//若注册用户时完善信息
 	@RequestMapping(value="/userinfo",method=RequestMethod.POST)
 	@ResponseBody
-	public Boolean usertest(User user,HttpSession session){
+	public Boolean usertest(User user,HttpSession session,Information info,ODMethod odm){
 		User u=this.userServiceImpl.registCheck(user.getEmail());
 		if(u==null){
-			this.userServiceImpl.registUser(user);
+			this.userServiceImpl.registUser(user,info,odm);
 			session.setAttribute("user", user);
 			return true;
 		}else {

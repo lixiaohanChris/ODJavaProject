@@ -5,6 +5,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.od.entity.Address;
+import com.od.entity.Information;
+import com.od.entity.ODMethod;
 import com.od.entity.User;
 import com.od.service.user.dao.UserDaoImpl;
 @Service
@@ -20,8 +23,8 @@ public class UserServiceImpl {
 	}
 	
 	//用户注册
-	public void registUser(User user) {
-		this.userDaoImpl.registUser(user);
+	public void registUser(User user,Information info,ODMethod odm) {
+		this.userDaoImpl.registUser(user,info,odm);
 	}
 	//更新用户信息
 	public void updateUser(User u) {

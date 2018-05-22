@@ -51,6 +51,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script src="assets/js/amazeui.chosen.js"></script>
   <script src="assets/js/region.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/ajax.js"></script>
+  <!-- alert -->
+<script src="js/alert/zeroModal.min.js"></script>
+<script src="js/alert/mustache.js"></script>
+<script src="js/alert/zeroModal.js"></script>
 </head>
 
 <body style="overflow: hidden;position:relative;left:-10px;">
@@ -72,8 +77,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			window.parent.location.replace("index.jsp")
 		})
 	}) 
+		
+
 </script>
-	<form action="info/userInfo">
+	<form action="info/userInfo" id="userInfoForm" method="post" onSubmit="return ajaxSubmit()">
 	<div data-am-widget="tabs" class="am-tabs am-tabs-d2"  style="width:100%;position:relative;z-index:0">
      	<ul class="am-tabs-nav am-cf">
         	<li class="am-active"><a href="[data-tab-panel-0]" id="target1">个人信息</a></li>
@@ -110,12 +117,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
-	    				<h2 class="am-titlebar-title"  style="width:30%;">
+	    				<h2 class="am-titlebar-title"  style="width:25%;">
 	        				城市：
 	    				</h2>
+	    				<h2 id="errorp" style="color:#dd514c;width:5%"></h2>	
 						<div class="am-btn-group doc-js-btn-1" data-am-button  style="width:70%;">
 							<select data-placeholder="请选择省" name="province" class="province" style="width:32%" tabindex="3">
-            					<option value=""></option>
+            					<option value="" id="aa"></option>
             				</select>
         					<select data-placeholder="请选择市" name="city" class="city" style="width:32%" tabindex="3">
             					<option value=""></option>
