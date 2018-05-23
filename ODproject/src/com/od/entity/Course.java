@@ -23,6 +23,7 @@ public class Course {
 	private CourseType courseType;
 	private Set<Classes> classes = new HashSet<Classes>();
 	private Set<CourseContent> courseContents = new HashSet<CourseContent>();
+	private String img;
 	
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -72,6 +73,12 @@ public class Course {
 	}
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 }
