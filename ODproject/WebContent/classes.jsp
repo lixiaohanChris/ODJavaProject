@@ -111,9 +111,9 @@
 											<h2 style="color:#FFF">类别介绍</h2>
 											<p style="color:#FFF">${p.describe }</p>
 											<p class="fh5co-social-icons">
-												<a href="#"><i class="icon-ribbon"></i></a> 
-												<a href="#"><i class="icon-heart"></i></a> 
-												<a href="#"><i class="icon-instagram-with-circle"></i></a>
+												<i class="icon-ribbon"></i>
+												<i class="icon-heart"></i>
+												<i class="icon-instagram-with-circle"></i>
 											</p>
 										</div>
 									</div>
@@ -133,16 +133,16 @@
 									style="background-image: url(${p.img });height:350px;margin-top:30px;">
 									<div style="margin-top:150px;">
 										<h1 style="color:#FFF">${p.name }</h1>
-										<h2 style="color:#FFF">$个课程</h2>
+										<h2 style="color:#FFF">${p.courseContents.size() }个课程</h2>
 									</div>
 									<div class="overlay-section">
 										<div class="desc">
 											<h2 style="color:#FFF">课程介绍</h2>
 											<p style="color:#FFF">${p.introduce }</p>
 											<p class="fh5co-social-icons">
-												<a href="#"><i class="icon-twitter-with-circle"></i></a> 
-												<a href="#"><i class="icon-facebook-with-circle"></i></a> 
-												<a href="#"><i class="icon-instagram-with-circle"></i></a>
+												<i class="icon-twitter-with-circle"></i>
+												<i class="icon-facebook-with-circle"></i>
+												<i class="icon-instagram-with-circle"></i>
 											</p>
 										</div>
 									</div>
@@ -155,24 +155,27 @@
 			<div class="container">
 				<div class="row text-center">
 					<c:forEach items="${courseContentList }" var="p">
-					<a>
+					<a href="${p.path }">
 						<div class="col-md-4 col-sm-6">
 							<div class="team-section-grid animate-box"
-								style="background-image: url(${p.img });">
+								style="background-image: url(${p.img });height:200px;weight:200px;margin-top:30px;">
+								<div style="margin-top:100px;">
+										<h1 style="color:#000">${p.name }</h1>
+										<h2 style="color:#000">${p.numb }</h2>
+									</div>
 								<div class="overlay-section">
 									<div class="desc">
-										<h3>${p.name }</h3>
-										<span>专业烤肉</span>
-										<p>兼职身体训练师</p>
+										<h1 style="color:#FFF">${p.name }</h1>
 										<p class="fh5co-social-icons">
-											<a href="#"><i class="icon-twitter-with-circle"></i></a> 
-											<a href="#"><i class="icon-facebook-with-circle"></i></a> 
-											<a href="#"><i class="icon-instagram-with-circle"></i></a>
+											<i class="icon-twitter-with-circle"></i>
+											<i class="icon-facebook-with-circle"></i>
+											<i class="icon-instagram-with-circle"></i>
 										</p>
 									</div>
 								</div>
 							</div>
 						</div>
+						</a>
 					</c:forEach>
 				</div>
 			</div>

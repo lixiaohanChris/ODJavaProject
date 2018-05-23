@@ -2,6 +2,7 @@ package com.od.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 @Entity
@@ -24,7 +26,7 @@ public class Course {
 	private Set<Classes> classes = new HashSet<Classes>();
 	private Set<CourseContent> courseContents = new HashSet<CourseContent>();
 	private String img;
-	
+	private String count;
 	@Id
 	@GeneratedValue(generator="my_gen")
 	@GenericGenerator(name="my_gen",strategy="increment")
@@ -60,6 +62,13 @@ public class Course {
 	}
 	public void setCourseContents(Set<CourseContent> courseContents) {
 		this.courseContents = courseContents;
+	}
+	@Transient
+	public String getCount() {
+		return count;
+	}
+	public void setCount(String count) {
+		this.count = count;
 	}
 	public String getName() {
 		return name;
