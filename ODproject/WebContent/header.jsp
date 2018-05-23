@@ -19,7 +19,7 @@
 					<ul class="sf-menu" id="fh5co-primary-menu">
 						<li><a href="index.jsp">首页</a></li>
 						<li>
-							<a href="classes.jsp" class="fh5co-sub-ddown">课程表</a>
+							<a href="course/courseTypeShow" class="fh5co-sub-ddown">课程表</a>
 							<ul class="fh5co-sub-menu">
 							 	<li><a href="left-sidebar.html">身体战斗</a></li>
 							 	<li><a href="right-sidebar.html">瑜伽课程</a></li>

@@ -27,7 +27,7 @@ public class CourseController {
 		//遍历数据库中的coursetype 
 		List<CourseType> courseTypesList=this.courseServiceImpl.getAllcourseType();
 		model.addAttribute("courseTypeList", courseTypesList);
-		return "test";
+		return "classes";
 	}
 	
 	
@@ -36,7 +36,7 @@ public class CourseController {
 	public String courseTypeShow(Model model,@RequestParam("coursetypeid")String coursetypeid){
 		List<Course> courseList = this.courseServiceImpl.getCourseById(coursetypeid);
 		model.addAttribute("courseList", courseList);
-		return "test";
+		return "classes";
 	}
 	
 	//课程内容展示
@@ -44,6 +44,6 @@ public class CourseController {
 	public String courseContentShow(Model model,@RequestParam("courseid")String courseid){
 		List<CourseContent> courseContentList=this.courseServiceImpl.getCourseContentById(courseid);
 		model.addAttribute("courseContentList",courseContentList);
-		return "test";
+		return "classes";
 	}
 }
