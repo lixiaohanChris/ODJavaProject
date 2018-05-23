@@ -85,10 +85,7 @@
 						<div
 							class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 							<div class="fh5co-intro fh5co-table-cell animate-box">
-								<h1 class="text-center">课程</h1>
-								<p>
-									文字一 <a href="#">文字二</a>
-								</p>
+								<h1 class="text-center">课&nbsp&nbsp&nbsp&nbsp程</h1>
 							</div>
 						</div>
 					</div>
