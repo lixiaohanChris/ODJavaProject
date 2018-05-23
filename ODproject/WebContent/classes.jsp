@@ -101,7 +101,7 @@
 						<a href="course/courseShow?coursetypeid=${p.id }">
 							<div class="col-md-4 col-sm-6">
 								<div class="team-section-grid animate-box"
-									style="background-image: url(${p.img});height:350px;margin-top:30px;">
+									style="background-image: url(${p.img});height:350px;margin-top:30px;opacity:0.5;filter(alpha=80)">
 									<div style="margin-top:150px;">
 										<h1 style="color:#FFF">${p.typename }</h1>
 										<h2 style="color:#FFF">${p.courses.size() }个课程</h2>
@@ -132,8 +132,8 @@
 								<div class="team-section-grid animate-box"
 									style="background-image: url(${p.img });height:200px;margin-top:30px;">
 									<div style="margin-top:50px;">
-										<h1 style="color:#FFF">${p.name }</h1>
-										<h2 style="color:#FFF">${p.courseContents.size() }个课程</h2>
+										<h1 style="color:#808080">${p.name }</h1>
+										<h2 style="color:#808080">${p.courseContents.size() }个课程</h2>
 									</div>
 									<div class="overlay-section">
 										<div class="desc" style="height:200px;">
