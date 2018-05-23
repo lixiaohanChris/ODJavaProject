@@ -26,10 +26,10 @@ public class CourseController {
 	public String courseTypeShow(Model model){
 		//遍历数据库中的coursetype 
 		List<CourseType> courseTypesList=this.courseServiceImpl.getAllcourseType();
-		
 		model.addAttribute("courseTypeList", courseTypesList);
 		return "test";
 	}
+	
 	
 	//课程展示
 	@RequestMapping(value="/courseShow")

@@ -135,7 +135,7 @@ $(document).ready(function(){
 	//添加自定义验证规则
 	jQuery.validator.addMethod("phone_number", function(value, element) { 
 		var length = value.length; 
-		var phone_number = /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/ 
+		var phone_number = /^[1][3,4,5,7,8][0-9]{9}$/  
 		return this.optional(element) || (length == 11 && phone_number.test(value)); 
 	}, "手机号码格式错误"); 
 });
