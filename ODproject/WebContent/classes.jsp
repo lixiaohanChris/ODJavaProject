@@ -158,7 +158,7 @@
 					<a>
 						<div class="col-md-4 col-sm-6">
 							<div class="team-section-grid animate-box"
-								style="background-image: url(images/trainer-1.jpg);">
+								style="background-image: url(${p.img });">
 								<div class="overlay-section">
 									<div class="desc">
 										<h3>${p.name }</h3>

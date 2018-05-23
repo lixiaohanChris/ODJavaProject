@@ -20,6 +20,7 @@ public class CourseContent {
 	private String path;
 	private String method;
 	private Course course;
+	private String img;
 	
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -67,6 +68,12 @@ public class CourseContent {
 	}
 	public void setMethod(String method) {
 		this.method = method;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 	
