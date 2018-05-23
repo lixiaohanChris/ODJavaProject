@@ -16,6 +16,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/alert/zeroModal.min.js"></script>
 </head>
 <body>
-	${sessionScope.user.state }
+	<a href="course/courseTypeShow">测试</a>
 </body>
 </html>
