@@ -130,13 +130,13 @@
 						<div class="col-md-4 col-sm-6">
 							<a href="course/courseContentShow?courseid=${p.id }">
 								<div class="team-section-grid animate-box"
-									style="background-image: url(${p.img });height:350px;margin-top:30px;">
-									<div style="margin-top:150px;">
+									style="background-image: url(${p.img });height:200px;margin-top:30px;">
+									<div style="margin-top:50px;">
 										<h1 style="color:#FFF">${p.name }</h1>
 										<h2 style="color:#FFF">${p.courseContents.size() }个课程</h2>
 									</div>
 									<div class="overlay-section">
-										<div class="desc">
+										<div class="desc" style="height:200px;">
 											<h2 style="color:#FFF">课程介绍</h2>
 											<p style="color:#FFF">${p.introduce }</p>
 											<p class="fh5co-social-icons">
