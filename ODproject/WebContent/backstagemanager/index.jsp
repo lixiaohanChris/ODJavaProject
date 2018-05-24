@@ -1,3 +1,8 @@
+<%  
+String path = request.getContextPath();  
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
+%>  
+<base href="<%=basePath%>">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -13,14 +18,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <link rel="icon" type="image/png" href="backstagemanager/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="backstagemanager/assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <script src="assets/js/echarts.min.js"></script>
-    <link rel="stylesheet" href="assets/css/amazeui.min.css" />
-    <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
-    <link rel="stylesheet" href="assets/css/app.css">
-    <script src="assets/js/jquery.min.js"></script>
+    <script src="backstagemanager/assets/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="backstagemanager/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="backstagemanager/assets/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" href="backstagemanager/assets/css/app.css">
+    <script src="backstagemanager/assets/js/jquery.min.js"></script>
 
 </head>
 
@@ -153,7 +158,7 @@
                             <div class="achievement-subheading">
                               	 	 月度最佳员工
                             </div>
-                            <img class="achievement-image" src="assets/img/user07.png" alt="">
+                            <img class="achievement-image" src="backstagemanager/assets/img/user07.png" alt="">
                             <div class="achievement-description">
                                 	禁言小张在
                                 <strong>30天内</strong> 禁言了
@@ -268,10 +273,10 @@
         </div>
     </div>
     </div>
-    <script src="assets/js/amazeui.min.js"></script>
-    <script src="assets/js/amazeui.datatables.min.js"></script>
-    <script src="assets/js/dataTables.responsive.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="backstagemanager/assets/js/amazeui.min.js"></script>
+    <script src="backstagemanager/assets/js/amazeui.datatables.min.js"></script>
+    <script src="backstagemanager/assets/js/dataTables.responsive.min.js"></script>
+    <script src="backstagemanager/assets/js/app.js"></script>
 
 </body>
 

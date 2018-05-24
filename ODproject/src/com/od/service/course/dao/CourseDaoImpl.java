@@ -35,4 +35,23 @@ public class CourseDaoImpl {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from CourseContent where courseid="+courseid);
 		return query.list();
 	}
+	
+	//分页查询课程类型信息数据统计
+	public Long findUserCountByPage() {
+		Query query=this.sessionFactory.getCurrentSession().createQuery("select count(id) from CourseType");
+		return (Long)query.uniqueResult();
+	}
+	
+	//分页查询课程类型信息
+	public List<CourseType> findByUserPage(int pageNum, int pageSize) {
+		Query query=this.sessionFactory.getCurrentSession().createQuery("from CourseType");
+		query.setFirstResult((pageNum-1)*pageSize);
+		query.setMaxResults(pageSize);
+		return query.list();
+	}
+	
+	//后台管理，插入courseType
+	public void CourseTypeInsert(CourseType courseType) {
+		this.sessionFactory.getCurrentSession().save(courseType);
+	}
 }
