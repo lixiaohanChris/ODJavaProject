@@ -19,11 +19,12 @@ public class CourseType {
 	
 	private int id;
 	private String typename;
-	private String img;
-	private String describe;
+	private String imgPath;
+	private String description;
 	private Set<Course> courses = new HashSet<Course>();
 	private String count;
-	
+	private String firsttime; // 发布时间
+	private String lasttime;
 	@Id
 	@GeneratedValue(generator="my_gen")
 	@GenericGenerator(name="my_gen",strategy="increment")
@@ -55,18 +56,33 @@ public class CourseType {
 	public void setCount(String count) {
 		this.count = count;
 	}
-	public String getImg() {
-		return img;
+
+	public String getDescription() {
+		return description;
 	}
-	public void setImg(String img) {
-		this.img = img;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getDescribe() {
-		return describe;
+	
+	public String getFirsttime() {
+		return firsttime;
 	}
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	public void setFirsttime(String firsttime) {
+		this.firsttime = firsttime;
 	}
+	public String getLasttime() {
+		return lasttime;
+	}
+	public void setLasttime(String lasttime) {
+		this.lasttime = lasttime;
+	}
+	public String getImgPath() {
+		return imgPath;
+	}
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
+	
 	
 	
 }

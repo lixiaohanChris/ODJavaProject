@@ -1,23 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <script src="assets/js/theme.js"></script>
+
+    <script src="backstagemanager/assets/js/theme.js"></script>
+    
     <div class="am-g tpl-g">
         <!-- 头部 -->
         <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="assets/img/logo.png" alt=""></a>
+                <a href="javascript:;"><img src="backstagemanager/assets/img/logo.png" alt=""></a>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">
                 <!-- 侧边切换 -->
-                <div class="am-fl tpl-header-switch-button am-icon-list">
+                <div style="position:absolute;top:18px" class="am-fl tpl-header-switch-button am-icon-list">
                     <span>
 
                 </span>
                 </div>
                 <!-- 搜索 -->
-                <div class="am-fl tpl-header-search">
+                <div  style="position:relative;left:23px;" class="am-fl tpl-header-search">
                     <form class="tpl-header-search-form" action="javascript:;">
                         <button class="tpl-header-search-btn am-icon-search"></button>
                         <input class="tpl-header-search-box" type="text" placeholder="搜索内容...">
@@ -27,12 +29,12 @@
                 <div class="am-fr tpl-header-navbar">
                     <ul>
                         <!-- 欢迎语 -->
-                        <li class="am-text-sm tpl-header-navbar-welcome">
+                        <li class="am-text-sm tpl-header-navbar-welcome" style="position:absolute;right:200px;">
                             <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
                         </li>
 
                         <!-- 新邮件 -->
-                        <li class="am-dropdown tpl-dropdown" data-am-dropdown>
+                        <li style="position:absolute;right:150px;top:18px;" class="am-dropdown tpl-dropdown" data-am-dropdown>
                             <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
                                 <i class="am-icon-envelope"></i>
                                 <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
@@ -42,7 +44,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="assets/img/user04.png" alt="">
+                                            <img src="backstagemanager/assets/img/user04.png" alt="">
                                         </div>
                                         <div class="menu-messages-time">
                                             3小时前
@@ -61,7 +63,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="assets/img/user02.png" alt="">
+                                            <img src="backstagemanager/assets/img/user02.png" alt="">
                                         </div>
                                         <div class="menu-messages-time">
                                             5天前
@@ -85,7 +87,7 @@
                         </li>
 
                         <!-- 新提示 -->
-                        <li class="am-dropdown" data-am-dropdown>
+                        <li style="position:absolute;right:110px;top:18px;" class="am-dropdown" data-am-dropdown>
                             <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
                                 <i class="am-icon-bell"></i>
                                 <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
@@ -137,7 +139,7 @@
                         </li>
 
                         <!-- 退出 -->
-                        <li class="am-text-sm">
+                        <li style="position:absolute;right:20px;" class="am-text-sm">
                             <a href="javascript:;">
                                 <span class="am-icon-sign-out"></span> 退出
                             </a>
@@ -149,7 +151,7 @@
         </header>
         <!-- 风格切换 -->
         <div class="tpl-skiner">
-            <div class="tpl-skiner-toggle am-icon-cog">
+            <div style="position:absolute;top:100px;" class="tpl-skiner-toggle am-icon-cog">
             </div>
             <div class="tpl-skiner-content">
                 <div class="tpl-skiner-content-title">
@@ -167,7 +169,7 @@
             <div class="tpl-sidebar-user-panel">
                 <div class="tpl-user-panel-slide-toggleable">
                     <div class="tpl-user-panel-profile-picture">
-                        <img src="assets/img/user04.png" alt="">
+                        <img src="backstagemanager/assets/img/user04.png" alt="">
                     </div>
                     <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
@@ -181,28 +183,28 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-nav-heading">Data page <span class="sidebar-nav-heading-info"> 数据页</span></li>
                 <li class="sidebar-nav-link">
-                    <a href="index.jsp" class="active">
+                    <a href="backstagemanager/index.jsp" class="active">
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="tables.html">
+                    <a href="backstagemanager/tables.html">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 表格
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="calendar.html">
+                    <a href="backstagemanager/calendar.html">
                         <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="form.html">
+                    <a href="backstagemanager/form.html">
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单
 
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="chart.html">
+                    <a href="backstagemanager/chart.html">
                         <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表
 
                     </a>
@@ -217,17 +219,17 @@
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="table-list-img.jsp">
+                            <a href="course/backstage/courseTypeShow/header">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> CourseType(课程类型)
                             </a>
                         </li>
                         <li class="sidebar-nav-link">
-                            <a href="table-list-img.jsp">
+                            <a href="backstagemanager/table-list-img.jsp">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> Course(课程)
                             </a>
                         </li>
                         <li class="sidebar-nav-link">
-                            <a href="table-list-img.jsp">
+                            <a href="backstagemanager/table-list-img.jsp">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> CourseContent(课程内容)
                             </a>
                         </li>
@@ -241,17 +243,17 @@
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="table-list-img.jsp">
+                            <a href="backstagemanager/table-list-img.jsp">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> UserList(用户列表)
                             </a>
                         </li>
                         <li class="sidebar-nav-link">
-                            <a href="table-list-img.jsp">
+                            <a href="backstagemanager/table-list-img.jsp">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> Role(角色管理)
                             </a>
                         </li>
                         <li class="sidebar-nav-link">
-                            <a href="table-list.jsp">
+                            <a href="backstagemanager/table-list.jsp">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> authority(权限管理)
                             </a>
                         </li>
@@ -259,18 +261,18 @@
                 </li>
 
                 <li class="sidebar-nav-link">
-                    <a href="sign-up.html">
+                    <a href="backstagemanager/sign-up.html">
                         <i class="am-icon-clone sidebar-nav-link-logo"></i> 注册
                         <span class="am-badge am-badge-secondary sidebar-nav-link-logo-ico am-round am-fr am-margin-right-sm">6</span>
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="login.html">
+                    <a href="backstagemanager/login.html">
                         <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="404.html">
+                    <a href="backstagemanager/404.html">
                         <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
                     </a>
                 </li>
