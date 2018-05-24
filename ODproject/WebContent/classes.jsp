@@ -109,7 +109,7 @@
 									<div class="overlay-section">
 										<div class="desc">
 											<h2 style="color:#FFF">类别介绍</h2>
-											<p style="color:#FFF">${p.describe }</p>
+											<p style="color:#FFF">${p.description }</p>
 											<p class="fh5co-social-icons">
 												<a href="#"><i class="icon-ribbon"></i></a> 
 												<a href="#"><i class="icon-heart"></i></a> 

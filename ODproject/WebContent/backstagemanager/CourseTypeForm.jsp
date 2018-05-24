@@ -30,7 +30,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script>
 	$(document).ready(function(){
-		$("#doc-form-file").live("change",function(){
+		$("#upload").click(function(){
+			alert($("#doc-form-file").val());
+			ajaxFileUpload();
+		})
+		function ajaxFileUpload() {
 			$.ajaxFileUpload({
 				url:'course/backstage/imgAjax',
 				secureuri:false,
@@ -44,8 +48,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					alert("b");
                 }
 			})
-			$("#doc-form-file").replaceWith('<input id="doc-form-file" type="file" name="imgPath" title="+count+"/>');
-		})
+		}
+		/* $("#doc-form-file").on("change",function(){
+			alert("a");
+			$.ajaxFileUpload({
+				url:'course/backstage/imgAjax',
+				secureuri:false,
+				dataType: 'json', //返回值类型 一般设置为json
+				fileElementId:'doc-form-file',
+				success:function (data,status){
+					$("#realPic").attr("src", "images/"+data.real); 
+					$("#doc-form-file").replaceWith("<input id='doc-form-file' type='file' name='imgPath' title="+count+"/>");
+					count++;
+				},
+				error: function (data, status, e)//服务器响应失败处理函数
+                {
+					alert("b");
+                }
+			})
+			
+		}) */
 	})
 </script>
 </head>
@@ -57,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div class="row">
             	<div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
                     <div class="page-header-heading">
-                    <button type="button" id="aaa">test</button>
+                    
                     	<span class="am-icon-home page-header-heading-icon">
                     	</span> Form 
                     	<small>CourseType</small>
@@ -115,12 +137,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                            	<div class="tpl-form-file-">
 			                            	<img id="realPic" src="" alt="">
 			                            </div>
-                            			<button type="button" id="test2" class="am-btn am-btn-danger am-btn-sm ">
-    										<i class="am-icon-cloud-upload"></i> 添加封面图片
+                            			<button type="button" class="am-btn am-btn-danger am-btn-sm ">
+    										<i class="am-icon-cloud-upload"></i> 选择图片
     									</button>
                             			<input id="doc-form-file" type="file" name="imgPath">
-                            			
                             		</div>
+                            		<button id="upload" type="button" class="am-btn am-btn-danger am-btn-sm ">
+    										<i class="am-icon-cloud-upload"></i> 上传图片
+    									</button>
 								</div>
                             </div>
                             
