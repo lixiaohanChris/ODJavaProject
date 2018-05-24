@@ -46,10 +46,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            		<c:forEach items="${courseTypes }" var="c">
            			<tr class="gradeX">
                    		<td>
-                       		<img src="${c.img }" class="tpl-table-line-img" alt="">
+                       		<img src="${c.imgPath }" class="tpl-table-line-img" alt="">
                    		</td>
                    		<td class="am-text-middle">${c.typename }</td>
-                   		<td class="am-text-middle">${c.describe }</td>
+                   		<td class="am-text-middle">${c.description }</td>
                    		<td class="am-text-middle">${c.firsttime }</td>
                    		<td class="am-text-middle">${c.lasttime }</td>
                    		<td class="am-text-middle">

@@ -37,19 +37,9 @@ public class CourseController {
 	@Resource
 	private CourseServiceImpl courseServiceImpl;
 	
-	//课程类型展示
-	@RequestMapping(value="/courseTypeShow")
-	public String courseTypeShow(Model model){
-		//遍历数据库中的coursetype 
-		List<CourseType> courseTypesList=this.courseServiceImpl.getAllcourseType();
-		model.addAttribute("courseTypeList", courseTypesList);
-		return "classes";
-	}
-	
-
 	//后台管理课程类型分页展示
 	@RequestMapping(value="backstage/courseTypeShow/{HTMLname}",method=RequestMethod.GET)
-	public String userList1(Model model,HttpServletRequest request,@PathVariable String HTMLname){
+	public String courseTypeShow(Model model,HttpServletRequest request,@PathVariable String HTMLname){
 		//根据分页查询到课程类型的信息
 		String pageNum=request.getParameter("pageNum");
 		int num=0;
@@ -58,20 +48,23 @@ public class CourseController {
 		}else{
 			num=Integer.parseInt(pageNum);
 		}
-		//用户查询数据统计
+		//课程类型查询数据统计
 		Long count=courseServiceImpl.findCourseTypeCountByPage();
-		//用户列表
-		List<CourseType> courseTypes=courseServiceImpl.findByCourseTypePage(num, 8);
+		//课程类型列表
+		List<CourseType> courseTypes=courseServiceImpl.findByCourseTypePage(num, 9);
 		//分页信息
-		Page<CourseType> p=new Page<CourseType>(num, 8);
+		Page<CourseType> p=new Page<CourseType>(num, 9);
 		p.setCurrentPageNum(num);
 		p.setList(courseTypes);
 		p.setTotalCount(count.intValue());
-		//将分页信息和用户列表存入model中
+		//将分页信息和课程类型列表存入model中
 		model.addAttribute("pageData", p);
 		model.addAttribute("courseTypes", courseTypes);
 		if(HTMLname.equals("header")){
 			return "backstagemanager/CourseType";
+		}
+		if(HTMLname.equals("classes")){
+			return "classes";
 		}
 			return "backstagemanager/Model";
 	}
@@ -129,12 +122,74 @@ public class CourseController {
 		}
 	}
 	
-	//课程展示
-	@RequestMapping(value="/courseShow")
-	public String courseTypeShow(Model model,@RequestParam("coursetypeid")String coursetypeid){
-		List<Course> courseList = this.courseServiceImpl.getCourseById(coursetypeid);
-		model.addAttribute("courseList", courseList);
-		return "classes";
+	//后台管理课程分页展示 by courseType id
+	@RequestMapping(value="backstage/courseShow/{HTMLname}/{coursetypeid}",method=RequestMethod.GET)
+	public String courseShow(Model model,HttpServletRequest request,@PathVariable String HTMLname,
+			@PathVariable String coursetypeid){
+		//根据分页查询到课程的信息
+		String pageNum=request.getParameter("pageNum");
+		int courseTypeId=Integer.parseInt(coursetypeid);
+		int num=0;
+		if(pageNum==null || pageNum.equals("")){
+			num=1;
+		}else{
+			num=Integer.parseInt(pageNum);
+		}
+		//课程查询数据统计
+		Long count=courseServiceImpl.findCourseCountByPage(courseTypeId);
+		//课程列表
+		List<Course> courses=courseServiceImpl.findCourseByIdPage(courseTypeId,num, 9);
+		//分页信息
+		Page<Course> p=new Page<Course>(num, 9);
+		p.setCurrentPageNum(num);
+		p.setList(courses);
+		p.setTotalCount(count.intValue());
+		//将分页信息和课程列表存入model中
+		model.addAttribute("pageData", p);
+		model.addAttribute("courses", courses);
+		model.addAttribute("courseTypeId",courseTypeId);
+		if(HTMLname.equals("header")){
+			return "backstagemanager/CourseType";
+		}
+		if(HTMLname.equals("classes")){
+			return "classes";
+		}
+			return "backstagemanager/Model";
+	}
+
+	//后台管理课程分页展示 by courseid
+	@RequestMapping(value="backstage/courseContentShow/{HTMLname}/{courseid}",method=RequestMethod.GET)
+	public String courseContentShow(Model model,HttpServletRequest request,@PathVariable String HTMLname,
+			@PathVariable String courseid){
+		//根据分页查询到课程的信息
+		String pageNum=request.getParameter("pageNum");
+		int courseId=Integer.parseInt(courseid);
+		int num=0;
+		if(pageNum==null || pageNum.equals("")){
+			num=1;
+		}else{
+			num=Integer.parseInt(pageNum);
+		}
+		//课程查询数据统计
+		Long count=courseServiceImpl.findCourseContentCountByPage(courseId);
+		//课程列表
+		List<CourseContent> courseContents=courseServiceImpl.findCourseContentByIdPage(courseId,num, 9);
+		//分页信息
+		Page<CourseContent> p=new Page<CourseContent>(num, 9);
+		p.setCurrentPageNum(num);
+		p.setList(courseContents);
+		p.setTotalCount(count.intValue());
+		//将分页信息和课程列表存入model中
+		model.addAttribute("pageData", p);
+		model.addAttribute("CourseContents", courseContents);
+		model.addAttribute("courseId",courseId);
+		if(HTMLname.equals("header")){
+			return "backstagemanager/CourseType";
+		}
+		if(HTMLname.equals("classes")){
+			return "classes";
+		}
+			return "backstagemanager/Model";
 	}
 	
 	//课程内容展示

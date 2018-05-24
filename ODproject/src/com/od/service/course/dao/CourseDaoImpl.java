@@ -36,14 +36,17 @@ public class CourseDaoImpl {
 		return query.list();
 	}
 	
+	
+	
+	
 	//分页查询课程类型信息数据统计
-	public Long findUserCountByPage() {
+	public Long findCourseTypeCountByPage() {
 		Query query=this.sessionFactory.getCurrentSession().createQuery("select count(id) from CourseType");
 		return (Long)query.uniqueResult();
 	}
 	
 	//分页查询课程类型信息
-	public List<CourseType> findByUserPage(int pageNum, int pageSize) {
+	public List<CourseType> findByCourseTypePage(int pageNum, int pageSize) {
 		Query query=this.sessionFactory.getCurrentSession().createQuery("from CourseType");
 		query.setFirstResult((pageNum-1)*pageSize);
 		query.setMaxResults(pageSize);
@@ -53,5 +56,35 @@ public class CourseDaoImpl {
 	//后台管理，插入courseType
 	public void CourseTypeInsert(CourseType courseType) {
 		this.sessionFactory.getCurrentSession().save(courseType);
+	}
+	
+	
+	
+	//分页查询课程信息by courseTypeId
+	public List<Course> findCourseByIdPage(int coursetypeid, int pageNum, int pageSize) {
+		Query query=this.sessionFactory.getCurrentSession().createQuery("from Course where coursetypeId="+coursetypeid);
+		query.setFirstResult((pageNum-1)*pageSize);
+		query.setMaxResults(pageSize);
+		return query.list();
+	}
+	//分页查询课程信息数据统计 by courseTypeId
+	public Long findCourseCountByPage(int coursetypeid) {
+		Query query=this.sessionFactory.getCurrentSession().createQuery("select count(id) from Course where coursetypeId="+coursetypeid);
+		return (Long)query.uniqueResult();
+	}
+	
+	
+	//分页查询课程内容信息 by Courseid
+	public List<CourseContent> findCourseContentByIdPage(int courseId, int pageNum, int pageSize) {
+		Query query=this.sessionFactory.getCurrentSession().createQuery("from CourseContent where courseId="+courseId);
+		query.setFirstResult((pageNum-1)*pageSize);
+		query.setMaxResults(pageSize);
+		return query.list();
+	}
+	
+	//分页查询课程内容数据统计 by Courseid
+	public Long findCourseContentCountByPage(int courseId) {
+		Query query=this.sessionFactory.getCurrentSession().createQuery("select count(id) from CourseContent where courseId="+courseId);
+		return (Long)query.uniqueResult();
 	}
 }

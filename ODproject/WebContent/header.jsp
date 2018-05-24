@@ -19,8 +19,8 @@
 					<ul class="sf-menu" id="fh5co-primary-menu">
 						<li><a href="index.jsp">首页</a></li>
 						<li>
-							<a href="course/courseTypeShow" class="fh5co-sub-ddown">课程表</a>
-							<ul class="fh5co-sub-menu">
+							<a href="course/backstage/courseTypeShow/classes" class="fh5co-sub-ddown">课程表</a>
+							<!-- <ul class="fh5co-sub-menu">
 							 	<li><a href="left-sidebar.html">身体战斗</a></li>
 							 	<li><a href="right-sidebar.html">瑜伽课程</a></li>
 								<li>
@@ -30,7 +30,7 @@
 								<li><a href="#">拳击健身</a></li>
 								<li><a href="#">游泳运动</a></li>
 								<li><a href="#">仰卧起坐</a></li> 
-							</ul>
+							</ul> -->
 						</li>
 						<li>
 							<a href="schedule.jsp">时间表</a>
