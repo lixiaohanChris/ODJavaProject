@@ -98,7 +98,7 @@
 						<a href="course/courseShow?coursetypeid=${p.id }">
 							<div class="col-md-4 col-sm-6">
 								<div class="team-section-grid animate-box"
-									style="background-image: url(${p.img});height:350px;margin-top:30px;margin-bottom:10px;opacity:0.5;filter(alpha=80)">
+									style="background-image: url(${p.imgPath});height:350px;margin-top:30px;margin-bottom:10px;opacity:0.5;filter(alpha=80)">
 									<div style="margin-top:150px;">
 										<h1 style="color:#FFF">${p.typename }</h1>
 										<h2 style="color:#FFF">${p.courses.size() }个课程</h2>
@@ -106,7 +106,7 @@
 									<div class="overlay-section">
 										<div class="desc">
 											<h2 style="color:#FFF">类别介绍</h2>
-											<p style="color:#FFF">${p.describe }</p>
+											<p style="color:#FFF">${p.description }</p>
 											<p class="fh5co-social-icons">
 												<i class="icon-ribbon"></i>
 												<i class="icon-heart"></i>
