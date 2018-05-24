@@ -85,10 +85,7 @@
 						<div
 							class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 							<div class="fh5co-intro fh5co-table-cell animate-box">
-								<h1 class="text-center">课程</h1>
-								<p>
-									文字一 <a href="#">文字二</a>
-								</p>
+								<h1 class="text-center">课&nbsp&nbsp&nbsp&nbsp程</h1>
 							</div>
 						</div>
 					</div>
@@ -101,7 +98,7 @@
 						<a href="course/courseShow?coursetypeid=${p.id }">
 							<div class="col-md-4 col-sm-6">
 								<div class="team-section-grid animate-box"
-									style="background-image: url(${p.img});height:350px;margin-top:30px;">
+									style="background-image: url(${p.imgPath});height:350px;margin-top:30px;margin-bottom:10px;opacity:0.5;filter(alpha=80)">
 									<div style="margin-top:150px;">
 										<h1 style="color:#FFF">${p.typename }</h1>
 										<h2 style="color:#FFF">${p.courses.size() }个课程</h2>
@@ -111,9 +108,9 @@
 											<h2 style="color:#FFF">类别介绍</h2>
 											<p style="color:#FFF">${p.description }</p>
 											<p class="fh5co-social-icons">
-												<a href="#"><i class="icon-ribbon"></i></a> 
-												<a href="#"><i class="icon-heart"></i></a> 
-												<a href="#"><i class="icon-instagram-with-circle"></i></a>
+												<i class="icon-ribbon"></i>
+												<i class="icon-heart"></i>
+												<i class="icon-instagram-with-circle"></i>
 											</p>
 										</div>
 									</div>
@@ -130,19 +127,19 @@
 						<div class="col-md-4 col-sm-6">
 							<a href="course/courseContentShow?courseid=${p.id }">
 								<div class="team-section-grid animate-box"
-									style="background-image: url(${p.img });height:350px;margin-top:30px;">
-									<div style="margin-top:150px;">
-										<h1 style="color:#FFF">${p.name }</h1>
-										<h2 style="color:#FFF">$个课程</h2>
+									style="background-image: url(${p.img });height:200px;margin-top:30px;">
+									<div style="margin-top:50px;">
+										<h1 style="color:#000">${p.name }</h1>
+										<h2 style="color:#808080">${p.courseContents.size() }个课程</h2>
 									</div>
 									<div class="overlay-section">
-										<div class="desc">
+										<div class="desc" style="height:200px;">
 											<h2 style="color:#FFF">课程介绍</h2>
 											<p style="color:#FFF">${p.introduce }</p>
 											<p class="fh5co-social-icons">
-												<a href="#"><i class="icon-twitter-with-circle"></i></a> 
-												<a href="#"><i class="icon-facebook-with-circle"></i></a> 
-												<a href="#"><i class="icon-instagram-with-circle"></i></a>
+												<i class="icon-twitter-with-circle"></i>
+												<i class="icon-facebook-with-circle"></i>
+												<i class="icon-instagram-with-circle"></i>
 											</p>
 										</div>
 									</div>
@@ -155,24 +152,27 @@
 			<div class="container">
 				<div class="row text-center">
 					<c:forEach items="${courseContentList }" var="p">
-					<a>
+					<a href="${p.path }">
 						<div class="col-md-4 col-sm-6">
 							<div class="team-section-grid animate-box"
-								style="background-image: url(images/trainer-1.jpg);">
+								style="background-image: url(${p.img });height:200px;weight:200px;margin-top:30px;">
+								<div style="margin-top:100px;">
+										<h1 style="color:#000">${p.name }</h1>
+										<h2 style="color:#000">${p.numb }</h2>
+									</div>
 								<div class="overlay-section">
 									<div class="desc">
-										<h3>${p.name }</h3>
-										<span>专业烤肉</span>
-										<p>兼职身体训练师</p>
+										<h1 style="color:#FFF">${p.name }</h1>
 										<p class="fh5co-social-icons">
-											<a href="#"><i class="icon-twitter-with-circle"></i></a> 
-											<a href="#"><i class="icon-facebook-with-circle"></i></a> 
-											<a href="#"><i class="icon-instagram-with-circle"></i></a>
+											<i class="icon-twitter-with-circle"></i>
+											<i class="icon-facebook-with-circle"></i>
+											<i class="icon-instagram-with-circle"></i>
 										</p>
 									</div>
 								</div>
 							</div>
 						</div>
+						</a>
 					</c:forEach>
 				</div>
 			</div>
