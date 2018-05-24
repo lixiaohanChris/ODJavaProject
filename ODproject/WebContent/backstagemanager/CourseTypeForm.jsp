@@ -30,8 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script>
 	$(document).ready(function(){
-		$("#doc-form-file").on("change",function(){
-			alert("a")
+		$("#doc-form-file").live("change",function(){
 			$.ajaxFileUpload({
 				url:'course/backstage/imgAjax',
 				secureuri:false,
@@ -45,6 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					alert("b");
                 }
 			})
+			$("#doc-form-file").replaceWith('<input id="doc-form-file" type="file" name="imgPath" title="+count+"/>');
 		})
 	})
 </script>
