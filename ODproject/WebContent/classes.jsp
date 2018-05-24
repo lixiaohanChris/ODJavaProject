@@ -1,4 +1,3 @@
-
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -64,6 +63,11 @@
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+<link rel="stylesheet" href="assets/css/amazeui.min.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link href="assets/css/amazeui.chosen.css" rel="stylesheet" />
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/amazeui.min.js"></script>
 
 </head>
 <body>
@@ -85,7 +89,10 @@
 						<div
 							class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 							<div class="fh5co-intro fh5co-table-cell animate-box">
-								<h1 class="text-center">课&nbsp&nbsp&nbsp&nbsp程</h1>
+								<h1 class="text-center">课程</h1>
+								<p>
+									文字一 <a href="#">文字二</a>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -94,11 +101,11 @@
 			<!-- end: fh5co-parallax -->
 			<div class="container">
 				<div class="row text-center">
-					<c:forEach items="${courseTypeList }" var="p">
-						<a href="course/courseShow?coursetypeid=${p.id }">
+					<c:forEach items="${courseTypes }" var="p">
+						<a href="course/backstage/courseShow/classes/${p.id }">
 							<div class="col-md-4 col-sm-6">
 								<div class="team-section-grid animate-box"
-									style="background-image: url(${p.imgPath});height:350px;margin-top:30px;margin-bottom:10px;opacity:0.5;filter(alpha=80)">
+									style="background-image: url(${p.imgPath});height:350px;margin-top:30px;">
 									<div style="margin-top:150px;">
 										<h1 style="color:#FFF">${p.typename }</h1>
 										<h2 style="color:#FFF">${p.courses.size() }个课程</h2>
@@ -108,9 +115,9 @@
 											<h2 style="color:#FFF">类别介绍</h2>
 											<p style="color:#FFF">${p.description }</p>
 											<p class="fh5co-social-icons">
-												<i class="icon-ribbon"></i>
-												<i class="icon-heart"></i>
-												<i class="icon-instagram-with-circle"></i>
+												<a href="#"><i class="icon-ribbon"></i></a> 
+												<a href="#"><i class="icon-heart"></i></a> 
+												<a href="#"><i class="icon-instagram-with-circle"></i></a>
 											</p>
 										</div>
 									</div>
@@ -123,23 +130,23 @@
 
 			<div class="container">
 				<div class="row text-center"">
-					<c:forEach items="${courseList }" var="p">
+					<c:forEach items="${courses }" var="p">
 						<div class="col-md-4 col-sm-6">
-							<a href="course/courseContentShow?courseid=${p.id }">
+							<a href="course/backstage/courseContentShow/classes/${p.id }">
 								<div class="team-section-grid animate-box"
-									style="background-image: url(${p.img });height:200px;margin-top:30px;">
-									<div style="margin-top:50px;">
-										<h1 style="color:#000">${p.name }</h1>
-										<h2 style="color:#808080">${p.courseContents.size() }个课程</h2>
+									style="background-image: url(${p.img });height:350px;margin-top:30px;">
+									<div style="margin-top:150px;">
+										<h1 style="color:#FFF">${p.name }</h1>
+										<h2 style="color:#FFF">${p.courseContents.size() }个课程</h2>
 									</div>
 									<div class="overlay-section">
-										<div class="desc" style="height:200px;">
+										<div class="desc">
 											<h2 style="color:#FFF">课程介绍</h2>
 											<p style="color:#FFF">${p.introduce }</p>
 											<p class="fh5co-social-icons">
-												<i class="icon-twitter-with-circle"></i>
-												<i class="icon-facebook-with-circle"></i>
-												<i class="icon-instagram-with-circle"></i>
+												<a href="#"><i class="icon-twitter-with-circle"></i></a> 
+												<a href="#"><i class="icon-facebook-with-circle"></i></a> 
+												<a href="#"><i class="icon-instagram-with-circle"></i></a>
 											</p>
 										</div>
 									</div>
@@ -151,31 +158,104 @@
 			</div>
 			<div class="container">
 				<div class="row text-center">
-					<c:forEach items="${courseContentList }" var="p">
-					<a href="${p.path }">
+					<c:forEach items="${CourseContents }" var="p">
+					<a href="course/backstage/courseContentShow/classes/${p.id }">
 						<div class="col-md-4 col-sm-6">
 							<div class="team-section-grid animate-box"
 								style="background-image: url(${p.img });height:200px;weight:200px;margin-top:30px;">
-								<div style="margin-top:100px;">
-										<h1 style="color:#000">${p.name }</h1>
-										<h2 style="color:#000">${p.numb }</h2>
-									</div>
 								<div class="overlay-section">
 									<div class="desc">
-										<h1 style="color:#FFF">${p.name }</h1>
+										<h3>${p.name }</h3>
+										<span>${p.numb }</span> 
+										
 										<p class="fh5co-social-icons">
-											<i class="icon-twitter-with-circle"></i>
-											<i class="icon-facebook-with-circle"></i>
-											<i class="icon-instagram-with-circle"></i>
+											<a href="#"><i class="icon-twitter-with-circle"></i></a> 
+											<a href="#"><i class="icon-facebook-with-circle"></i></a> 
+											<a href="#"><i class="icon-instagram-with-circle"></i></a>
 										</p>
 									</div>
 								</div>
 							</div>
 						</div>
-						</a>
 					</c:forEach>
 				</div>
 			</div>
+			
+			
+		<!-- courseType分页 -->
+			<c:if test="${courseTypes.size()>0 }">
+			 
+				<script>
+					function loca(href){
+						location.href=href;
+					}
+				</script>
+				<ul data-am-widget="pagination" class="am-pagination am-pagination-select" style="height:30px;bottom:19px">
+					<li class="am-pagination-prev " style="position:absolute;left:500px;">
+			       		<a href="course/backstage/courseTypeShow/classes?pageNum=${pageData.prePageNum }" class="">上一页</a>
+			     	</li>
+					<li class="am-pagination-select">
+			           	<select onchange="loca(this.value)">
+			             	<c:forEach begin="1" end="${pageData.totalPageNum }" step="1" varStatus="p">
+	                        	<option value="course/backstage/courseTypeShow/classes?pageNum=${p.count }">${p.count }/${pageData.totalPageNum }</option>                    
+	                        </c:forEach>	
+			           	</select>
+			           </li>
+					<li class="am-pagination-next "style="position:absolute;right:500px;">
+			       		<a href="course/backstage/courseTypeShow/classes?pageNum=${pageData.nextPageNum }" class="">下一页</a>
+			     	</li>
+				</ul>
+			</c:if>
+			
+			<!-- course分页 -->
+			<c:if test="${courses.size()>0 }">
+				
+				<script>
+					function loca(href){
+						location.href=href;
+					}
+				</script>
+				<ul data-am-widget="pagination" class="am-pagination am-pagination-select" style="height:30px;bottom:19px">
+					<li class="am-pagination-prev " style="position:absolute;left:500px;">
+			       		<a href="course/backstage/courseShow/classes/${courseTypeId }?pageNum=${pageData.prePageNum }" class="">上一页</a>
+			     	</li>
+					<li class="am-pagination-select">
+			           	<select onchange="loca(this.value)">
+			             	<c:forEach begin="1" end="${pageData.totalPageNum }" step="1" varStatus="p">
+	                        	<option value="course/backstage/courseShow/classes/${courseTypeId }?pageNum=${p.count }">${p.count }/${pageData.totalPageNum }</option>                    
+	                        </c:forEach>	
+			           	</select>
+			           </li>
+					<li class="am-pagination-next "style="position:absolute;right:500px;">
+			       		<a href="course/backstage/courseShow/classes/${courseTypeId }?pageNum=${pageData.nextPageNum }" class="">下一页</a>
+			     	</li>
+				</ul>
+			</c:if>
+			
+			<!-- courseContent分页 -->
+			<c:if test="${CourseContents.size()>0 }">
+				
+				<script>
+					function loca(href){
+						location.href=href;
+					}
+				</script>
+				<ul data-am-widget="pagination" class="am-pagination am-pagination-select" style="height:30px;bottom:19px">
+					<li class="am-pagination-prev " style="position:absolute;left:500px;">
+			       		<a href="course/backstage/courseContentShow/classes/${courseId }?pageNum=${pageData.prePageNum }" class="">上一页</a>
+			     	</li>
+					<li class="am-pagination-select">
+			           	<select onchange="loca(this.value)">
+			             	<c:forEach begin="1" end="${pageData.totalPageNum }" step="1" varStatus="p">
+	                        	<option value="course/backstage/courseContentShow/classes/${courseId }?pageNum=${p.count }">${p.count }/${pageData.totalPageNum }</option>                    
+	                        </c:forEach>	
+			           	</select>
+			           </li>
+					<li class="am-pagination-next "style="position:absolute;right:500px;">
+			       		<a href="course/backstage/courseContentShow/classes/${courseId }?pageNum=${pageData.nextPageNum }" class="">下一页</a>
+			     	</li>
+				</ul>
+			</c:if>
 			<!-- footer.jsp -->
 			<%@ include file="footer.jsp"%>
 
