@@ -25,60 +25,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="backstagemanager/assets/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="backstagemanager/assets/css/app.css">
     <script src="backstagemanager/assets/js/jquery.min.js"></script>
-	<script>
-	
-	 	$(document).ready(function(){
-			$("#GO").click(function(){
-				$(".am-active").attr("class",""); 
-				$(this).parent().attr("class","am-active");
-				var a=$("#inputgo").val().toString();
-				if(a<=parseInt($("#totalpageNum").html())&&a>0){
-					$("#page").html("当前第"+a+"页");
-					if(parseInt(a)-1>0){
-						$(".PageButton._pre").attr("name",(parseInt(a)-1))
-					}
-					if(parseInt(a)+1<=parseInt($("#totalpageNum").html())){
-						$(".PageButton._next").attr("name",(parseInt(a)+1))
-					}
-					if(parseInt(a)+1>parseInt($("#totalpageNum").html())){
-						$(".PageButton._next").attr("name",parseInt(a))
-					}
-					$("#test").load("course/backstage/courseTypeShow/load/?pageNum="+a)
-				}else{
-					$("#test").load("course/backstage/courseTypeShow/load/?pageNum=1")
-				}
-			})
-			$(".PageButton").click(function(){
-				$("#test").load("course/backstage/courseTypeShow/load/?pageNum="+$(this).attr("name"))
-				$(".am-active").attr("class",""); 
-				$(this).parent().attr("class","am-active");
-				$("#page").html("当前第"+$(this).attr("name")+"页");
-				if(parseInt($(this).attr("name"))-1>0){
-					$(".PageButton._pre").attr("name",parseInt($(this).attr("name"))-1)
-				}
-				if(parseInt($(this).attr("name"))+1<=parseInt($("#totalpageNum").html())){
-					$(".PageButton._next").attr("name",parseInt($(this).attr("name"))+1)
-				}
-				if(parseInt($(this).attr("name"))+1>parseInt($("#totalpageNum").html())){
-					$(".PageButton._next").attr("name",parseInt($(this).attr("name")))
-				}
-				if($(this).attr("name")>5){
-					for(var i=1;i<=5;i++){
-						var a=parseInt($(".PageButton._"+i).attr("name"))+1;
-						$(".PageButton._"+i).html(a);
-						$(".PageButton._"+i).attr("name",a);
-					}
-				}
-			})
-		})	 
-	</script>
+    <script src="backstagemanager/assets/js/courseTypeAjax.js"></script>
 </head>
 
 <body data-type="widgets">
 	<!-- header -->
 	<%@include file="header.jsp" %>
 	<!-- 内容区域 -->
-		<form>
         <div class="tpl-content-wrapper">
             <div class="row-content am-cf">
                 <div class="row">
@@ -94,9 +47,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
                                                 <a href="backstagemanager/CourseTypeForm.jsp"><button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button></a>
-                                                <button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"><a href=""></a></span> 保存</button>
-                                                <button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"><a href=""></a></span> 审核</button>
-                                                <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"><a href=""></a></span> 删除</button>
                                             </div>
                                         </div>
                                     </div>
@@ -118,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           								</span>
                                     </div>
                                 </div>
-									<div class="am-u-sm-12" id="test">
+									<div class="am-u-sm-12" id="dataBody">
 								       <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
 								           <thead>
 								               <tr>
@@ -131,12 +81,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								               </tr>
 								           </thead>
 								           <tbody>
-								           	<c:forEach items="${courseTypes }" var="c">
-								           	<tr class="gradeX">
-								                   <td>
-								                       <img src="${c.imgPath }" class="tpl-table-line-img" alt="">
+								           <c:forEach items="${courseTypes }" var="c">
+								               	<tr class="gradeX">
+								           		   <td>
+								           		   <a href="course/backstage/courseShow/header/${c.id }">
+								           		   		<img src="${c.imgPath }" class="tpl-table-line-img" alt="${c.typename }">
+								                   </a>
 								                   </td>
-								                   <td class="am-text-middle">${c.typename }</td>
+								                   <td class="am-text-middle"><a href="course/backstage/courseShow/header/${c.id }">${c.typename }</a></td>
 								                   <td class="am-text-middle">${c.description }</td>
 								                   <td class="am-text-middle">${c.firsttime }</td>
 								                   <td class="am-text-middle">${c.lasttime }</td>
@@ -150,8 +102,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								                           </a>
 								                       </div>
 								                   </td>
-								               </tr>
-								               </c:forEach>
+								                   
+								           		</tr>
+								           		
+								           </c:forEach>
 								           </tbody>
 								       </table>
 								   </div>
@@ -162,18 +116,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                       		共<li id="totalpageNum">${pageData.totalPageNum }</li>页&nbsp;
                                       		<li id="page"></li>
                                             <li><a class="PageButton" name="1">«</a></li>
-                                            <li><a class="PageButton _pre" name="1">上一页</a></li>
+                                            <li><a class="toPage pre" name="1">上一页</a></li>
                                             <c:if test="${pageData.totalPageNum<=5 }">
                                             	<c:forEach begin="1" end="${pageData.totalPageNum }" step="1" varStatus="p">
-                                            		<li><a class="PageButton _${p.count }" name="${p.count }">${p.count }</a></li>                     
+                                            		<li><a class="PageButton" name="${p.count }">${p.count }</a></li>                     
                                             	</c:forEach>
                                            	</c:if>
                                            	<c:if test="${pageData.totalPageNum>5 }">
                                             	<c:forEach begin="1" end="5" step="1" varStatus="p">
-                                        			<li><a class="PageButton_${p.count }" name="${p.count }">${p.count }</a></li> 
+                                        			<li><a class="PageButton" name="${p.count }">${p.count }</a></li> 
                                             	</c:forEach>
                                            	</c:if>
-                                           	<li><a class="PageButton _next" name="2">下一页</a></li>
+                                           	<li><a class="toPage next" name="2">下一页</a></li>
                               				<li><a class="PageButton" name="${pageData.totalPageNum }">»</a></li>
                               				<li><input style="width:30px;height:30px" type="text" id="inputgo"/></li>
                               				<li><a id="GO">GO</a></li>
@@ -186,9 +140,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
             </div>
         </div>
-    </div>
-   	</form> 
-    </div>
     <script src="backstagemanager/assets/js/amazeui.min.js"></script>
     <script src="backstagemanager/assets/js/app.js"></script>
 

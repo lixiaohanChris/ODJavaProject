@@ -30,6 +30,20 @@ import com.od.service.course.service.CourseServiceImpl;
 
 
 
+/**
+ * 
+*  
+* Title: CourseController  
+*
+* Description: 关于课程方法的controller  
+*
+* Company: Old Driver
+*
+* @author lfy 
+*
+* @date 2018年5月29日  
+*
+ */ 
 @Controller
 @RequestMapping("/course")
 public class CourseController {
@@ -37,7 +51,13 @@ public class CourseController {
 	@Resource
 	private CourseServiceImpl courseServiceImpl;
 	
-	//后台管理课程类型分页展示
+	/**
+	 * 课程类型分页展示
+	 * @param model 向前端页面传值
+	 * @param request 获取页码
+	 * @param HTMLname 页面name，根据不同的页面返回不同的return
+	 * @return 三种不同的返回页面
+	 */
 	@RequestMapping(value="backstage/courseTypeShow/{HTMLname}",method=RequestMethod.GET)
 	public String courseTypeShow(Model model,HttpServletRequest request,@PathVariable String HTMLname){
 		//根据分页查询到课程类型的信息
@@ -68,8 +88,17 @@ public class CourseController {
 		}
 			return "backstagemanager/Model";
 	}
-	
-	//后台管理课程类型加入
+	/**
+	 * 新添课程 后台管理
+	 * @param file 上传图片
+	 * @param typename 课程类型名称
+	 * @param firsttime 第一次创建时间
+	 * @param description 描述
+	 * @param request 
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/backstage/CourseTypeInsert",method=RequestMethod.POST)
 	public String CourseTypeInsert(@RequestParam(value="imgPath") MultipartFile file,
 			String typename,String firsttime,String description,HttpServletRequest request,Model model) throws Exception{
@@ -97,7 +126,14 @@ public class CourseController {
 		}
 		return "forward:/backstage/courseTypeShow/header";
 	}
-	//后台管理，CourseTypeInsert ajax显示图片
+	/**
+	 * 后台管理，CourseTypeInsert ajax显示图片
+	 * @param file 上传文件
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="backstage/imgAjax",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> imgAjax(@RequestParam(value="imgPath") MultipartFile file,HttpServletRequest request,Model model) throws Exception{
@@ -116,13 +152,12 @@ public class CourseController {
 			Map<String, String> map = new HashMap<String,String>();
 			map.put("real", filename);
 			return map;
-			
 		}else{
 			return null;
 		}
 	}
 	
-	//后台管理课程分页展示 by courseType id
+	//课程分页展示 by courseType id
 	@RequestMapping(value="backstage/courseShow/{HTMLname}/{coursetypeid}",method=RequestMethod.GET)
 	public String courseShow(Model model,HttpServletRequest request,@PathVariable String HTMLname,
 			@PathVariable String coursetypeid){
@@ -149,15 +184,15 @@ public class CourseController {
 		model.addAttribute("courses", courses);
 		model.addAttribute("courseTypeId",courseTypeId);
 		if(HTMLname.equals("header")){
-			return "backstagemanager/CourseType";
+			return "backstagemanager/Course";
 		}
 		if(HTMLname.equals("classes")){
 			return "classes";
 		}
-			return "backstagemanager/Model";
+		return "backstagemanager/Model";
 	}
 
-	//后台管理课程分页展示 by courseid
+	//课程分页展示 by courseid
 	@RequestMapping(value="backstage/courseContentShow/{HTMLname}/{courseid}",method=RequestMethod.GET)
 	public String courseContentShow(Model model,HttpServletRequest request,@PathVariable String HTMLname,
 			@PathVariable String courseid){
@@ -184,21 +219,12 @@ public class CourseController {
 		model.addAttribute("CourseContents", courseContents);
 		model.addAttribute("courseId",courseId);
 		if(HTMLname.equals("header")){
-			return "backstagemanager/CourseType";
+			return "backstagemanager/CourseContent";
 		}
 		if(HTMLname.equals("classes")){
 			return "classes";
 		}
 			return "backstagemanager/Model";
 	}
-	
-	//课程内容展示
-	@RequestMapping(value="/courseContentShow")
-	public String courseContentShow(Model model,@RequestParam("courseid")String courseid){
-		List<CourseContent> courseContentList=this.courseServiceImpl.getCourseContentById(courseid);
-		model.addAttribute("courseContentList",courseContentList);
-		return "classes";
-	}
-	
-	
+
 }

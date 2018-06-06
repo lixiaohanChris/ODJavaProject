@@ -27,6 +27,7 @@ public class Course {
 	private Set<CourseContent> courseContents = new HashSet<CourseContent>();
 	private String img;
 	private String count;
+	//使用人数
 	@Id
 	@GeneratedValue(generator="my_gen")
 	@GenericGenerator(name="my_gen",strategy="increment")

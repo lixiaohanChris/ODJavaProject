@@ -1,0 +1,50 @@
+$(document).ready(function(){
+	$(".PageButton").click(function(){
+		$(".am-active").attr("class","")
+		$.ajax({
+			async:true,
+			url:"course/backstage/courseTypeShow/load/?pageNum="+$(this).attr("name"),
+			type:'GET',
+			success : function (data){
+				$("#dataBody").html(data)
+			}
+		})
+		$("#page").html("当前第"+$(this).attr("name")+"页");
+		if(parseInt($(this).attr("name"))-1>0){
+			$(".toPage.pre").attr("name",parseInt($(this).attr("name"))-1);
+		}
+		if(parseInt($(this).attr("name"))+1<=parseInt($("#totalpageNum").html())){
+			$(".toPage.next").attr("name",parseInt($(this).attr("name"))+1);
+		}
+		if(parseInt($(this).attr("name"))+1>parseInt($("#totalpageNum").html())){
+			$(".toPage.next").attr("name",parseInt($(this).attr("name")))
+		}
+		$(this).parent().attr("class","am-active");
+	})
+	$(".toPage").click(function(){
+		if(parseInt($("#totalpageNum").html())<2){
+			$(this).attr("name",1);
+		}
+		$(".am-active").attr("class","")
+		$.ajax({
+			async:true,
+			url:"course/backstage/courseTypeShow/load/?pageNum="+$(this).attr("name"),
+			type:'GET',
+			success : function (data){
+				$("#dataBody").html(data)
+			}
+		})
+		$("#page").html("当前第"+$(this).attr("name")+"页");
+		if(parseInt($(this).attr("name"))-1>0){
+			$(".toPage.pre").attr("name",parseInt($(this).attr("name"))-1);
+		}
+		if(parseInt($(this).attr("name"))+1<=parseInt($("#totalpageNum").html())){
+			$(".toPage.next").attr("name",parseInt($(this).attr("name"))+1);
+		}
+		if(parseInt($(this).attr("name"))+1>parseInt($("#totalpageNum").html())){
+			$(".toPage.next").attr("name",parseInt($(this).attr("name")))
+		}
+		$(this).parent().attr("class","am-active");
+	})
+	
+})	 

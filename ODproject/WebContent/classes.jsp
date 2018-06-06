@@ -159,7 +159,7 @@
 			<div class="container">
 				<div class="row text-center">
 					<c:forEach items="${CourseContents }" var="p">
-					<a href="course/backstage/courseContentShow/classes/${p.id }">
+					<a href="${p.path }">
 						<div class="col-md-4 col-sm-6">
 							<div class="team-section-grid animate-box"
 								style="background-image: url(${p.img });height:200px;weight:200px;margin-top:30px;">

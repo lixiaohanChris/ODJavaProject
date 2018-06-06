@@ -24,7 +24,7 @@ public class Classes {
 	private Course course;  //课程多对一
 	private ODMethod odMethod;   //方法多对一
 	private String week;  //星期
-	
+	//评分
 	@Id
 	@GeneratedValue(generator="my_gen")
 	@GenericGenerator(name="my_gen",strategy="increment")

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 
     <script src="backstagemanager/assets/js/theme.js"></script>
-    
     <div class="am-g tpl-g">
         <!-- 头部 -->
         <header>
@@ -155,7 +154,7 @@
             </div>
             <div class="tpl-skiner-content">
                 <div class="tpl-skiner-content-title">
-                    选择主题
+                                                                    选择主题
                 </div>
                 <div class="tpl-skiner-content-bar">
                     <span class="skiner-color skiner-white" data-color="theme-white"></span>
@@ -173,7 +172,7 @@
                     </div>
                     <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              禁言小张
+              	lfy
           </span>
                     <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
                 </div>
@@ -224,12 +223,12 @@
                             </a>
                         </li>
                         <li class="sidebar-nav-link">
-                            <a href="backstagemanager/table-list-img.jsp">
+                            <a href="course/backstage/courseTypeShow/header">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> Course(课程)
                             </a>
                         </li>
                         <li class="sidebar-nav-link">
-                            <a href="backstagemanager/table-list-img.jsp">
+                            <a href="course/backstage/courseTypeShow/header">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> CourseContent(课程内容)
                             </a>
                         </li>
