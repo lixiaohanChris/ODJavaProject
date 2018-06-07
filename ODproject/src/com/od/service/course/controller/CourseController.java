@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,7 +59,7 @@ public class CourseController {
 	 * @param HTMLname 页面name，根据不同的页面返回不同的return
 	 * @return 三种不同的返回页面
 	 */
-	@RequestMapping(value="backstage/courseTypeShow/{HTMLname}",method=RequestMethod.GET)
+	@RequestMapping(value="/backstage/courseTypeShow/{HTMLname}",method=RequestMethod.GET)
 	public String courseTypeShow(Model model,HttpServletRequest request,@PathVariable String HTMLname){
 		//根据分页查询到课程类型的信息
 		String pageNum=request.getParameter("pageNum");
@@ -106,19 +107,25 @@ public class CourseController {
 		Date date = new Date();
 		SimpleDateFormat nowd = new SimpleDateFormat("yyyyMMdd_HHmmss");
 		if(file.getSize()>0){
+			//判断文件是否为 图片格式 
+			String realfilename = file.getOriginalFilename();
+			String lastfilename = realfilename.substring(realfilename.lastIndexOf("."));
+			if(lastfilename.equals(".jpg")==false&&lastfilename.equals(".png")==false&&lastfilename.equals(".jpeg")==false){
+				System.out.println(lastfilename);
+				model.addAttribute("errorFile","请上传正确的图片");
+				return "backstagemanager/CourseTypeForm";
+			}
 			//获取文件名作为保存到服务器的文件名()
 			String filename=nowd.format(date)+"_"+file.getOriginalFilename();
 			//前半部分路径，目录，将WebRoot下一个名称为images文件夹转换为绝对路径
-			String leftPath=request.getServletContext().getRealPath("/images");
+			String leftPath=request.getServletContext().getRealPath("/images/coursetype");
 			//文件路径拼接
 			File newFile=new File(leftPath,filename);
-			//上传文件
+			//上传文件 
 			file.transferTo(newFile);
-			System.out.println(leftPath);
-			System.out.println(newFile);
 			//添加员工信息
 			CourseType courseType = new CourseType();
-			courseType.setImgPath("images/"+filename);
+			courseType.setImgPath("images/coursetype"+filename);
 			courseType.setTypename(typename);
 			courseType.setFirsttime(firsttime);
 			courseType.setDescription(description);
@@ -133,7 +140,7 @@ public class CourseController {
 	 * @param model
 	 * @return
 	 * @throws Exception
-	 */
+	 *//*
 	@RequestMapping(value="backstage/imgAjax",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> imgAjax(@RequestParam(value="imgPath") MultipartFile file,HttpServletRequest request,Model model) throws Exception{
@@ -155,6 +162,28 @@ public class CourseController {
 		}else{
 			return null;
 		}
+	}*/
+	
+	
+	/**
+	 * 后台管理 ，删除courseType By Id
+	 * @param courseTypeId
+	 * @return
+	 */
+	@RequestMapping(value="backstage/courseTypeDelete")
+	public String courseTypeDelete(@RequestParam("courseTypeId")String courseTypeId,
+			HttpServletRequest request){
+		int id = Integer.parseInt(courseTypeId); 
+		CourseType courseType = this.courseServiceImpl.getCourseTypeById(id);
+		String imgPath = courseType.getImgPath();
+		System.out.println(request.getServletContext().getRealPath(imgPath));
+		/*
+		 * File file = new File(filepath)
+		 * if(file.exists()&&file.isFile()){
+             file.delete();
+     		} */
+		this.courseServiceImpl.deleteCourseTypeById(courseType);
+		return "forward:/course/backstage/courseTypeShow/header";
 	}
 	
 	//课程分页展示 by courseType id

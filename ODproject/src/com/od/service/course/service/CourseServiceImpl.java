@@ -12,6 +12,19 @@ import com.od.entity.CourseContent;
 import com.od.entity.CourseType;
 import com.od.service.course.dao.CourseDaoImpl;
 
+/**
+*  
+* Title: CourseServiceImpl  
+*
+* Description:  
+*
+* Company: Old Driver
+*
+* @author lfy 
+*
+* @date 2018年6月7日  
+*
+*/  
 @Service
 @Transactional(readOnly=false)
 public class CourseServiceImpl {
@@ -46,9 +59,19 @@ public class CourseServiceImpl {
 		return this.courseDaoImpl.findByCourseTypePage(pageNum,pageSize);
 	}
 	
-	//后台管理插入courseType
+	//后台管理插,入courseType
 	public void CourseTypeInsert(CourseType courseType) {
 		this.courseDaoImpl.CourseTypeInsert(courseType);
+	}
+	
+	//根据id获取courseType
+	public CourseType getCourseTypeById(int id) {
+		return this.courseDaoImpl.getCourseById(id);
+	}
+	
+	//后台管理,删除courseTypeById
+	public void deleteCourseTypeById(CourseType courseType) {
+		this.courseDaoImpl.deleteCourseTypeById(courseType);
 	}
 	
 	//分页查询课程信息 by CourseTypeid
@@ -72,4 +95,7 @@ public class CourseServiceImpl {
 	public Long findCourseContentCountByPage(int courseId) {
 		return this.courseDaoImpl.findCourseContentCountByPage(courseId);
 	}
+	
+	
+
 }

@@ -29,7 +29,7 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome" style="position:absolute;right:200px;">
-                            <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
+                            <a href="javascript:;">欢迎你, <span>管理员</span> </a>
                         </li>
 
                         <!-- 新邮件 -->
@@ -148,20 +148,6 @@
             </div>
 
         </header>
-        <!-- 风格切换 -->
-        <div class="tpl-skiner">
-            <div style="position:absolute;top:100px;" class="tpl-skiner-toggle am-icon-cog">
-            </div>
-            <div class="tpl-skiner-content">
-                <div class="tpl-skiner-content-title">
-                                                                    选择主题
-                </div>
-                <div class="tpl-skiner-content-bar">
-                    <span class="skiner-color skiner-white" data-color="theme-white"></span>
-                    <span class="skiner-color skiner-black" data-color="theme-black"></span>
-                </div>
-            </div>
-        </div>
         <!-- 侧边导航栏 -->
         <div class="left-sidebar">
             <!-- 用户信息 -->

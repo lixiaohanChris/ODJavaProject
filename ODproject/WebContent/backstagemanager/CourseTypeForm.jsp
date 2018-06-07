@@ -12,13 +12,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Amaze UI Admin index Examples</title>
+    <title>OD减肥</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="backstagemanager/assets/i/favicon.png">
     <link rel="apple-touch-icon-precomposed" href="backstagemanager/assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <script src="backstagemanager/assets/js/echarts.min.js"></script>
@@ -29,8 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="backstagemanager/assets/js/ajaxfileupload.js"></script>
 
 <script>
-	$(document).ready(function(){
-		$("#upload").click(function(){
+	/* $(document).ready(function(){
+		$("#select").click(function(){
 			alert($("#doc-form-file").val());
 			ajaxFileUpload();
 		})
@@ -48,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					alert("b");
                 }
 			})
-		}
+		} */
 		/* $("#doc-form-file").on("change",function(){
 			alert("a");
 			$.ajaxFileUpload({
@@ -68,7 +67,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			})
 			
 		}) */
-	})
+	
+		
 </script>
 </head>
 <body>
@@ -132,19 +132,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            <label for="user-weibo" class="am-u-sm-12 am-form-label  am-text-left">封面图
 	                            	<span class="tpl-form-line-small-title">Images</span>
 	                            </label>
+	                            
 	                            <div class="am-u-sm-12 am-margin-top-xs">
 		                            <div class="am-form-group am-form-file">
 		                            	<div class="tpl-form-file-">
 			                            	<img id="realPic" src="" alt="">
 			                            </div>
-                            			<button type="button" class="am-btn am-btn-danger am-btn-sm ">
+                            			<button id="fileButton" type="button" class="am-btn am-btn-danger am-btn-sm " >
     										<i class="am-icon-cloud-upload"></i> 选择图片
-    									</button>
-                            			<input id="doc-form-file" type="file" name="imgPath">
+    									</button> 
+	                            		<input type="file" name="imgPath" id="imgUp" onchange="xmTanUploadImg(this)">
                             		</div>
-                            		<button id="upload" type="button" class="am-btn am-btn-danger am-btn-sm ">
-    										<i class="am-icon-cloud-upload"></i> 上传图片
-    									</button>
 								</div>
                             </div>
                             
@@ -178,7 +176,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          </div>
       </div>
    </div>
-    
+   <script>
+	function xmTanUploadImg(obj) {
+	    var file = obj.files[0];
+	    if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif'){
+            alert('不是有效的图片');
+            return;
+        }
+	    console.log(obj);console.log(file);
+	    console.log("file.size = " + file.size);  //file.size 单位为byte
+		
+	    var reader = new FileReader();
+	    reader.onerror = function (e) {
+	        console.log("读取异常....");
+	    }
+	    reader.onload = function (e) {
+	        console.log("成功读取....");
+			$("#fileButton").remove();
+	        var img = document.getElementById("realPic");
+	        img.src = e.target.result;
+	        //或者 img.src = this.result;  //e.target == this
+	    }
+	
+	    reader.readAsDataURL(file)
+	}
+    </script>
     <script src="backstagemanager/assets/js/amazeui.min.js"></script>
     <script src="backstagemanager/assets/js/amazeui.datatables.min.js"></script>
     <script src="backstagemanager/assets/js/dataTables.responsive.min.js"></script>

@@ -58,6 +58,14 @@ public class CourseDaoImpl {
 		this.sessionFactory.getCurrentSession().save(courseType);
 	}
 	
+	public CourseType getCourseById(int id) {
+		return this.sessionFactory.getCurrentSession().get(CourseType.class, id);
+	}
+	
+	//后台管理，删除courseTypeById
+	public void deleteCourseTypeById(CourseType courseType) {
+		this.sessionFactory.getCurrentSession().delete(courseType);
+	}
 	
 	
 	//分页查询课程信息by courseTypeId
@@ -87,4 +95,8 @@ public class CourseDaoImpl {
 		Query query=this.sessionFactory.getCurrentSession().createQuery("select count(id) from CourseContent where courseId="+courseId);
 		return (Long)query.uniqueResult();
 	}
+
+	
+
+
 }

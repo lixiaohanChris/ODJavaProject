@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                        		<a href="javascript:;">
 	                               		<i class="am-icon-pencil"></i> 编辑
 	                           		</a>
-	                           		<a href="javascript:;" class="tpl-table-black-operation-del">
+	                           		<a href="course/backstage/courseTypeDelete?courseTypeId=${c.id }" class="tpl-table-black-operation-del">
 	                               		<i class="am-icon-trash"></i> 删除
 	                           		</a>
 	                       		</div>

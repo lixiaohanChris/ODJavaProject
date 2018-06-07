@@ -9,7 +9,7 @@ function _iframe() {
 			 
 		}
 	})
-    zeroModal.show({
+    zeroModal.show({  
         title: '完善个人信息',
         iframe: true,
         url: 'userinfo.jsp',
