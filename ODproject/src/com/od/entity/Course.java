@@ -2,10 +2,9 @@ package com.od.entity;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -27,6 +26,8 @@ public class Course {
 	private Set<CourseContent> courseContents = new HashSet<CourseContent>();
 	private String img;
 	private String count;
+	private Set<Score> score;
+	private double averageScore;
 	//使用人数
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -89,6 +90,20 @@ public class Course {
 	}
 	public void setImg(String img) {
 		this.img = img;
+	}
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="userid")
+	public Set<Score> getScore() {
+		return score;
+	}
+	public void setScore(Set<Score> score) {
+		this.score = score;
+	}
+	public double getAverageScore() {
+		return averageScore;
+	}
+	public void setAverageScore(double averageScore) {
+		this.averageScore = averageScore;
 	}
 	
 }

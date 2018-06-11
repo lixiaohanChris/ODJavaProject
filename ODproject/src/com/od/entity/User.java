@@ -1,10 +1,14 @@
 package com.od.entity;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,6 +26,7 @@ public class User {
 	private String state; //用户的登陆状态
 	private Information information;   //信息表一对一
 	private ODMethod odMethod;  //方法表一对一
+	private Set<Score> score;
 	
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -83,6 +88,14 @@ public class User {
 	}
 	public void setState(String state) {
 		this.state = state;
+	}
+	@OneToMany(fetch=FetchType.EAGER)
+    @JoinColumn(name="userid") 
+	public Set<Score> getScore() {
+		return score;
+	}
+	public void setScore(Set<Score> score) {
+		this.score = score;
 	}
 	
 	
