@@ -161,7 +161,7 @@ public class CourseController {
 			num=1;
 		}else{
 			num=Integer.parseInt(pageNum);
-		}
+		} 
 		//课程查询数据统计
 		Long count=courseServiceImpl.findCourseCountByPage(courseTypeId);
 		//课程列表
