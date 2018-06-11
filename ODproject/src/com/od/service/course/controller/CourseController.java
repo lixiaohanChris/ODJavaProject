@@ -111,21 +111,20 @@ public class CourseController {
 			String realfilename = file.getOriginalFilename();
 			String lastfilename = realfilename.substring(realfilename.lastIndexOf("."));
 			if(lastfilename.equals(".jpg")==false&&lastfilename.equals(".png")==false&&lastfilename.equals(".jpeg")==false){
-				System.out.println(lastfilename);
 				model.addAttribute("errorFile","请上传正确的图片");
 				return "backstagemanager/CourseTypeForm";
 			}
 			//获取文件名作为保存到服务器的文件名()
 			String filename=nowd.format(date)+"_"+file.getOriginalFilename();
-			//前半部分路径，目录，将WebRoot下一个名称为images文件夹转换为绝对路径
+			//前半部分路径，目录，将WebRoot下一个名称为images/coursetype文件夹转换为绝对路径
 			String leftPath=request.getServletContext().getRealPath("/images/coursetype");
 			//文件路径拼接
 			File newFile=new File(leftPath,filename);
 			//上传文件 
 			file.transferTo(newFile);
-			//添加员工信息
+			//添加courseType
 			CourseType courseType = new CourseType();
-			courseType.setImgPath("images/coursetype"+filename);
+			courseType.setImgPath("images/coursetype/"+filename);
 			courseType.setTypename(typename);
 			courseType.setFirsttime(firsttime);
 			courseType.setDescription(description);
@@ -133,38 +132,7 @@ public class CourseController {
 		}
 		return "forward:/backstage/courseTypeShow/header";
 	}
-	/**
-	 * 后台管理，CourseTypeInsert ajax显示图片
-	 * @param file 上传文件
-	 * @param request
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping(value="backstage/imgAjax",method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String, String> imgAjax(@RequestParam(value="imgPath") MultipartFile file,HttpServletRequest request,Model model) throws Exception{
-		//设置图片路径
-				Date date = new Date();
-				SimpleDateFormat nowd = new SimpleDateFormat("yyyyMMdd_HHmmss");
-		if(file.getSize()>0){
-			//获取文件名作为保存到服务器的文件名()
-			String filename=nowd.format(date)+"_"+file.getOriginalFilename();
-			//前半部分路径，目录，将WebRoot下一个名称为images文件夹转换为绝对路径
-			String leftPath=request.getServletContext().getRealPath("/images");
-			//文件路径拼接
-			File newFile=new File(leftPath,filename);
-			//上传文件
-			file.transferTo(newFile);
-			Map<String, String> map = new HashMap<String,String>();
-			map.put("real", filename);
-			return map;
-		}else{
-			return null;
-		}
-	}*/
-	
-	
+		
 	/**
 	 * 后台管理 ，删除courseType By Id
 	 * @param courseTypeId
@@ -173,16 +141,11 @@ public class CourseController {
 	@RequestMapping(value="backstage/courseTypeDelete")
 	public String courseTypeDelete(@RequestParam("courseTypeId")String courseTypeId,
 			HttpServletRequest request){
+		//根据id获取courseType
 		int id = Integer.parseInt(courseTypeId); 
 		CourseType courseType = this.courseServiceImpl.getCourseTypeById(id);
-		String imgPath = courseType.getImgPath();
-		System.out.println(request.getServletContext().getRealPath(imgPath));
-		/*
-		 * File file = new File(filepath)
-		 * if(file.exists()&&file.isFile()){
-             file.delete();
-     		} */
-		this.courseServiceImpl.deleteCourseTypeById(courseType);
+		//删除数据库中的数据
+		this.courseServiceImpl.deleteCourseTypeById(courseType,request);
 		return "forward:/course/backstage/courseTypeShow/header";
 	}
 	

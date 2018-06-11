@@ -1,8 +1,10 @@
 package com.od.service.course.service;
 
+import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,7 +72,18 @@ public class CourseServiceImpl {
 	}
 	
 	//后台管理,删除courseTypeById
-	public void deleteCourseTypeById(CourseType courseType) {
+	public void deleteCourseTypeById(CourseType courseType,HttpServletRequest request) {
+		//获取文件路径和名称
+		String imgPath = courseType.getImgPath();
+		String path = request.getServletContext().getRealPath("/images/coursetype/");
+		String name=imgPath.substring(imgPath.lastIndexOf("/")+1);
+		String pathname=path+"\\"+name;
+		//删除静态资源
+		File file = new File(pathname);
+		if(file.exists()&&file.isFile()){
+			file.delete();
+		} 
+		//删除数据库中的数据
 		this.courseDaoImpl.deleteCourseTypeById(courseType);
 	}
 	
