@@ -124,7 +124,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="am-btn-group doc-js-btn-1" data-am-button  style="width:70%;">
 							<select data-placeholder="请选择省" name="province" class="province" style="width:32%" tabindex="3">
             					<option value="" id="aa"></option>
-            					<option value="${session.user.information.address.province }" selected="selected"></option>
             				</select>
         					<select data-placeholder="请选择市" name="city" class="city" style="width:32%" tabindex="3">
             					<option value=""></option>
@@ -138,28 +137,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				身高：
 	    				</h2>
-						<input type="text"  placeholder="请输入身高（cm）" name="height" style="width:70%;">
+						<input type="text" value="${sessionScope.user.information.height }" placeholder="请输入身高（cm）" name="height" style="width:70%;">
 		 			</div>
 					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				体重：
 	    				</h2>
-						<input type="text" placeholder="请输入体重（kg）" name="weight" style="width:70%;">
+						<input type="text" value="${sessionScope.user.information.weight }" placeholder="请输入体重（kg）" name="weight" style="width:70%;">
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title " style="width:30%;">
-	        				fit指数：
+	        				bmi指数：
 	    				</h2>
 						<button class="am-btn am-btn-primary  am-disabled" data-am-popover="{content: 'fit指数计算公式', trigger: 'hover focus'}">
-  							fit值
+  							${sessionScope.user.information.bmi }
 						</button>
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title " style="width:30%;">
-	        				体质：
+	        				肥胖程度：
 	    				</h2>
 						<button class="am-btn am-btn-primary  am-disabled" data-am-popover="{content: '体质列表', trigger: 'hover focus'}">
-  							体质等级
+  							${sessionScope.user.information.fat_level }
 						</button>
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%">
