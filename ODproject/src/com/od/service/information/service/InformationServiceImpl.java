@@ -19,7 +19,10 @@ public class InformationServiceImpl {
 
 	//insertInfo,完善用户信息
 	public void insertInfo(User user, Information info, Address add) {
-		this.informationDaoImpl.insertInfo(user,info,add);
+		float height = Float.parseFloat(info.getHeight())/100;
+		float weight = Float.parseFloat(info.getWeight());
+		float bmi = weight/(height*height);
+		this.informationDaoImpl.insertInfo(user,info,add,bmi);
 	}
 
 }

@@ -91,7 +91,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="templatemo_logo">
-                                <a href="#">
+                                <a href="index.jsp">
                                     <img src="images/personal/templatemo_logo.png" alt="Genius">
                                 </a>
                             </div> <!-- /.logo -->
@@ -207,23 +207,23 @@
                                                 <table>
                                                     <tr>
                                                         <th>姓名：</th>
-                                                        <th>张明</th>
+                                                        <th>${sessionScope.user.information.name }</th>
                                                     </tr>
                                                     <tr>
                                                         <th>性别：</th>
-                                                        <th>男</th>
+                                                        <th>${sessionScope.user.information.sex }</th>
                                                     </tr>
                                                      <tr>
                                                         <th>身高：</th>
-                                                        <th>178cm</th>
+                                                        <th>${sessionScope.user.information.height }cm</th>
                                                     </tr>
                                                      <tr>
                                                         <th>体重：</th>
-                                                        <th>100kg</th>
+                                                        <th>${sessionScope.user.information.weight }kg</th>
                                                     </tr>
                                                     <tr>
                                                         <th>邮箱：</th>
-                                                        <th>1175679807@qq.com&nbsp;&nbsp;&nbsp;<a href="#" class="button">更改邮箱</a></th>
+                                                        <th>${sessionScope.user.email }</th>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -232,23 +232,23 @@
                                         <table>
                                             <tr>
                                                 <th>生日：</th>
-                                                <th>1999 09 03</th>
+                                                <th>${sessionScope.user.information.birthday }</th>
                                             </tr>
                                             <tr>
                                                 <th>所在地：</th>
-                                                <th>衡水武邑县</th>
+                                                <th>${sessionScope.user.information.address.province }${sessionScope.user.information.address.city }${sessionScope.user.information.address.area }</th>
                                             </tr>
                                             <tr>
                                                 <th>BMI指数：</th>
-                                                <th>31.6</th>
+                                                <th>${sessionScope.user.information.bmi }</th>
                                             </tr>
                                             <tr>
                                                 <th>运动基础：</th>
-                                                <th>无</th>
+                                                <th>${sessionScope.user.information.sports_base }</th>
                                             </tr>
                                             <tr>
                                                 <th>联系方式：</th>
-                                                <th>15623187690&nbsp;&nbsp;&nbsp;<a href="#" class="button">更改号码</a></th>
+                                                <th>${sessionScope.user.phone_number }&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="userinfo.jsp" class="button">完善信息</a></th>
                                             </tr>
                                         </table>
                                     </div>

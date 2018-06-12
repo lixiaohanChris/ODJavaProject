@@ -93,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				姓名：
 	    				</h2>
-						<input type="text" placeholder="请输入姓名" name="name" style="width:70%;">
+						<input type="text" value="${sessionScope.user.information.name }" placeholder="请输入姓名" name="name" style="width:70%;">
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title"  style="width:30%;">
@@ -113,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        				生日：
 	    				</h2>
 						<div class="am-btn-group doc-js-btn-1" data-am-button  style="width:70%;">
-							<p><input type="text" name="birthday" class="am-form-field" placeholder="选择生日" data-am-datepicker="{theme: }" /></p>
+							<p><input type="text" value="${sessionScope.user.information.birthday }" name="birthday" class="am-form-field" placeholder="选择生日" data-am-datepicker="{theme: }" /></p>
 						</div>
 					</div>
 					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
@@ -124,6 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="am-btn-group doc-js-btn-1" data-am-button  style="width:70%;">
 							<select data-placeholder="请选择省" name="province" class="province" style="width:32%" tabindex="3">
             					<option value="" id="aa"></option>
+            					<option value="${session.user.information.address.province }" selected="selected"></option>
             				</select>
         					<select data-placeholder="请选择市" name="city" class="city" style="width:32%" tabindex="3">
             					<option value=""></option>
@@ -137,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				身高：
 	    				</h2>
-						<input type="text" placeholder="请输入身高（cm）" name="height" style="width:70%;">
+						<input type="text"  placeholder="请输入身高（cm）" name="height" style="width:70%;">
 		 			</div>
 					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title " style="width:30%;">

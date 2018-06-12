@@ -27,6 +27,7 @@ public class Information {
 	private String fat_level; //肥胖度
 	private String body_level; //体质等级
 	private User user;   //用户表一对一
+	private float bmi;
 	
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -119,6 +120,12 @@ public class Information {
 	}
 	public void setBody_level(String body_level) {
 		this.body_level = body_level;
+	}
+	public float getBmi() {
+		return bmi;
+	}
+	public void setBmi(float bmi) {
+		this.bmi = bmi;
 	}
 		
 }
