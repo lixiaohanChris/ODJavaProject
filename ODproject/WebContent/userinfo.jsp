@@ -5,6 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <base href="<%=basePath%>">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -93,18 +94,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				姓名：
 	    				</h2>
-						<input type="text" value="${sessionScope.user.information.name }" placeholder="请输入姓名" name="name" style="width:70%;">
+						<input type="text" value="${userinfo.name }" placeholder="请输入姓名" name="name" style="width:70%;">
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title"  style="width:30%;">
 	        				性别:
 	    				</h2>
 						<div class="am-btn-group doc-js-btn-1" data-am-button  style="width:70%;">
+							<c:set var="t" value="${userinfo.sex }"/>
+	  							<c:if test="${t=='男' }">
+	  								<c:set var="sex1" value="checked"/>
+  								</c:if>
+  								<c:if test="${t=='女' }">
+  									<c:set var="sex2" value="checked"/>
+  								</c:if>
 							<label class="am-btn am-btn-primary">
-								<input type="radio" name="sex" value="male" id="option1">男
+								<input type="radio" name="sex" value="男" id="option1" ${sex1 }>男
 							</label>
 							<label class="am-btn am-btn-primary">
-				    			<input type="radio" name="sex" value="female" id="option2">女
+				    			<input type="radio" name="sex" value="女" id="option2" ${sex2 }>女
 							</label>
 						</div>
 		 			</div>
@@ -113,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        				生日：
 	    				</h2>
 						<div class="am-btn-group doc-js-btn-1" data-am-button  style="width:70%;">
-							<p><input type="text" value="${sessionScope.user.information.birthday }" name="birthday" class="am-form-field" placeholder="选择生日" data-am-datepicker="{theme: }" /></p>
+							<p><input type="text" value="${userinfo.birthday }" name="birthday" class="am-form-field" placeholder="选择生日" data-am-datepicker="{theme: }" /></p>
 						</div>
 					</div>
 					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
@@ -137,20 +145,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				身高：
 	    				</h2>
-						<input type="text" value="${sessionScope.user.information.height }" placeholder="请输入身高（cm）" name="height" style="width:70%;">
+						<input type="text" value="${userinfo.height }" placeholder="请输入身高（cm）" name="height" style="width:70%;">
 		 			</div>
 					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				体重：
 	    				</h2>
-						<input type="text" value="${sessionScope.user.information.weight }" placeholder="请输入体重（kg）" name="weight" style="width:70%;">
+						<input type="text" value="${userinfo.weight }" placeholder="请输入体重（kg）" name="weight" style="width:70%;">
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				bmi指数：
 	    				</h2>
 						<button class="am-btn am-btn-primary  am-disabled" data-am-popover="{content: 'fit指数计算公式', trigger: 'hover focus'}">
-  							${sessionScope.user.information.bmi }
+  							${userinfo.bmi }
 						</button>
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
@@ -158,7 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        				肥胖程度：
 	    				</h2>
 						<button class="am-btn am-btn-primary  am-disabled" data-am-popover="{content: '体质列表', trigger: 'hover focus'}">
-  							${sessionScope.user.information.fat_level }
+  							${userinfo.fat_level }
 						</button>
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%">
@@ -179,14 +187,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        				运动基础:
 	    				</h2>
 						<div class="am-btn-group doc-js-btn-1" data-am-button style="width:77%;">
+						  	<c:forTokens items="${userinfo.sports_base }" delims="," var="t">
+  								<c:if test="${t=='零基础' }">
+  									<c:set var="sports_base1" value="checked"/>
+  								</c:if>
+  								<c:if test="${t=='有点基础' }">
+  									<c:set var="sports_base2" value="checked"/>
+  								</c:if>
+  								<c:if test="${t=='健身达人' }">
+  									<c:set var="sports_base3" value="checked"/>
+  								</c:if>
+  							</c:forTokens>
 							<label class="am-btn am-btn-primary">
-						    	<input type="radio" name="sports_base" value="零基础" id="option1"> 零基础 
+						    	<input type="radio" name="sports_base" value="零基础" id="option1" ${sports_base1 }> 零基础 
 						  	</label>
 						  	<label class="am-btn am-btn-primary">
-						    	<input type="radio" name="sports_base" value="有点基础" id="option2"> 有点基础
+						    	<input type="radio" name="sports_base" value="有点基础" id="option2" ${sports_base2 }> 有点基础
 						  	</label>
 						  	<label class="am-btn am-btn-primary">
-						    	<input type="radio" name="sports_base" value="健身达人" id="option3"> 健身达人
+						    	<input type="radio" name="sports_base" value="健身达人" id="option3" ${sports_base3 }> 健身达人
 						  	</label>
 						</div>
 		 			</div>
@@ -196,17 +215,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				</h2>
 						<div class="am-btn-group" data-am-button  style="width:77%;">
   							<!--默认选中状态设置-->
-  							<label class="am-btn am-btn-primary am-active">
-    							<input type="checkbox" class="needsclick" name="target" value="减脂" checked> 减脂
+  							<c:forTokens items="${userinfo.target }" delims="," var="t">
+  								<c:if test="${t=='减脂' }">
+  									<c:set var="target1" value="checked"/>
+  								</c:if>
+  								<c:if test="${t=='局部塑形' }">
+  									<c:set var="target2" value="checked"/>
+  								</c:if>
+  								<c:if test="${t=='增肌' }">
+  									<c:set var="target3" value="checked"/>
+  								</c:if>
+  								<c:if test="${t=='保持健康' }">
+  									<c:set var="target4" value="checked"/>
+  								</c:if>
+  							</c:forTokens>
+							
+  							<label class="am-btn am-btn-primary">
+    							<input type="checkbox" class="needsclick" name="target" ${target1 } value="减脂" /> 减脂
 							</label>
 							<label class="am-btn am-btn-primary">
-							    <input type="checkbox" class="needsclick" name="target" value="局部塑形"> 局部塑形
+							    <input type="checkbox" class="needsclick" name="target" ${target2 } value="局部塑形"> 局部塑形
 							</label>
 							<label class="am-btn am-btn-primary">
-							    <input type="checkbox" class="needsclick" name="target" value="增肌"> 增肌
+							    <input type="checkbox" class="needsclick" name="target" ${target3 } value="增肌"> 增肌
 							</label>
 							<label class="am-btn am-btn-primary">
-							    <input type="checkbox" class="needsclick" name="target" value="保持健康"> 保持健康
+							    <input type="checkbox" class="needsclick" name="target" ${target4 } value="保持健康"> 保持健康
 							</label>
 						</div>
 		 			</div>
@@ -216,20 +250,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				</h2>
 						<div class="am-btn-group" data-am-button  style="width:77%;">
   							<!--默认选中状态设置-->
-  							<label class="am-btn am-btn-primary am-active">
-    							<input type="checkbox" class="needsclick" name="hobby" value="健身" checked>健身
+  							<c:forTokens items="${userinfo.hobby }" delims="," var="t">
+  								<c:if test="${t=='健身' }">
+  									<c:set var="hobby1" value="checked"/>
+  								</c:if>
+  								<c:if test="${t=='瑜伽' }">
+  									<c:set var="hobby2" value="checked"/>
+  								</c:if>
+  								<c:if test="${t=='跑步' }">
+  									<c:set var="hobby3" value="checked"/>
+  								</c:if>
+  								<c:if test="${t=='骑行' }">
+  									<c:set var="hobby4" value="checked"/>
+  								</c:if>
+  								<c:if test="${t=='其他' }">
+  									<c:set var="hobby5" value="checked"/>
+  								</c:if>
+  							</c:forTokens>
+  							<label class="am-btn am-btn-primary">
+    							<input type="checkbox" class="needsclick" name="hobby" value="健身" ${hobby1 }>健身
 							</label>
 							<label class="am-btn am-btn-primary">
-							    <input type="checkbox" class="needsclick" name="hobby" value="瑜伽">瑜伽
+							    <input type="checkbox" class="needsclick" name="hobby" value="瑜伽" ${hobby2 }>瑜伽
 							</label>
 							<label class="am-btn am-btn-primary">
-							    <input type="checkbox" class="needsclick" name="hobby" value="跑步">跑步
+							    <input type="checkbox" class="needsclick" name="hobby" value="跑步" ${hobby3 }>跑步
 							</label>
 							<label class="am-btn am-btn-primary">
-							    <input type="checkbox" class="needsclick" name="hobby" value="骑行">骑行
+							    <input type="checkbox" class="needsclick" name="hobby" value="骑行" ${hobby4 }>骑行
 							</label>
 							<label class="am-btn am-btn-primary">
-							    <input type="checkbox" class="needsclick" name="hobby" value="其他">其他
+							    <input type="checkbox" class="needsclick" name="hobby" value="其他" ${hobby5 }>其他
 							</label>
 						</div>
 					</div>
@@ -248,11 +299,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         			是否公开:
    				</h2>
 				<div class="am-btn-group doc-js-btn-1" data-am-button style="width:77%;">
+					<c:set var="t" value="${userinfo.openness }"/>
+  						<c:if test="${t==1 }">
+  							<c:set var="openness1" value="checked"/>
+  						</c:if>
+  						<c:if test="${t==0 }">
+  							<c:set var="openness2" value="checked"/>
+  						</c:if>
 					<label class="am-btn am-btn-primary">
-				    	<input type="radio" name="openness" value="1" id="option1"> 公开 
+				    	<input type="radio" name="openness" value="1" id="option1" ${openness1 }> 公开 
 				  	</label>
 				  	<label class="am-btn am-btn-primary">
-				    	<input type="radio" name="openness" value="2" id="option2"> 隐藏
+				    	<input type="radio" name="openness" value="2" id="option2" ${openness2 }> 隐藏
 				  	</label>
 				</div>
           		<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:90%;">

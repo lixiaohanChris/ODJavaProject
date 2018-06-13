@@ -22,7 +22,7 @@ public class InformationDaoImpl {
 		info.setAddress(Add);
 		Add.setInformation(info);
 		info.setBmi(bmi);
-		info.setBody_level(fat_level);
+		info.setFat_level(fat_level);
 		this.sessionFactory.getCurrentSession().update(info);
 	}
 

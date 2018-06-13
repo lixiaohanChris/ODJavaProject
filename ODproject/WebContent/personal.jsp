@@ -248,7 +248,7 @@
                                             </tr>
                                             <tr>
                                                 <th>联系方式：</th>
-                                                <th>${sessionScope.user.phone_number }&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="userinfo.jsp" class="button">完善信息</a></th>
+                                                <th>${sessionScope.user.phone_number }&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="info/getInfo" class="button">完善信息</a></th>
                                             </tr>
                                         </table>
                                     </div>
