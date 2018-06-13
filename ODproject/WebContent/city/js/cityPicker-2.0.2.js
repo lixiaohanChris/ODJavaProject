@@ -60,7 +60,6 @@
         this.options = $.extend({}, defaults, options);
         this.$selector = $selector = $(selector);
         this.values = [];
-
         this.init();
         this.bindEvent();
     }

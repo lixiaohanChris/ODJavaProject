@@ -27,7 +27,7 @@ public class Course {
 	private String img;
 	private String count;
 	private Set<Score> score;
-	private double averageScore;
+	private double averageScore;  
 	//使用人数
 	@Id
 	@GeneratedValue(generator="my_gen")

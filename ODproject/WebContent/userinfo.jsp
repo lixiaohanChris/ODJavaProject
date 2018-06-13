@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<h2 id="errorp" style="color:#dd514c;width:5%"></h2>	
 						<div class="am-btn-group doc-js-btn-1" data-am-button  style="width:70%;">
 							<select data-placeholder="请选择省" name="province" class="province" style="width:32%" tabindex="3">
-            					<option value="" id="aa"></option>
+            					<option value="北京"></option>
             				</select>
         					<select data-placeholder="请选择市" name="city" class="city" style="width:32%" tabindex="3">
             					<option value=""></option>
