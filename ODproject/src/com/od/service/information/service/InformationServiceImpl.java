@@ -18,7 +18,7 @@ public class InformationServiceImpl {
 	private InformationDaoImpl informationDaoImpl;
 
 	// insertInfo,完善用户信息
-	public void insertInfo(User user, Information info, Address add) {
+	public void insertInfo(Information info, Address add) {
 		float height = Float.parseFloat(info.getHeight()) / 100;
 		float weight = Float.parseFloat(info.getWeight());
 		float bmi = weight / (height * height);
@@ -32,7 +32,7 @@ public class InformationServiceImpl {
 		}else {
 			fat_level = "肥胖";
 		}
-		this.informationDaoImpl.insertInfo(user, info, add, bmi, fat_level);
+		this.informationDaoImpl.insertInfo(info, add, bmi, fat_level);
 	}
 
 }

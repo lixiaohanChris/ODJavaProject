@@ -13,8 +13,8 @@ function _iframe() {
         title: '完善个人信息',
         iframe: true,
         url: 'userinfo.jsp',
-        width: '30%',  
-        height: '75%',
+        width: '33%',  
+        height: '80%',
     })
 }
 function ajaxInfo(){

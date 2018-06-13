@@ -18,7 +18,7 @@ public class InformationDaoImpl {
 	private SessionFactory sessionFactory;
 	
 	//完善用户信息（user表内没有informationId）
-	public void insertInfo(User user, Information info, Address Add,float bmi,String fat_level) {
+	public void insertInfo(Information info, Address Add,float bmi,String fat_level) {
 		info.setAddress(Add);
 		Add.setInformation(info);
 		info.setBmi(bmi);

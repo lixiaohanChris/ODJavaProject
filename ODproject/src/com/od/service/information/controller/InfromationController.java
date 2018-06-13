@@ -29,14 +29,17 @@ public class InfromationController {
 	
 	//完善用户信息
 	@RequestMapping(value="/userInfo",method=RequestMethod.POST)
-	public void userInfo(Information info,Address Add,
+	public String userInfo(Information info,Address Add,
 			HttpSession session){
 		User user = (User)session.getAttribute("user");
 		Information uInfo = user.getInformation();
 		int id = uInfo.getId();
 		uInfo = info;
 		uInfo.setId(id);
-		this.informationServiceImpl.insertInfo(user,uInfo,Add);
+		this.informationServiceImpl.insertInfo(uInfo,Add);
+		User u = this.userServiceImpl.registCheck(user.getEmail());
+		session.setAttribute("user", u);
+		return "personal";
 	}
 	
 	//注册时完善用户信息,Ajax验证是否选择地址
