@@ -93,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				姓名：
 	    				</h2>
-						<input type="text" placeholder="请输入姓名" name="name" style="width:70%;">
+						<input type="text" value="${sessionScope.user.information.name }" placeholder="请输入姓名" name="name" style="width:70%;">
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title"  style="width:30%;">
@@ -113,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        				生日：
 	    				</h2>
 						<div class="am-btn-group doc-js-btn-1" data-am-button  style="width:70%;">
-							<p><input type="text" name="birthday" class="am-form-field" placeholder="选择生日" data-am-datepicker="{theme: }" /></p>
+							<p><input type="text" value="${sessionScope.user.information.birthday }" name="birthday" class="am-form-field" placeholder="选择生日" data-am-datepicker="{theme: }" /></p>
 						</div>
 					</div>
 					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
@@ -137,28 +137,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				身高：
 	    				</h2>
-						<input type="text" placeholder="请输入身高（cm）" name="height" style="width:70%;">
+						<input type="text" value="${sessionScope.user.information.height }" placeholder="请输入身高（cm）" name="height" style="width:70%;">
 		 			</div>
 					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title " style="width:30%;">
 	        				体重：
 	    				</h2>
-						<input type="text" placeholder="请输入体重（kg）" name="weight" style="width:70%;">
+						<input type="text" value="${sessionScope.user.information.weight }" placeholder="请输入体重（kg）" name="weight" style="width:70%;">
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title " style="width:30%;">
-	        				fit指数：
+	        				bmi指数：
 	    				</h2>
 						<button class="am-btn am-btn-primary  am-disabled" data-am-popover="{content: 'fit指数计算公式', trigger: 'hover focus'}">
-  							fit值
+  							${sessionScope.user.information.bmi }
 						</button>
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%;">
 	    				<h2 class="am-titlebar-title " style="width:30%;">
-	        				体质：
+	        				肥胖程度：
 	    				</h2>
 						<button class="am-btn am-btn-primary  am-disabled" data-am-popover="{content: '体质列表', trigger: 'hover focus'}">
-  							体质等级
+  							${sessionScope.user.information.fat_level }
 						</button>
 		 			</div>
 		 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="width:95%">
