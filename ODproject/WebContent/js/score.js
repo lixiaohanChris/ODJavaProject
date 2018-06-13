@@ -1,7 +1,7 @@
-function rate(obj, oEvent) {
+function rate(obj, oEvent,cid) {
 // 图片地址设置
-var imgSrc = 'img/star.png'; //没有填色的星星
-var imgSrc_2 = 'img/star_full.png'; //打分后有颜色的星星,这里的star_full图片时实心的有颜色的五星。
+var imgSrc = 'images/s0.png'; //没有填色的星星
+var imgSrc_2 = 'images/s1.png'; //打分后有颜色的星星,这里的star_full图片时实心的有颜色的五星。
 if(obj.rateFlag) return;
 var e = oEvent || window.event;
 var target = e.target || e.srcElement;
@@ -12,8 +12,21 @@ imgArray[i].onclick = function() {
 if(obj.rateFlag) return;
 obj.rateFlag = true;
 //this._num+1这个值写入到数据库中,作为评分的依据。
-
-                                
+	$.ajax({
+		url:"score/getScore/"+cid+"?score="+parseInt(this._num+1),
+		type:"post",
+		success : function (data){
+			if(data=="isScore"){
+				alert('您已经评价过了')
+			}
+			if(data=="unLogin"){
+				window.location.href="login.jsp"
+			}
+			if(data=="true"){
+				alert('感谢评价')
+			}
+		}
+	})
 };
 }
 if(target.tagName == "IMG") {

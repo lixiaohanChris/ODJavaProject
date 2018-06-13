@@ -131,32 +131,55 @@
 
 			<div class="container">
 				<div class="row text-center"">
-					<c:forEach items="${courses }" var="p">
+					<c:forEach items="${courses }" var="c">
 						<div class="col-md-4 col-sm-6">
-							<a href="course/backstage/courseContentShow/classes/${p.id }">
+							<a href="course/backstage/courseContentShow/classes/${c.id }">
 								<div class="team-section-grid animate-box"
-									style="background-image: url(${p.img });height:350px;margin-top:30px;">
+									style="background-image: url(${c.img });height:350px;margin-top:30px;">
 									<div style="margin-top: 150px;">
-										<h1 style="color: #FFF">${p.name }</h1>
-										<h2 style="color: #FFF">${p.courseContents.size() }个课程</h2>
+										<h1 style="color: #FFF">${c.name }</h1>
+										<h2 style="color: #FFF">${c.courseContents.size() }个课程</h2>
 									</div>
 									<div class="overlay-section">
 										<div class="desc">
 											<h2 style="color: #FFF">课程介绍</h2>
-											<p style="color: #FFF">${p.introduce }</p>
+											<p style="color: #FFF">${c.introduce }</p>
 											<p class="fh5co-social-icons">
 												<a href="#"><i class="icon-twitter-with-circle"></i></a> 
 												<a href="#"><i class="icon-facebook-with-circle"></i></a> 
 												<a href="#"><i class="icon-instagram-with-circle"></i></a>
 											</p>
-											<p onmouseover="rate(this,event,${p.id})">
-												<img src="images/s0.png" title="很烂" width="30px"/> 
-												<img src="images/s0.png" title="一般" width="30px"/> 
-												<img src="images/s0.png" title="还好" width="30px"/> 
-												<img src="images/s0.png" title="较好" width="30px"/> 
-												<img src="images/s0.png" title="很好" width="30px"/>
-											</p>
-											<h1 style="color:#FFF">评分：${p.averageScore}</h1>
+											<c:if test="${scores==null }">
+												<p onmouseover="rate(this,event,${c.id})">
+													<img src="images/s0.png" title="很烂" width="30px"/> 
+													<img src="images/s0.png" title="一般" width="30px"/> 
+													<img src="images/s0.png" title="还好" width="30px"/> 
+													<img src="images/s0.png" title="较好" width="30px"/> 
+													<img src="images/s0.png" title="很好" width="30px"/>
+												</p>
+											</c:if>
+											<c:if test="${scores!=null }">
+												<c:if test="${scores.get(c.id)!=null }">
+													<c:forEach begin="1" end="${scores.get(c.id).score }" step="1">
+														<img src="images/s1.png" width="30px"/> 
+													</c:forEach>
+													<c:if test="${scores.get(c.id).score<5 }">
+														<c:forEach begin="1" end="${5-scores.get(c.id).score }">
+															<img src="images/s0.png" width="30px"/> 
+														</c:forEach>
+													</c:if>
+												</c:if>
+												<c:if test="${scores.get(c.id)==null }">
+													<p onmouseover="rate(this,event,${c.id})">
+														<img src="images/s0.png" title="很烂" width="30px"/> 
+														<img src="images/s0.png" title="一般" width="30px"/> 
+														<img src="images/s0.png" title="还好" width="30px"/> 
+														<img src="images/s0.png" title="较好" width="30px"/> 
+														<img src="images/s0.png" title="很好" width="30px"/>
+													</p>
+												</c:if>
+											</c:if>	
+											<h1 style="color:#FFF">评分：${c.averageScore}</h1>
 										</div>
 									</div>
 								</div>

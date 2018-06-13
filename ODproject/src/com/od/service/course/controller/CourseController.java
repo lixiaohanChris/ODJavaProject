@@ -3,6 +3,7 @@ package com.od.service.course.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +28,10 @@ import com.od.entity.Course;
 import com.od.entity.CourseContent;
 import com.od.entity.CourseType;
 import com.od.entity.Page;
+import com.od.entity.Score;
+import com.od.entity.User;
 import com.od.service.course.service.CourseServiceImpl;
+import com.od.service.score.service.ScoreServiceImpl;
 
 
 
@@ -51,6 +55,8 @@ public class CourseController {
 	
 	@Resource
 	private CourseServiceImpl courseServiceImpl;
+	@Resource
+	private ScoreServiceImpl scoreServiceImpl;
 	
 	/**
 	 * 课程类型分页展示
@@ -152,7 +158,7 @@ public class CourseController {
 	//课程分页展示 by courseType id
 	@RequestMapping(value="backstage/courseShow/{HTMLname}/{coursetypeid}",method=RequestMethod.GET)
 	public String courseShow(Model model,HttpServletRequest request,@PathVariable String HTMLname,
-			@PathVariable String coursetypeid){
+			@PathVariable String coursetypeid,HttpSession session){
 		//根据分页查询到课程的信息
 		String pageNum=request.getParameter("pageNum");
 		int courseTypeId=Integer.parseInt(coursetypeid);
@@ -179,6 +185,21 @@ public class CourseController {
 			return "backstagemanager/Course";
 		}
 		if(HTMLname.equals("classes")){
+			//获取用户的评分信息
+			User user =(User) session.getAttribute("user");
+			if(user!=null){
+				Map<Integer,Score> scores= new HashMap<Integer,Score>();
+				for(Course c:courses){
+					Score score = this.scoreServiceImpl.getScores(user.getId(), c.getId());
+					if(score!=null){
+						scores.put(c.getId(),score);
+					}
+				}
+				if(scores.size()!=0){
+					model.addAttribute("scores",scores);	
+				}
+				
+			}
 			return "classes";
 		}
 		return "backstagemanager/Model";

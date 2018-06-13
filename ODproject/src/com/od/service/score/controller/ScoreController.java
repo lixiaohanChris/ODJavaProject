@@ -22,11 +22,10 @@ public class ScoreController {
 	@Resource 
 	private ScoreServiceImpl scoreServiceImpl;
 	
-	@RequestMapping(value="/test/{courseid}",method=RequestMethod.POST)
+	@RequestMapping(value="/getScore/{courseid}",method=RequestMethod.POST)
 	@ResponseBody
-	public String test(@RequestParam("score")int score,@PathVariable int courseid,HttpSession session){
+	public String getScore(@RequestParam("score")int score,@PathVariable int courseid,HttpSession session){
 		User user = (User)session.getAttribute("user");
-		
 		if(user!= null){
 			Score scores= this.scoreServiceImpl.getScores(user.getId(),courseid);
 			if(scores!=null){
