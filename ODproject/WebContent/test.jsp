@@ -17,5 +17,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 	<a href="course/courseTypeShow">测试</a>
+	<c:forTokens items="${sessionScope.user.information.target }" delims="," var="t">
+  								<p>${t }</p>
+  								
+  							 <c:if test="${t=='减脂' }">
+  									<c:set var="target1" value="checked"/>
+  								</c:if>
+  								<c:if test="${t==局部塑形 }">
+  									<c:set var="target2" value="checked"/>
+  								</c:if>
+  								<c:if test="${t==增肌 }">
+  									<c:set var="target3" value="checked"/>
+  								</c:if>
+  								<c:if test="${t==保持健康  }">
+  									<c:set var="target4" value="checked"/>
+  								</c:if> 
+  							</c:forTokens>
+  							${target1 }
 </body>
 </html>

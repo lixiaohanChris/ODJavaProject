@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -27,7 +28,7 @@ public class User {
 	private Information information;   //信息表一对一
 	private ODMethod odMethod;  //方法表一对一
 	private Set<Score> score;
-	
+
 	@Id
 	@GeneratedValue(generator="my_gen")
 	@GenericGenerator(name="my_gen",strategy="increment")
@@ -97,6 +98,5 @@ public class User {
 	public void setScore(Set<Score> score) {
 		this.score = score;
 	}
-	
-	
+
 }
