@@ -65,5 +65,11 @@ public class InfromationController {
 		model.addAttribute("userinfo", u.getInformation());
 		return "userinfo";
 	}
-	
+	@RequestMapping(value="/getUserInfo")
+	public String getUserInfo(Model model,HttpSession session){
+		User user = (User) session.getAttribute("user");
+		User u = this.userServiceImpl.registCheck(user.getEmail());
+		model.addAttribute("user", u);
+		return "personal";
+	}
 }

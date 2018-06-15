@@ -1,4 +1,11 @@
-﻿
+﻿<%  
+String path = request.getContextPath();  
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
+%>  
+<base href="<%=basePath%>">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -77,7 +84,7 @@
                     <div class="main_menu">
                         <ul class="menu">
                             <li><a class="show-1 homebutton" href="#" data-toggle="tooltip" data-original-title="首页"><i class="fa fa-home"></i></a></li>
-                            <li><a class="show-2" href="#" data-toggle="tooltip" data-original-title="个人信息"><i class="fa fa-user"></i></a></li>
+                            <li><a class="show-2" href="info/getUserInfo" data-toggle="tooltip" data-original-title="个人信息"><i class="fa fa-user"></i></a></li>
                             <li><a class="show-3" href="#" data-toggle="tooltip" data-original-title="我们的团队"><i class="fa fa-briefcase"></i></a></li>
                             <li><a class="show-4" href="#" data-toggle="tooltip" data-original-title="服务"><i class="fa fa-cog"></i></a></li>
                             <li><a class="show-5" href="#" data-toggle="tooltip" data-original-title="联系我们"><i class="fa fa-globe"></i></a></li>
@@ -207,23 +214,23 @@
                                                 <table>
                                                     <tr>
                                                         <th>姓名：</th>
-                                                        <th>${sessionScope.user.information.name }</th>
+                                                        <th>${user.information.name }</th>
                                                     </tr>
                                                     <tr>
                                                         <th>性别：</th>
-                                                        <th>${sessionScope.user.information.sex }</th>
+                                                        <th>${user.information.sex }</th>
                                                     </tr>
                                                      <tr>
                                                         <th>身高：</th>
-                                                        <th>${sessionScope.user.information.height }cm</th>
+                                                        <th>${user.information.height }cm</th>
                                                     </tr>
                                                      <tr>
                                                         <th>体重：</th>
-                                                        <th>${sessionScope.user.information.weight }kg</th>
+                                                        <th>${user.information.weight }kg</th>
                                                     </tr>
                                                     <tr>
                                                         <th>邮箱：</th>
-                                                        <th>${sessionScope.user.email }</th>
+                                                        <th>${user.email }</th>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -232,23 +239,23 @@
                                         <table>
                                             <tr>
                                                 <th>生日：</th>
-                                                <th>${sessionScope.user.information.birthday }</th>
+                                                <th>${user.information.birthday }</th>
                                             </tr>
                                             <tr>
                                                 <th>所在地：</th>
-                                                <th>${sessionScope.user.information.address.province }${sessionScope.user.information.address.city }${sessionScope.user.information.address.area }</th>
+                                                <th>${user.information.address.province }${user.information.address.city }${user.information.address.area }</th>
                                             </tr>
                                             <tr>
                                                 <th>BMI指数：</th>
-                                                <th>${sessionScope.user.information.bmi }</th>
+                                                <th>${user.information.bmi }</th>
                                             </tr>
                                             <tr>
                                                 <th>运动基础：</th>
-                                                <th>${sessionScope.user.information.sports_base }</th>
+                                                <th>${user.information.sports_base }</th>
                                             </tr>
                                             <tr>
                                                 <th>联系方式：</th>
-                                                <th>${sessionScope.user.phone_number }&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="info/getInfo" class="button">完善信息</a></th>
+                                                <th>${user.phone_number }&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="info/getInfo" class="button">完善信息</a></th>
                                             </tr>
                                         </table>
                                     </div>
