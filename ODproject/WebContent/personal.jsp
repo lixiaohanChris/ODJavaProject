@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="responsive_menu">
             <ul class="main_menu">
                 <li><a class="show-1 homebutton" href="#"><i class="fa fa-home"></i>首页</a></li>
-                <li><a class="show-2" href="#"><i class="fa fa-group"></i>个人信息</a></li>
+                <li><a class="show-2" href="info/getUserInfo"><i class="fa fa-group"></i>个人信息</a></li>
                 <li><a class="show-3" href="#"><i class="fa fa-briefcase"></i>Our Gallery</a></li>
                 <li><a class="show-4" href="#"><i class="fa fa-cogs"></i>服务</a></li>
                 <li><a class="show-5" href="#"><i class="fa fa-globe"></i>联系我们</a></li>
