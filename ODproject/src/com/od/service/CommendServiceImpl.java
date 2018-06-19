@@ -58,6 +58,7 @@ public class CommendServiceImpl {
 		}
 		//最大相似用户
 		List<User> maxSimilarUsers = new ArrayList<User>();
+		System.out.println(maxSimilarUsers.size());
 		
 		for(Entry<User, Double> entry : similarityMap.entrySet()){
 			if(maxSimilarity.equals(entry.getValue())){

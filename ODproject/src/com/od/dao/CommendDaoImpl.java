@@ -12,6 +12,7 @@ import com.od.entity.Course;
 import com.od.entity.ODMethod;
 import com.od.entity.Score;
 import com.od.entity.User;
+import com.sun.mail.util.QEncoderStream;
 
 @Repository
 public class CommendDaoImpl {
@@ -19,26 +20,26 @@ public class CommendDaoImpl {
 	private SessionFactory sessionFactory;
 	//5分评价
 	public List<Score> findScoreByUserId(User u) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("select * from score where userid ="+u.getId()+"and score = 5");
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from Score where userid ="+u.getId()+" and score = 5");
 		return query.list();
 	}
 	//除自己外全部用户
 	public List<User> findUserByUserId(User u) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("select * from user where id !="+u);
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from User where id !="+u.getId());
 		return query.list();
 	}
 	//用户同时评价5分的课程数量
 	public int findCountByCourseIdAndUserId(int courseid, int userid) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("select count(*) from score where courseid="+courseid+"and userid="+userid+"and score = 5");
-		
-		return (int)query.uniqueResult();
+		Query query = this.sessionFactory.getCurrentSession().createQuery("select count(*) from Score where courseid="+courseid+" and userid="+userid+" and score = 5");
+		Long l = (Long)query.uniqueResult();
+		return l.intValue();
 	}
 	public Score findScoreByCourseIdAndUserId(Course course, User u) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("select * from score where courseid="+course.getId()+"and userid="+u.getId());
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from Score where courseid="+course.getId()+" and userid="+u.getId());
 		return (Score)query.uniqueResult();
 	}
 	public Classes findCourseByCourseIdAndODMethodId(ODMethod odMethod, Course course) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("select * from classes where odmethodId="+odMethod.getId()+"and courseId="+course.getId());
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from Classes where odmethodId="+odMethod.getId()+" and courseId="+course.getId());
 		return (Classes)query.uniqueResult();
 	}
 
