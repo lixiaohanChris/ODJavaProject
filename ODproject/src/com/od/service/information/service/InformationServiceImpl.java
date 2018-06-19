@@ -32,7 +32,7 @@ public class InformationServiceImpl {
 		}else {
 			fat_level = "肥胖";
 		}
-		this.informationDaoImpl.insertInfo(info, add, bmi, fat_level);
+		this.informationDaoImpl.insertInfo( info, add, bmi, fat_level);
 	}
 
 }
