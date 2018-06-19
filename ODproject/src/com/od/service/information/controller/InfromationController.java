@@ -17,7 +17,6 @@ import com.od.entity.User;
 import com.od.service.information.service.InformationServiceImpl;
 import com.od.service.user.service.UserServiceImpl;
 
-
 @Controller
 @RequestMapping("/info")
 public class InfromationController {

@@ -43,20 +43,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <!--
   <link rel="canonical" href="http://www.example.com/">
   -->
-
+  
   <link rel="stylesheet" href="assets/css/amazeui.min.css">
   <link rel="stylesheet" href="assets/css/app.css">
   <link href="assets/css/amazeui.chosen.css" rel="stylesheet" />
   <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/amazeui.min.js"></script>
   <script src="assets/js/amazeui.chosen.js"></script>
+  <script src="assets/js/amazeui.min.js"></script>
   <script src="assets/js/region.js"></script>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/ajax.js"></script>
   <!-- alert -->
-<script src="js/alert/zeroModal.min.js"></script>
-<script src="js/alert/mustache.js"></script>
-<script src="js/alert/zeroModal.js"></script>
+  <script src="js/alert/zeroModal.min.js"></script>
+  <script src="js/alert/mustache.js"></script>
+  <script src="js/alert/zeroModal.js"></script>
+  
 </head>
 
 <body style="overflow: hidden;position:relative;left:-10px;">
@@ -128,10 +129,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<h2 class="am-titlebar-title"  style="width:25%;">
 	        				城市：
 	    				</h2>
+	    				
 	    				<h2 id="errorp" style="color:#dd514c;width:5%"></h2>	
 						<div class="am-btn-group doc-js-btn-1" data-am-button  style="width:70%;">
 							<select data-placeholder="请选择省" name="province" class="province" style="width:32%" tabindex="3">
-            					<option value='"Province": "北京"' selected>Province:北京</option>
+            					<option value=""></option>
             				</select>
         					<select data-placeholder="请选择市" name="city" class="city" style="width:32%" tabindex="3">
             					<option value=""></option>
@@ -326,6 +328,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	</div>
   		
 	</form> 
-
+    
 </body>
 </html>
