@@ -28,7 +28,7 @@ public class Course {
 	private String count;
 	private Set<Score> score;
 	private double averageScore;  
-	private Set<User_Course> user_course;
+
 	//使用人数
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -106,12 +106,5 @@ public class Course {
 	public void setAverageScore(double averageScore) {
 		this.averageScore = averageScore;
 	}
-	@OneToMany(mappedBy="course",targetEntity=User_Course.class,
-			cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	public Set<User_Course> getUser_course() {
-		return user_course;
-	}
-	public void setUser_course(Set<User_Course> user_course) {
-		this.user_course = user_course;
-	}
+	
 }

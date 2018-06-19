@@ -28,7 +28,7 @@ public class User {
 	private Information information;   //信息表一对一
 	private ODMethod odMethod;  //方法表一对一
 	private Set<Score> score;
-	private Set<User_Course> user_course;
+	
 
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -92,14 +92,7 @@ public class User {
 		this.state = state;
 	}
 	
-	@OneToMany(mappedBy="user",targetEntity=User_Course.class,
-			cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	public Set<User_Course> getUser_course() {
-		return user_course;
-	}
-	public void setUser_course(Set<User_Course> user_course) {
-		this.user_course = user_course;
-	}
+	
 	@OneToMany(mappedBy="user",targetEntity=Score.class,
 			cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	public Set<Score> getScore() {
