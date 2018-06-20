@@ -176,11 +176,11 @@ a cite {
 
 @font-face {
 	font-family: layui-icon;
-	src: url(../font/iconfont.eot?v=220);
-	src: url(../font/iconfont.eot?v=220#iefix) format('embedded-opentype'),
-		url(../font/iconfont.svg?v=220#iconfont) format('svg'),
-		url(../font/iconfont.woff?v=220) format('woff'),
-		url(../font/iconfont.ttf?v=220) format('truetype')
+	src: url(../../font/iconfont.eot?v=220);
+	src: url(../../font/iconfont.eot?v=220#iefix) format('embedded-opentype'),
+		url(../../font/iconfont.svg?v=220#iconfont) format('svg'),
+		url(../../font/iconfont.woff?v=220) format('woff'),
+		url(../../font/iconfont.ttf?v=220) format('truetype')
 }
 
 .layui-icon {

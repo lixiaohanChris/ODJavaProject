@@ -3548,7 +3548,7 @@ transform:skewX(0deg)
 }
 .submit.animate
 {
-    background-image:url('../images/spinner.gif');
+    background-image:url('../../images/personal/spinner.gif');
     background-repeat:no-repeat;
     background-position: 155px 15px;
     padding-right: 45px;

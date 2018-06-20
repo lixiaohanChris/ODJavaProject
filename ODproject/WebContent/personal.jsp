@@ -1,4 +1,5 @@
-﻿<%  
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<%  
 String path = request.getContextPath();  
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
 %>  
@@ -6,8 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -31,6 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- JavaScripts -->
     <script src="js/personal/jquery-1.10.2.min.js"></script>
     <script src="js/personal/modernizr.js"></script>
+    <script src="js/personal/bootstrap.min.js"></script>
     <style type="text/css">
         .left{
             float: left;
@@ -55,11 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<div class="bg-image"></div>
     <div class="overlay-bg"></div>
-
-    
-    
-
-    <!-- This one in here is responsive menu for tablet and mobiles -->
+	<!-- This one in here is responsive menu for tablet and mobiles -->
     <div class="responsive-navigation visible-sm visible-xs">
         <a href="#" class="menu-toggle-btn">
             <i class="fa fa-bars fa-2x"></i>
@@ -516,7 +513,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div> <!-- /.container -->
     </div> <!-- /.main-content -->
 
-    <script src="js/personal/bootstrap.min.js"></script>
+    
 
     <script src="js/personal/jquery.mixitup.min.js"></script>
     <script src="js/personal/jquery.nicescroll.min.js"></script>
