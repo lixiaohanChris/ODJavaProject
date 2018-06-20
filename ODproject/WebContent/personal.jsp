@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <li><a class="show-1 homebutton" href="#" data-toggle="tooltip" data-original-title="首页"><i class="fa fa-home"></i></a></li>
                             <li><a class="show-2" href="info/getUserInfo" data-toggle="tooltip" data-original-title="个人信息"><i class="fa fa-user"></i></a></li>
                             <li><a class="show-3" href="#" data-toggle="tooltip" data-original-title="我们的团队"><i class="fa fa-briefcase"></i></a></li>
-                            <li><a class="show-4" href="#" data-toggle="tooltip" data-original-title="服务"><i class="fa fa-cog"></i></a></li>
+                            <li><a class="show-4" href="commend/getCommend" data-toggle="tooltip" data-original-title="服务"><i class="fa fa-cog"></i></a></li>
                             <li><a class="show-5" href="#" data-toggle="tooltip" data-original-title="联系我们"><i class="fa fa-globe"></i></a></li>
                         </ul>
                     </div> <!-- /.main-menu -->
@@ -424,7 +424,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <div class="col-md-12">
                                         <h3 class="widget-title">常见问题：</h3>
                                     </div> <!-- /.col-md-12 -->
+                                    <a href="commend/getCommend">aa</a>
                                 </div> <!-- /.row -->
+                                <c:forEach items="${course }" var="c">
                                 <div class="row services">
                                     <div class="col-md-4 col-sm-6">
                                         <div class="service">
@@ -437,80 +439,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     <h4 class="service-title">问题一</h4>
                                                 </div>
                                             </div>
-                                            <div class="body">哈哈哈哈哈哈哈哈哈哈哈哈</div>
-                                        </div>
-                                    </div> <!-- /.col-md-4 -->
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="service">
-                                            <div class="header">
-                                                <div class="header-bg"></div>
-                                                <div class="service-header">
-                                                    <div class="icon">
-                                                        <i class="fa fa-flask"></i>
-                                                    </div>
-                                                    <h4 class="service-title">问题二</h4>
-                                                </div>
-                                            </div>
-                                            <div class="body">哈哈哈哈哈哈哈哈哈哈哈哈</div>
-                                        </div>
-                                    </div> <!-- /.col-md-4 -->
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="service">
-                                            <div class="header">
-                                                <div class="header-bg"></div>
-                                                <div class="service-header">
-                                                    <div class="icon">
-                                                        <i class="fa fa-money"></i>
-                                                    </div>
-                                                    <h4 class="service-title">问题三</h4>
-                                                </div>
-                                            </div>
-                                            <div class="body">Download free <a rel="nofollow" href="#">templates</a> 哈哈哈哈哈哈哈哈哈哈哈哈</div>
-                                        </div>
-                                    </div> <!-- /.col-md-4 -->
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="service">
-                                            <div class="header">
-                                                <div class="header-bg"></div>
-                                                <div class="service-header">
-                                                    <div class="icon">
-                                                        <i class="fa fa-eye"></i>
-                                                    </div>
-                                                    <h4 class="service-title">问题四</h4>
-                                                </div>
-                                            </div>
-                                            <div class="body">哈哈哈哈哈哈哈哈哈哈哈哈</div>
-                                        </div>
-                                    </div> <!-- /.col-md-4 -->
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="service">
-                                            <div class="header">
-                                                <div class="header-bg"></div>
-                                                <div class="service-header">
-                                                    <div class="icon">
-                                                        <i class="fa fa-mobile-phone"></i>
-                                                    </div>
-                                                    <h4 class="service-title">问题五</h4>
-                                                </div>
-                                            </div>
-                                            <div class="body">哈哈哈哈哈哈哈哈哈哈哈哈</div>
-                                        </div>
-                                    </div> <!-- /.col-md-4 -->
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="service">
-                                            <div class="header">
-                                                <div class="header-bg"></div>
-                                                <div class="service-header">
-                                                    <div class="icon">
-                                                        <i class="fa fa-cogs"></i>
-                                                    </div>
-                                                    <h4 class="service-title">问题六</h4>
-                                                </div>
-                                            </div>
-                                            <div class="body">哈哈哈哈哈哈哈哈哈哈哈哈</div>
+                                            <div class="body">${c.name }</div>
                                         </div>
                                     </div> <!-- /.col-md-4 -->
                                 </div> <!-- /.row -->
+                                </c:forEach>
                             </div> <!-- /.content-inner -->
 
                         </div> <!-- /.services -->
