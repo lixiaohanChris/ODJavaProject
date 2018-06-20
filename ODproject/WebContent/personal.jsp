@@ -417,33 +417,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                         <div id="menu-4" class="content">
                             <div class="page-header">
-                                <h2 class="page-title">服务</h2>
+                                <h2 class="page-title">猜你喜欢</h2>
                             </div> <!-- /.page-header -->
                             <div class="content-inner">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h3 class="widget-title">常见问题：</h3>
-                                    </div> <!-- /.col-md-12 -->
-                                    <a href="commend/getCommend">aa</a>
-                                </div> <!-- /.row -->
-                                <c:forEach items="${course }" var="c">
                                 <div class="row services">
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="service">
-                                            <div class="header">
+                                <c:forEach items="${course }" var="c">
+                                    <div class="col-md-4 col-sm-6" style="background-image: url(${c.img });height:300px;margin-top:0px;background-size:100% 100%;">
+                                            <div class="header"style="opacity:0.7;">
                                                 <div class="header-bg"></div>
                                                 <div class="service-header">
                                                     <div class="icon">
                                                         <i class="fa fa-heart-o"></i>
                                                     </div>
-                                                    <h4 class="service-title">问题一</h4>
+                                                    <h3 class="service-title"style="color: #FFF">&nbsp&nbsp<b>${c.name }</b></h3>
                                                 </div>
                                             </div>
-                                            <div class="body">${c.name }</div>
-                                        </div>
                                     </div> <!-- /.col-md-4 -->
+                                    </c:forEach>
                                 </div> <!-- /.row -->
-                                </c:forEach>
                             </div> <!-- /.content-inner -->
 
                         </div> <!-- /.services -->
