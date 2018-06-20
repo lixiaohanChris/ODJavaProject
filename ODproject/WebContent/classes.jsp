@@ -116,7 +116,7 @@
 											<h2 style="color: #FFF">类别介绍</h2>
 											<p style="color: #FFF">${p.description }</p>
 											<p class="fh5co-social-icons">
-												<a href="classes/chooseCourse?courseSet=${p.courses }"><i class="icon-ribbon"></i></a>
+												<a href="classes/chooseCourseType?coursetypeid=${p.id }"><i class="icon-ribbon"></i></a>
 												<a href="#"><i class="icon-heart"></i></a>
 											</p>
 										</div>
@@ -148,6 +148,7 @@
 												<a href="#"><i class="icon-facebook-with-circle"></i></a> 
 												<a href="#"><i class="icon-instagram-with-circle"></i></a>
 											</p>
+											
 											<c:if test="${scores==null }">
 												<p onmouseover="rate(this,event,${c.id})" >
 													<img src="images/s0.png" title="很烂" width="30px"/> 

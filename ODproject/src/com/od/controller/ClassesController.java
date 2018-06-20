@@ -1,9 +1,9 @@
 package com.od.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -44,15 +44,43 @@ public class ClassesController {
 	 * @return
 	 */	
 	@RequestMapping(value="/chooseCourse")
-	public String choseCourse(HttpServletRequest request,HttpSession session,Model model,@RequestParam("courseid")int courseid){
+	public String chooseCourse(HttpSession session,
+			Model model,@RequestParam("courseid")int courseid){
 		User user =(User) session.getAttribute("user");
 		if(user==null){
 			model.addAttribute("errorLogin","请登录后进行选课");
 			return "login";
 		}
-		Course course = courseServiceImpl.getCourseById1(courseid); 
-	    ODMethod odMethod=user.getOdMethod();
+		ODMethod odMethod=user.getOdMethod();
+		Course course = courseServiceImpl.getCourseById1(courseid);
+		//判断课程是否被选择
+		Classes classes = this.classesServiceImpl.checkCourse(courseid,odMethod.getId());
+		if(classes!=null){
+			model.addAttribute("error","已经选过此课程");
+			return "redirect:/course/backstage/courseShow/classes/"+course.getCourseType().getId();
+		}
 		this.classesServiceImpl.chooseCourse(course,odMethod);
-		return "index";
+		return "redirect:/course/backstage/courseShow/classes/"+course.getCourseType().getId();
+	}
+	
+	/**
+	 * @param session
+	 * @param model
+	 * @param coursetypeid
+	 * @return
+	 */
+	@RequestMapping(value="/chooseCourseType")
+	public String chooseCourseType(HttpSession session,
+			Model model,
+			@RequestParam("coursetypeid")int coursetypeid){
+		User user =(User) session.getAttribute("user");
+		if(user==null){
+			model.addAttribute("errorLogin","请登录后进行选课");
+			return "login";
+		}
+		List<Course> courses = courseServiceImpl.getCourseById(coursetypeid); 
+	    ODMethod odMethod=user.getOdMethod();
+		this.classesServiceImpl.chooseCourse(courses,odMethod);
+		return "redirect:/course/backstage/courseTypeShow/classes";
 	}
 }

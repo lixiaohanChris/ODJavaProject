@@ -25,7 +25,7 @@ public class CourseDaoImpl {
 	}
 	
 	//遍历所有的课程
-	public List<Course> getCourseById(String typeid) {
+	public List<Course> getCourseById(int typeid) {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from Course where coursetypeid="+typeid);
 		return query.list();
 	}
@@ -58,7 +58,7 @@ public class CourseDaoImpl {
 		this.sessionFactory.getCurrentSession().save(courseType);
 	}
 	
-	public CourseType getCourseById(int id) {
+	public CourseType getCourseTypeById(int id) {
 		return this.sessionFactory.getCurrentSession().get(CourseType.class, id);
 	}
 	

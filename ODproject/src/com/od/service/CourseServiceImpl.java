@@ -40,8 +40,7 @@ public class CourseServiceImpl {
 	}
 	
 	//遍历所有的course
-	public List<Course> getCourseById(String typeid) {
-		
+	public List<Course> getCourseById(int typeid) {
 		return this.courseDaoImpl.getCourseById(typeid);
 	}
 	
@@ -68,7 +67,7 @@ public class CourseServiceImpl {
 	
 	//根据id获取courseType
 	public CourseType getCourseTypeById(int id) {
-		return this.courseDaoImpl.getCourseById(id);
+		return (CourseType) this.courseDaoImpl.getCourseById(id);
 	}
 	
 	//后台管理,删除courseTypeById
