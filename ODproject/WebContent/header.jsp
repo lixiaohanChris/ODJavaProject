@@ -42,7 +42,7 @@
 							<li><a href="login.jsp"><p class="icon-user3">登录/注册</p></a></li>
 						</c:if>
 						<c:if test="${sessionScope.user.email!=null }">
-							<li><a href="personal.jsp"><p class="icon-user3">${sessionScope.user.username }，您好</p></a></li>
+							<li><a href="commend/getCommend"><p class="icon-user3">${sessionScope.user.username }，您好</p></a></li>
 							<li><a href="user/userExit"><p class="icon-user3">注销</p></a></li>
 						</c:if>
 					</ul>
