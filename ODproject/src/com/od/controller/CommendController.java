@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.od.entity.Course;
 import com.od.entity.User;
 import com.od.service.CommendServiceImpl;
-import com.od.service.InformationServiceImpl;
 import com.od.service.UserServiceImpl;
-import com.sun.javafx.logging.PulseLogger;
 
 @Controller
 @RequestMapping("/commend")
@@ -28,10 +26,6 @@ public class CommendController {
 		User user = (User) session.getAttribute("user");
 		User u = this.userServiceImpl.registCheck(user.getEmail());
 		Set<Course> courses =this.commendServiceImpl.getCommend(u);
-		System.out.println(courses.size());
-		for(Course c:courses){
-			System.out.println(c.getName());
-		}
 		model.addAttribute("course",courses);
 		return "personal";
 	}

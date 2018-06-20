@@ -446,18 +446,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <h3 class="widget-title">发送信息</h3>
                                         <p>发送你的信息帮我们更好的了解你。</a> </p>
                                         <div class="row contact-form">
-                                            <div class="col-md-4">
-                                                <label for="name-id">你的姓名:</label>
-                                                <input name="name-id" type="text" id="name-id" maxlength="40">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="email-id">邮箱:</label>
-                                                <input name="email-id" type="text" id="email-id" maxlength="40">
+                                        <form action="">
+                                            <div class="col-md-4" weight="300px">
+                                                <label for="name-id">题目:</label>
+                                                <input name="name-id" type="text" id="name-id" maxlength="120" value="问题" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue; this.style.color='#999'}" style="color:#999" ">
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="subject-id">类型:</label>
-                                                <input name="subject-id" type="text" id="subject-id" maxlength="60">
+                                                <input name="subject-id" type="text" id="subject-id" maxlength="60" value="问题"onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue; this.style.color='#999'}" style="color:#999" ">
                                             </div>
+                                         </form>
                                         </div> <!-- /.contact-form -->
                                         <p class="full-row">
                                             <label for="message">具体信息:</label>
@@ -469,9 +467,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <div class="information">
                                             <h3 class="widget-title">信息</h3>
                                             <ul class="our-location">
-                                                <li><span><i class="fa fa-map-marker"></i>地址:</span>120 Nullam viverra dolor</li>
-                                                <li><span><i class="fa fa-map-marker"></i>电话:</span>010-020-0210</li>
-                                                <li><span><i class="fa fa-map-marker"></i>邮箱:</span><a href="mailto:info@company.com">info@company.com</a></li>
+                                                <li><span><i class="fa fa-map-marker"></i>地址:</span>河北师范大学软件学院</li>
+                                                <li><span><i class="fa fa-map-marker"></i>电话:</span>17731139669</li>
+                                                <li><span><i class="fa fa-map-marker"></i>邮箱:</span><a href="mailto:info@company.com">ODLW@outlook.com</a></li>
                                             </ul>
                                         </div> <!-- /.information -->
                                         <div class="google-map">

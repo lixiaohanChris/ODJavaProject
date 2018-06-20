@@ -42,5 +42,11 @@ public class CommendDaoImpl {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from Classes where odmethodId="+odMethod.getId()+" and courseId="+course.getId());
 		return (Classes)query.uniqueResult();
 	}
+	public List<Course> findCourseByMaxScore(){
+		Query query = this.sessionFactory.getCurrentSession().createQuery("select max(averageScore) from Course");
+		Double maxAverageScore = (Double)query.uniqueResult();
+		Query query2 = this.sessionFactory.getCurrentSession().createQuery("from Course where averageScore="+maxAverageScore);
+		return query2.list();
+	}
 
 }
