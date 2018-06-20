@@ -109,6 +109,10 @@ public class CourseServiceImpl {
 		return this.courseDaoImpl.findCourseContentCountByPage(courseId);
 	}
 
+	public Course getCourseById1(int courseid) {
+		// TODO Auto-generated method stub
+		return this.courseDaoImpl.getCourseById1(courseid);
+	}
 	
 	
 

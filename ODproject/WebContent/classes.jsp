@@ -144,7 +144,7 @@
 											<h2 style="color: #FFF">课程介绍</h2>
 											<p style="color: #FFF">${c.introduce }</p>
 											<p class="fh5co-social-icons">
-												<a href="classes/chooseCourse?course=${c }"><i class="icon-twitter-with-circle"></i></a> 
+												<a href="classes/chooseCourse?course="+${c }><i class="icon-twitter-with-circle"></i></a> 
 												<a href="#"><i class="icon-facebook-with-circle"></i></a> 
 												<a href="#"><i class="icon-instagram-with-circle"></i></a>
 											</p>

@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -44,12 +43,13 @@ public class ClassesController {
 	 * @return
 	 */	
 	@RequestMapping(value="/chooseCourse")
-	public String choseCourse(HttpSession session,Model model,@ModelAttribute("course")Course course){
+	public String choseCourse(HttpSession session,Model model,@RequestParam("courseid")int courseid){
 		User user =(User) session.getAttribute("user");
 		if(user==null){
 			model.addAttribute("errorLogin","请登录后进行选课");
 			return "login";
 		}
+		Course course = courseServiceImpl.getCourseById1(courseid); 
 	    ODMethod odMethod=user.getOdMethod();
 		this.classesServiceImpl.chooseCourse(course,odMethod);
 		return "index";

@@ -96,5 +96,12 @@ public class CourseDaoImpl {
 		return (Long)query.uniqueResult();
 	}
 
+	public Course getCourseById1(int courseid) {
+		// TODO Auto-generated method stub
+		return this.sessionFactory.getCurrentSession().get(Course.class, courseid);
+	}
+
+	
+
 
 }
