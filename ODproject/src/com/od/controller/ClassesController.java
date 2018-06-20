@@ -3,6 +3,7 @@ package com.od.controller;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class ClassesController {
 	 * @return
 	 */	
 	@RequestMapping(value="/chooseCourse")
-	public String choseCourse(HttpSession session,Model model,@RequestParam("courseid")int courseid){
+	public String choseCourse(HttpServletRequest request,HttpSession session,Model model,@RequestParam("courseid")int courseid){
 		User user =(User) session.getAttribute("user");
 		if(user==null){
 			model.addAttribute("errorLogin","请登录后进行选课");
