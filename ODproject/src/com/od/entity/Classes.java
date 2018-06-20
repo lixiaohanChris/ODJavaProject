@@ -22,6 +22,7 @@ public class Classes {
 	private String start_time;   //开始时间
 	private String end_time;  //结束时间
 	private Course course;  //课程多对一
+	private String getWay;  //选取此课程的方式
 	private ODMethod odMethod;   //方法多对一
 	private String week;  //星期
 	//评分
@@ -72,6 +73,14 @@ public class Classes {
 	public void setWeek(String week) {
 		this.week = week;
 	}
+	public String getGetWay() {
+		return getWay;
+	}
+	public void setGetWay(String getWay) {
+		this.getWay = getWay;
+	}
+	
+
 	
 	
 }

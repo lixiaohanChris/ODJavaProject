@@ -25,7 +25,6 @@ public class CommendController {
 		User user = (User) session.getAttribute("user");
 		User u = this.userServiceImpl.registCheck(user.getEmail());
 		this.commendServiceImpl.getCommend(u);
-		
 		return "personal";
 	}
 }

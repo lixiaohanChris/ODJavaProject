@@ -18,7 +18,7 @@
 						
 				 	
 	<!-- 自动扫描且只扫描@Controller -->
-	<context:component-scan base-package="com.od.controller">
+	<context:component-scan base-package="com.od">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>

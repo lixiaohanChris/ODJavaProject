@@ -116,9 +116,8 @@
 											<h2 style="color: #FFF">类别介绍</h2>
 											<p style="color: #FFF">${p.description }</p>
 											<p class="fh5co-social-icons">
-												<a href="#"><i class="icon-ribbon"></i></a> 
-												<a href="#"><i class="icon-heart"></i></a> 
-												<a href="#"><i class="icon-instagram-with-circle"></i></a>
+												<a href="classes/chooseCourse?courseSet=${p.courses }"><i class="icon-ribbon"></i></a>
+												<a href="#"><i class="icon-heart"></i></a>
 											</p>
 										</div>
 									</div>
@@ -145,7 +144,7 @@
 											<h2 style="color: #FFF">课程介绍</h2>
 											<p style="color: #FFF">${c.introduce }</p>
 											<p class="fh5co-social-icons">
-												<a href="#"><i class="icon-twitter-with-circle"></i></a> 
+												<a href="classes/chooseCourse?course=${c }"><i class="icon-twitter-with-circle"></i></a> 
 												<a href="#"><i class="icon-facebook-with-circle"></i></a> 
 												<a href="#"><i class="icon-instagram-with-circle"></i></a>
 											</p>

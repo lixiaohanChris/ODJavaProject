@@ -96,7 +96,5 @@ public class CourseDaoImpl {
 		return (Long)query.uniqueResult();
 	}
 
-	
-
 
 }

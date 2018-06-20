@@ -108,6 +108,7 @@ public class CourseServiceImpl {
 	public Long findCourseContentCountByPage(int courseId) {
 		return this.courseDaoImpl.findCourseContentCountByPage(courseId);
 	}
+
 	
 	
 
