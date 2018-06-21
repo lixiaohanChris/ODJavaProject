@@ -28,6 +28,7 @@ public class User {
 	private Information information;   //信息表一对一
 	private ODMethod odMethod;  //方法表一对一
 	private Set<Score> score;
+	private Set<Feedback> feedback;
 	
 
 	@Id
@@ -91,8 +92,6 @@ public class User {
 	public void setState(String state) {
 		this.state = state;
 	}
-	
-	
 	@OneToMany(mappedBy="user",targetEntity=Score.class,
 			cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	public Set<Score> getScore() {
@@ -101,4 +100,13 @@ public class User {
 	public void setScore(Set<Score> score) {
 		this.score = score;
 	}
+	@OneToMany(mappedBy="user",targetEntity=Feedback.class,
+			cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	public Set<Feedback> getFeedback() {
+		return feedback;
+	}
+	public void setFeedback(Set<Feedback> feedback) {
+		this.feedback = feedback;
+	}
+	
 }

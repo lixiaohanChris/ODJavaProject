@@ -446,22 +446,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <h3 class="widget-title">发送信息</h3>
                                         <p>发送你的信息帮我们更好的了解你。</a> </p>
                                         <div class="row contact-form">
-                                        <form action="">
+                                        <form action="feedback/insertFeedback">
                                             <div class="col-md-4" weight="300px">
-                                                <label for="name-id">题目:</label>
-                                                <input name="name-id" type="text" id="name-id" maxlength="120" value="问题" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue; this.style.color='#999'}" style="color:#999" ">
+                                                <label for="title">题目:</label>
+                                                <input name="title" type="text" id="name-id" maxlength="50" value="问题" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue; this.style.color='#999'}" style="color:#999" ">
                                             </div>
                                             <div class="col-md-4">
-                                                <label for="subject-id">类型:</label>
-                                                <input name="subject-id" type="text" id="subject-id" maxlength="60" value="问题"onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue; this.style.color='#999'}" style="color:#999" ">
+                                                <label for="type">类型:</label>
+                                                <input name="type" type="text" id="subject-id" maxlength="20" value="问题"onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue; this.style.color='#999'}" style="color:#999" ">
                                             </div>
-                                         </form>
+                                         
                                         </div> <!-- /.contact-form -->
                                         <p class="full-row">
                                             <label for="message">具体信息:</label>
-                                            <textarea name="message" id="message" rows="6"></textarea>
+                                            <textarea name="content" id="message" rows="6" maxlength="200" value="" onkeyup="this.value=this.value.substring(0, 200)" placeholder="最多可输入200字"></textarea><span id="text-count2" value="">0</span>/200
                                         </p>
                                         <input class="mainBtn" type="submit" name="" value="发送">
+                                        </form>
                                     </div> <!-- /.col-md-8 -->
                                     <div class="col-md-4">
                                         <div class="information">
@@ -537,5 +538,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
 
     </script>
+    <script type="text/javascript">
+    
+    //字数限制
+    window.onload = function() {
+    //（jquery）
+        $('#message').keyup(function() {
+        var len=this.value.length
+                    $('#text-count2').text(len);
+
+        })
+    }
+	</script>
 </body>
 </html>
