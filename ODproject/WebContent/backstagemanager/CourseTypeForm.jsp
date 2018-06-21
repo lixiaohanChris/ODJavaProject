@@ -25,56 +25,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="backstagemanager/assets/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="backstagemanager/assets/css/app.css">
     <script src="backstagemanager/assets/js/jquery.min.js"></script>
-    <script src="backstagemanager/assets/js/ajaxfileupload.js"></script>
-
-<script>
-	/* $(document).ready(function(){
-		$("#select").click(function(){
-			alert($("#doc-form-file").val());
-			ajaxFileUpload();
-		})
-		function ajaxFileUpload() {
-			$.ajaxFileUpload({
-				url:'course/backstage/imgAjax',
-				secureuri:false,
-				dataType: 'json', //返回值类型 一般设置为json
-				fileElementId:'doc-form-file',
-				success:function (data,status){
-					$("#realPic").attr("src", "images/"+data.real); 
-				},
-				error: function (data, status, e)//服务器响应失败处理函数
-                {
-					alert("b");
-                }
-			})
-		} */
-		/* $("#doc-form-file").on("change",function(){
-			alert("a");
-			$.ajaxFileUpload({
-				url:'course/backstage/imgAjax',
-				secureuri:false,
-				dataType: 'json', //返回值类型 一般设置为json
-				fileElementId:'doc-form-file',
-				success:function (data,status){
-					$("#realPic").attr("src", "images/"+data.real); 
-					$("#doc-form-file").replaceWith("<input id='doc-form-file' type='file' name='imgPath' title="+count+"/>");
-					count++;
-				},
-				error: function (data, status, e)//服务器响应失败处理函数
-                {
-					alert("b");
-                }
-			})
-			
-		}) */
-	
-		
-</script>
+    <script>
+    	$(document).ready(function(){
+    		$(".am-modal-btn").click(function(){
+    			$('#imgUp').remove();
+    			$('#imgUpdiv').html('<input type="file" name="imgPath" id="imgUp" onchange="xmTanUploadImg(this)"/>')
+    		})
+    		$("#insertCourseType").submit(function(){
+    			var a=false; 
+    			$.ajax({
+    				async : false,
+    		        cache : false,
+    				url:'course/backstage/formValidate',
+    				data:$("#insertCourseType").serialize(),
+    				type:'POST',
+    				success : function(data){
+    					if(data==true){
+    						a=true;
+    					}
+    				},
+    				
+    			})
+    			return a;
+    		})
+    			
+    		
+    	})
+    </script>
 </head>
 <body>
+	<button type="button" id="alertButton" class="am-btn am-btn-primary"
+	   	data-am-modal="{target: '#my-alert'}" style="display:none;"></button>
+	   	<!-- alert警告框 -->
+	   	<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+	    	<div class="am-modal-dialog">
+	           	<div class="am-modal-hd">Warning</div>
+	   		    <div class="am-modal-bd">
+					请上传有效的图片
+	            </div>
+	            <div class="am-modal-footer">
+	               	<span class="am-modal-btn">确定</span>
+	       		</div>
+	       	</div>
+	   	</div>
 	<!-- header -->
 	<%@include file="header.jsp" %>
 	<div class="tpl-content-wrapper">
+		
 		<div class="container-fluid am-cf">
         	<div class="row">
             	<div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
@@ -101,13 +98,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                <a href="javascript:;" class="am-icon-cog"></a>
                            </div>
                        </div>
+                       
                        <div class="widget-body am-fr">
-					   <form class="am-form tpl-form-border-form"  action="course/backstage/CourseTypeInsert" method="post" enctype="multipart/form-data">
+                       <c:if test="${courseType==null }">
+                       		<form class="am-form tpl-form-border-form"  action="course/backstage/courseTypeInsert" method="post" id="insertCourseType" enctype="multipart/form-data">
+                       </c:if>
+					   <c:if test="${courseType!=null }">
+					   		<form class="am-form tpl-form-border-form"  action="course/backstage/courseTypeUpdate?courseTypeId=${courseType.id }" method="post" enctype="multipart/form-data">
+					   </c:if>
                        		<div class="am-form-group">
                             	<label for="type-name" class="am-u-sm-12 am-form-label am-text-left">类型名称<span class="tpl-form-line-small-title">&nbsp;TypeName</span></label>
                                 	<div class="am-u-sm-12">
-	                                    <input type="text" class="tpl-form-input am-margin-top-xs" name="typename" placeholder="请输入类型名称">
-	                                    <small>请填写类型名称10字左右。</small>
+	                                    <input type="text" class="tpl-form-input am-margin-top-xs" name="typename" value="${courseType.typename }" placeholder="请输入类型名称" maxlength="15" required/>
+	                                    <small>请填写类型名称最多15字</small>
                                     </div>
                            	</div>
 							<div class="am-form-group">
@@ -125,7 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             		<span class="tpl-form-line-small-title">Describe</span>
                             	</label>
                                 <div class="am-u-sm-12">
-                                	<input type="text" class="am-margin-top-xs" name="description" placeholder="输入Describe">
+                                	<input type="text" class="am-margin-top-xs" name="description" value="${courseType.description }" placeholder="输入Describe">
                                 </div>
                             </div>
 							<div class="am-form-group">
@@ -136,12 +139,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            <div class="am-u-sm-12 am-margin-top-xs">
 		                            <div class="am-form-group am-form-file">
 		                            	<div class="tpl-form-file-">
-			                            	<img id="realPic" src="" alt="">
+			                            	<img id="realPic" src="${courseType.imgPath }" alt="">
 			                            </div>
                             			<button id="fileButton" type="button" class="am-btn am-btn-danger am-btn-sm " >
     										<i class="am-icon-cloud-upload"></i> 选择图片
-    									</button> 
-	                            		<input type="file" name="imgPath" id="imgUp" onchange="xmTanUploadImg(this)">
+    									</button>
+    									<div id="imgUpdiv"><input type="file" name="imgPath" id="imgUp" onchange="xmTanUploadImg(this)"/></div> 
                             		</div>
 								</div>
                             </div>
@@ -158,29 +161,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     </div>
 								</div>
                             </div>
+                            <div class="am-form-group">
+                                <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">课程列表</label>
+                                <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">
+                                	<button type="button" class="am-btn am-btn-success">新增课程</button>
+                                </label>
+                                <div class="am-u-sm-12 am-margin-top-xs" style="position:relative;left:8px;"> 
+                                	<div class="am-g">
+  										<c:forEach items="${courses }" var="c">
+	  										<div class="am-u-sm-3" style="float:left;">
+	    										<div class="am-thumbnail">
+		      										<a href="#"><img src="${c.img }" alt=""/></a>
+		      										<h3 class="am-thumbnail-caption">${c.name }</h3>
+		      										<h3 class="am-thumbnail-caption">${c.introduce }</h3>
+		      										<button type="button" class="am-btn am-btn-primary am-round" style="position:relative;left:40px;">编辑</button>
+		      										<button type="button" class="am-btn am-btn-danger am-round" style="position:relative;left:70px;">删除</button>
+	    										</div>
+	  										</div>
+  										</c:forEach>
+  									</div> 
+                            	</div>
 							<div class="am-form-group">
                                 <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">管理日志</label>
                                 <div class="am-u-sm-12 am-margin-top-xs">
                                 	<textarea class="" rows="10" id="user-intro" placeholder=""></textarea>
                                 </div>
                             </div>
-							<div class="am-form-group">
+                           	<div class="am-form-group">
                             	<div class="am-u-sm-12 am-u-sm-push-12">
-                                	<button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                	<button id="submit" type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
                                 </div>
-                            </div>
-                      </form>
+                           	</div>
+                       </form>
                	  </div>
                </div>
             </div>
          </div>
       </div>
    </div>
+
+   <!-- 动态显示上传图片 -->
    <script>
 	function xmTanUploadImg(obj) {
 	    var file = obj.files[0];
 	    if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif'){
-            alert('不是有效的图片');
+	    	$('#alertButton').click();
+	    	
             return;
         }
 	    console.log(obj);console.log(file);
@@ -197,7 +223,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        img.src = e.target.result;
 	        //或者 img.src = this.result;  //e.target == this
 	    }
-	
 	    reader.readAsDataURL(file)
 	}
     </script>

@@ -1,6 +1,9 @@
 package com.od.service;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.od.dao.CourseDaoImpl;
 import com.od.entity.Course;
@@ -66,8 +71,8 @@ public class CourseServiceImpl {
 	}
 	
 	//根据id获取courseType
-	public CourseType getCourseTypeById(int id) {
-		return (CourseType) this.courseDaoImpl.getCourseById(id);
+	public CourseType getCourseTypeById(int id){
+		return this.courseDaoImpl.getCourseTypeById(id);
 	}
 	
 	//后台管理,删除courseTypeById
@@ -86,6 +91,32 @@ public class CourseServiceImpl {
 		this.courseDaoImpl.deleteCourseTypeById(courseType);
 	}
 	
+	//后台管理，更新courseType
+	public void updateCourseType(MultipartFile file,HttpServletRequest request,
+			CourseType courseType, String lasttime, String typename, String description)throws IOException{
+		if(file.getSize()>0){
+			//设置图片路径
+			Date date = new Date();
+			SimpleDateFormat nowd = new SimpleDateFormat("yyyyMMdd_HHmmss");
+			//获取文件名作为保存到服务器的文件名()
+			String filename=nowd.format(date)+"_"+file.getOriginalFilename();
+			//前半部分路径，目录，将WebRoot下一个名称为images/coursetype文件夹转换为绝对路径
+			String leftPath=request.getServletContext().getRealPath("/images/coursetype");
+			//文件路径拼接
+			File newFile=new File(leftPath,filename);
+			//上传文件 
+			file.transferTo(newFile);
+			courseType.setImgPath("images/coursetype/"+filename);
+			courseType.setTypename(typename);
+			courseType.setFirsttime(lasttime);
+			courseType.setDescription(description);
+			this.courseDaoImpl.updateCourseType(courseType);
+		}
+		courseType.setTypename(typename);
+		courseType.setFirsttime(lasttime);
+		courseType.setDescription(description);
+		this.courseDaoImpl.updateCourseType(courseType);
+	}
 	//分页查询课程信息 by CourseTypeid
 	public List<Course> findCourseByIdPage(int coursetypeid,int pageNum, int pageSize) {
 		return this.courseDaoImpl.findCourseByIdPage(coursetypeid,pageNum,pageSize);

@@ -71,4 +71,13 @@ public class InfromationController {
 		model.addAttribute("user", u);
 		return "personal";
 	}
+	
+	@RequestMapping(value="/getInfoAjax",method=RequestMethod.POST)
+	public String getInfoAjax(HttpSession session,Model model){
+		User u= (User) session.getAttribute("user");
+		String id = u.getEmail();
+		User user = this.userServiceImpl.registCheck(id);
+		model.addAttribute("userInfo", user);
+		return "personalModel";
+	}
 }
