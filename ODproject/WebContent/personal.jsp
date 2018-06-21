@@ -52,6 +52,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             transition:all linear 0.30s; 
         } 
     </style>
+    <script>
+    	$(document).ready(function(){
+    		$('.show-2').click(function(){
+    			$.ajax({
+    				ansyc:false,
+    				url:'info/getInfoAjax',
+    				type:'post',
+    				success : function (data){
+    					$('#test').html(data);
+    				},
+    				error : function (data){
+    					alert('b');
+    					alert(data);
+    				}
+    			})
+    		})
+    	})
+    </script>
 </head>
 <body>
 	<div class="bg-image"></div>
@@ -63,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </a>
         <div class="responsive_menu">
             <ul class="main_menu">
-                <li><a class="show-1 homebutton" href="#"><i class="fa fa-home"></i>首页</a></li>
+                <li><a class="show-1 homebutton" href="1"><i class="fa fa-home"></i>首页</a></li>
                 <li><a class="show-2" href="info/getUserInfo"><i class="fa fa-group"></i>个人信息</a></li>
                 <li><a class="show-3" href="#"><i class="fa fa-briefcase"></i>Our Gallery</a></li>
                 <li><a class="show-4" href="#"><i class="fa fa-cogs"></i>服务</a></li>
@@ -75,15 +93,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="main-content">
         <div class="container">
             <div class="row">
-
+					
                 <!-- Static Menu -->
                 <div class="col-md-2 visible-md visible-lg">
                     <div class="main_menu">
                         <ul class="menu">
                             <li><a class="show-1 homebutton" href="#" data-toggle="tooltip" data-original-title="首页"><i class="fa fa-home"></i></a></li>
-                            <li><a class="show-2" href="info/getUserInfo" data-toggle="tooltip" data-original-title="个人信息"><i class="fa fa-user"></i></a></li>
+                            <li><a class="show-2" href="#" data-toggle="tooltip" data-original-title="个人信息"><i class="fa fa-user"></i></a></li>
                             <li><a class="show-3" href="#" data-toggle="tooltip" data-original-title="我们的团队"><i class="fa fa-briefcase"></i></a></li>
-                            <li><a class="show-4" href="commend/getCommend" data-toggle="tooltip" data-original-title="服务"><i class="fa fa-cog"></i></a></li>
+                            <li><a class="show-4" href="#" data-toggle="tooltip" data-original-title="服务"><i class="fa fa-cog"></i></a></li>
                             <li><a class="show-5" href="#" data-toggle="tooltip" data-original-title="联系我们"><i class="fa fa-globe"></i></a></li>
                         </ul>
                     </div> <!-- /.main-menu -->
@@ -204,7 +222,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="page-header">
                                 <h2 class="page-title">个人信息</h2>
                             </div> <!-- /.page-header -->
-                            <div class="content-inner">
+                            <div class="content-inner" id="test">
                                 <div class="row">
                                     <div class="left">
                                             <div>

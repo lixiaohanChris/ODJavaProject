@@ -37,8 +37,6 @@ public class CourseDaoImpl {
 	}
 	
 	
-	
-	
 	//分页查询课程类型信息数据统计
 	public Long findCourseTypeCountByPage() {
 		Query query=this.sessionFactory.getCurrentSession().createQuery("select count(id) from CourseType");
@@ -57,7 +55,7 @@ public class CourseDaoImpl {
 	public void CourseTypeInsert(CourseType courseType) {
 		this.sessionFactory.getCurrentSession().save(courseType);
 	}
-	
+	//根据id获取coursetype
 	public CourseType getCourseTypeById(int id) {
 		return this.sessionFactory.getCurrentSession().get(CourseType.class, id);
 	}
@@ -99,6 +97,10 @@ public class CourseDaoImpl {
 	public Course getCourseById1(int courseid) {
 		// TODO Auto-generated method stub
 		return this.sessionFactory.getCurrentSession().get(Course.class, courseid);
+	}
+
+	public void updateCourseType(CourseType courseType) {
+		this.sessionFactory.getCurrentSession().update(courseType);
 	}
 
 	

@@ -8,8 +8,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 import com.od.entity.Course;
 import com.od.entity.CourseContent;
 import com.od.entity.CourseType;
@@ -63,7 +65,7 @@ public class CourseController {
 	 * @param HTMLname 页面name，根据不同的页面返回不同的return
 	 * @return 三种不同的返回页面
 	 */
-	@RequestMapping(value="/backstage/courseTypeShow/{HTMLname}",method=RequestMethod.GET)
+	@RequestMapping(value="/backstage/courseTypeShow/{HTMLname}")
 	public String courseTypeShow(Model model,HttpServletRequest request,@PathVariable String HTMLname){
 		//根据分页查询到课程类型的信息
 		String pageNum=request.getParameter("pageNum");
@@ -104,7 +106,7 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/backstage/CourseTypeInsert",method=RequestMethod.POST)
+	@RequestMapping(value="/backstage/courseTypeInsert",method=RequestMethod.POST)
 	public String CourseTypeInsert(@RequestParam(value="imgPath") MultipartFile file,
 			String typename,String firsttime,String description,HttpServletRequest request,Model model) throws Exception{
 		//设置图片路径
@@ -126,6 +128,7 @@ public class CourseController {
 			File newFile=new File(leftPath,filename);
 			//上传文件 
 			file.transferTo(newFile);
+			/*file.transferTo(localFile);*/
 			//添加courseType
 			CourseType courseType = new CourseType();
 			courseType.setImgPath("images/coursetype/"+filename);
@@ -133,8 +136,76 @@ public class CourseController {
 			courseType.setFirsttime(firsttime);
 			courseType.setDescription(description);
 			this.courseServiceImpl.CourseTypeInsert(courseType);
+			return "forward:/course/backstage/courseTypeShow/header";
 		}
-		return "forward:/backstage/courseTypeShow/header";
+		return "backstagemanager/CourseTypeForm";
+	}
+	
+	@RequestMapping(value="backstage/formValidate",method=RequestMethod.POST)
+	@ResponseBody
+	public Boolean formValidate(String typename,String description){
+		System.out.println(typename);	
+		return false;
+	}
+	/**
+	 * 后台管理,显示CourseType,编辑CourseType.
+	 * @param model 
+	 * @param courseTypeId
+	 * @param type
+	 * @param file 文件图片
+	 * @param typename
+	 * @param firsttime
+	 * @param description
+	 * @return
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="/backstage/courseTypeUpdate",method=RequestMethod.GET)
+	public String courseTypeUpdate(Model model
+			,@RequestParam("courseTypeId")String courseTypeId
+			) {
+		//根据id获取 CourseType
+		int id = Integer.parseInt(courseTypeId);
+		CourseType courseType = this.courseServiceImpl.getCourseTypeById(id);
+		//return model 到编辑表单
+		Set<Course> courses = courseType.getCourses();
+		model.addAttribute("courses", courses);
+		model.addAttribute("courseType", courseType);
+		return "backstagemanager/CourseTypeForm";
+	}
+	
+	@RequestMapping(value="/backstage/courseTypeUpdate",method=RequestMethod.POST)
+	public String courseTypeUpdate(Model model
+			,@RequestParam("courseTypeId")String courseTypeId,
+			@RequestParam(value="imgPath") MultipartFile file,
+			String typename,String lasttime,String description,
+			HttpServletRequest request
+			) throws IOException{
+		//根据id获取 CourseType
+		int id = Integer.parseInt(courseTypeId);
+		CourseType courseType = this.courseServiceImpl.getCourseTypeById(id);
+		if(file.getSize()>0){
+			//获取文件路径和名称
+			String imgPath = courseType.getImgPath();
+			String path = request.getServletContext().getRealPath("/images/coursetype/");
+			String name=imgPath.substring(imgPath.lastIndexOf("/")+1);
+			String pathname=path+"\\"+name;
+			//删除服务器中的静态资源
+			File f = new File(pathname);
+			if(f.exists()&&f.isFile()){
+				f.delete();
+			}
+			//判断文件是否为 图片格式 
+			String realfilename = file.getOriginalFilename();
+			String lastfilename = realfilename.substring(realfilename.lastIndexOf("."));
+			if(lastfilename.equals(".jpg")==false&&lastfilename.equals(".png")==false&&lastfilename.equals(".jpeg")==false){
+				model.addAttribute("error","请上传正确的图片");
+				return "backstagemanager/CourseTypeForm";
+			}
+			this.courseServiceImpl.updateCourseType(file, request, courseType,lasttime,typename,description);
+			return "redirect:/course/backstage/courseTypeUpdate?courseTypeId="+courseTypeId;
+		}
+		this.courseServiceImpl.updateCourseType(file, request, courseType,lasttime,typename,description);
+		return "redirect:/course/backstage/courseTypeUpdate?courseTypeId="+courseTypeId;
 	}
 		
 	/**
@@ -153,7 +224,16 @@ public class CourseController {
 		return "forward:/course/backstage/courseTypeShow/header";
 	}
 	
-	//课程分页展示 by courseType id
+	
+	/**
+	 * 课程分页展示 by courseType id
+	 * @param model
+	 * @param request
+	 * @param HTMLname
+	 * @param coursetypeid
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="backstage/courseShow/{HTMLname}/{coursetypeid}",method=RequestMethod.GET)
 	public String courseShow(Model model,HttpServletRequest request,@PathVariable String HTMLname,
 			@PathVariable String coursetypeid,HttpSession session){
