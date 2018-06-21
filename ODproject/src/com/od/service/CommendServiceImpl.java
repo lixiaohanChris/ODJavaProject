@@ -75,6 +75,14 @@ public class CommendServiceImpl {
 				}
 			}
 		}
+		
+		if(courses.isEmpty()){
+			List<Course> courses2 = this.commendDaoImpl.findCourseByMaxScore();
+			for(Course c2:courses2){
+				courses.add(c2);
+			}
+			return courses;
+		}
 		return courses;
 	}
 }
