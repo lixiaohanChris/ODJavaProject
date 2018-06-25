@@ -289,8 +289,16 @@ public class CourseController {
 		return "backstagemanager/Model";
 	}
 	
+	@RequestMapping(value="backstage/courseInsert",method=RequestMethod.GET)
+	public String CourseInsert(HttpServletRequest request,Model model){
+		CourseType courseType = (CourseType) request.getAttribute("courseType");
+		System.out.println(courseType.getTypename());
+		model.addAttribute("courseType", courseType);
+		return "backstagemanager/CourseForm";
+	}
+	
 	/**
-	 * 新增课程内容
+	 * 新增课程内容 post 
 	 * @param file
 	 * @param typename
 	 * @param firsttime
@@ -300,7 +308,7 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="backstage/courseInsert")
+	@RequestMapping(value="backstage/courseInsert",method=RequestMethod.POST)
 	public String CourseInsert(
 			@RequestParam(value="imgPath") MultipartFile file,
 			@RequestParam(value="courseTypeId")int courseTypeId,
