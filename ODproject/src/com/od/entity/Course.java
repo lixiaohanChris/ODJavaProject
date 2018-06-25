@@ -28,6 +28,8 @@ public class Course {
 	private String count;
 	private Set<Score> score;
 	private double averageScore;  
+	private String firsttime;
+	private String lasttime;
 
 	//使用人数
 	@Id
@@ -105,6 +107,18 @@ public class Course {
 	}
 	public void setAverageScore(double averageScore) {
 		this.averageScore = averageScore;
+	}
+	public String getFirsttime() {
+		return firsttime;
+	}
+	public void setFirsttime(String firsttime) {
+		this.firsttime = firsttime;
+	}
+	public String getLasttime() {
+		return lasttime;
+	}
+	public void setLasttime(String lasttime) {
+		this.lasttime = lasttime;
 	}
 	
 }

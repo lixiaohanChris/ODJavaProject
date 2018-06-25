@@ -17,9 +17,6 @@ function _iframe() {
         height: '80%',
     })
 }
-function ajaxInfo(){
-	
-}
 
 function _confirm2() {
 	zeroModal.confirm({

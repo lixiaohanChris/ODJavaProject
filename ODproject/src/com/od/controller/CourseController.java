@@ -11,11 +11,8 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 import com.od.entity.Course;
 import com.od.entity.CourseContent;
 import com.od.entity.CourseType;
@@ -108,43 +103,43 @@ public class CourseController {
 	 */
 	@RequestMapping(value="/backstage/courseTypeInsert",method=RequestMethod.POST)
 	public String CourseTypeInsert(@RequestParam(value="imgPath") MultipartFile file,
-			String typename,String firsttime,String description,HttpServletRequest request,Model model) throws Exception{
-		//设置图片路径
+			String typename,String firsttime,String description,Model model,
+			HttpServletRequest request,
+			String lasttime) throws Exception{
+		//获取当前时间
 		Date date = new Date();
-		SimpleDateFormat nowd = new SimpleDateFormat("yyyyMMdd_HHmmss");
-		if(file.getSize()>0){
-			//判断文件是否为 图片格式 
-			String realfilename = file.getOriginalFilename();
-			String lastfilename = realfilename.substring(realfilename.lastIndexOf("."));
-			if(lastfilename.equals(".jpg")==false&&lastfilename.equals(".png")==false&&lastfilename.equals(".jpeg")==false){
-				model.addAttribute("errorFile","请上传正确的图片");
-				return "backstagemanager/CourseTypeForm";
+		SimpleDateFormat nowd = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss");
+		firsttime = nowd.format(date);
+		lasttime = nowd.format(date);
+		//设置上传图片目录
+		String imgPath = "/images/coursetype";
+		//判断file数据
+		if(file.getSize()==0){
+			model.addAttribute("error","请上传图片！");
+		}	
+		else if(file.getSize()>0){
+			if(this.courseServiceImpl.uploadFile(file,request,imgPath,model)){
+				CourseType courseType = new CourseType();
+				this.courseServiceImpl.CourseTypeInsert(courseType,(String)request.getAttribute("true"),typename,description,firsttime,lasttime);
+				request.setAttribute("courseType", courseType);
 			}
-			//获取文件名作为保存到服务器的文件名()
-			String filename=nowd.format(date)+"_"+file.getOriginalFilename();
-			//前半部分路径，目录，将WebRoot下一个名称为images/coursetype文件夹转换为绝对路径
-			String leftPath=request.getServletContext().getRealPath("/images/coursetype");
-			//文件路径拼接
-			File newFile=new File(leftPath,filename);
-			//上传文件 
-			file.transferTo(newFile);
-			/*file.transferTo(localFile);*/
-			//添加courseType
-			CourseType courseType = new CourseType();
-			courseType.setImgPath("images/coursetype/"+filename);
-			courseType.setTypename(typename);
-			courseType.setFirsttime(firsttime);
-			courseType.setDescription(description);
-			this.courseServiceImpl.CourseTypeInsert(courseType);
-			return "forward:/course/backstage/courseTypeShow/header";
 		}
 		return "backstagemanager/CourseTypeForm";
 	}
 	
+	/**
+	 * 用于在新建courseType前进行进行验证
+	 * @param typename
+	 * @param description
+	 * @param imgSrc
+	 * @return
+	 */
 	@RequestMapping(value="backstage/formValidate",method=RequestMethod.POST)
 	@ResponseBody
 	public Boolean formValidate(String typename,String description){
-		System.out.println(typename);	
+		if(typename!=""&&description!=""){
+			return true;
+		}
 		return false;
 	}
 	/**
@@ -173,6 +168,18 @@ public class CourseController {
 		return "backstagemanager/CourseTypeForm";
 	}
 	
+	/**
+	 * 课程分类信息更新
+	 * @param model
+	 * @param courseTypeId
+	 * @param file
+	 * @param typename
+	 * @param lasttime
+	 * @param description
+	 * @param request
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value="/backstage/courseTypeUpdate",method=RequestMethod.POST)
 	public String courseTypeUpdate(Model model
 			,@RequestParam("courseTypeId")String courseTypeId,
@@ -276,13 +283,53 @@ public class CourseController {
 				if(scores.size()!=0){
 					model.addAttribute("scores",scores);	
 				}
-				
 			}
 			return "classes";
 		}
 		return "backstagemanager/Model";
 	}
-
+	
+	/**
+	 * 新增课程内容
+	 * @param file
+	 * @param typename
+	 * @param firsttime
+	 * @param description
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="backstage/courseInsert")
+	public String CourseInsert(
+			@RequestParam(value="imgPath") MultipartFile file,
+			@RequestParam(value="courseTypeId")int courseTypeId,
+			String name,String introduce,
+			HttpServletRequest request,Model model,
+			String firsttime,String lasttime) throws IOException{
+		//获取CourseType
+		CourseType courseType = this.courseServiceImpl.getCourseTypeById(courseTypeId);
+		//获取当前时间
+		Date date = new Date();
+		SimpleDateFormat nowd = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss");
+		firsttime = nowd.format(date);
+		lasttime = nowd.format(date);
+		//设置上传图片目录
+		String imgPath = "/images/course";
+		//判断file数据
+		if(file.getSize()==0){
+			model.addAttribute("error","请上传图片！");
+		}	
+		else if(file.getSize()>0){
+			if(this.courseServiceImpl.uploadFile(file,request,imgPath,model)){
+				Course course = new Course();
+				this.courseServiceImpl.CourseInsert(courseType,course,(String)request.getAttribute("true"),name,introduce,firsttime,lasttime);
+				request.setAttribute("course", course);
+			}
+		}
+		return "backstagemanager/CourseForm";
+	}
+	
 	//课程分页展示 by courseid
 	@RequestMapping(value="backstage/courseContentShow/{HTMLname}/{courseid}",method=RequestMethod.GET)
 	public String courseContentShow(Model model,HttpServletRequest request,@PathVariable String HTMLname,

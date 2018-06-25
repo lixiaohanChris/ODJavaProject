@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="backstagemanager/assets/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="backstagemanager/assets/css/app.css">
     <script src="backstagemanager/assets/js/jquery.min.js"></script>
- 	<script src="backstagemanager/assets/js/courseTypeForm.js"></script>
+ 	<script src="backstagemanager/assets/js/courseForm.js"></script>
     <script src="backstagemanager/assets/js/jquery.validate.min.js"></script>
 </head>
 <body>
@@ -69,9 +69,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     
                     	<span class="am-icon-home page-header-heading-icon">
                     	</span> Form 
-                    	<small>CourseType</small>
+                    	<small>Course</small>
                     </div>
-                    <p class="page-header-description">CourseType Form 课程类型</p>
+                    <ol class="am-breadcrumb">
+  						<li><a href="course/backstage/courseTypeUpdate?courseTypeId=${param.id }">${param.typename }</a></li>
+  						<li><a href="#">${course.name }</a></li>
+  						<li class="am-active">新增/修改课程</li>
+					</ol>
                 </div>
             </div>
 		</div>
@@ -80,24 +84,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                    <div class="widget am-cf">
                        <div class="widget-head am-cf">
-                           <div class="widget-title am-fl">CourseTypeForm</div>
+                           <div class="widget-title am-fl">CourseForm</div>
                            <div class="widget-function am-fr">
                                <a href="javascript:;" class="am-icon-cog"></a>
                            </div>
                        </div>
                        
                        <div class="widget-body am-fr">
-                       <c:if test="${courseType==null }">
+                       <c:if test="${course==null }">
                        		<form class="am-form tpl-form-border-form"  action="course/backstage/courseTypeInsert" method="post" id="insertCourseType" enctype="multipart/form-data">
                        </c:if>
-					   <c:if test="${courseType!=null }">
+					   <c:if test="${course!=null }">
 					   		<form class="am-form tpl-form-border-form"  action="course/backstage/courseTypeUpdate?courseTypeId=${courseType.id }" method="post" enctype="multipart/form-data">
 					   </c:if>
                        		<div class="am-form-group">
-                            	<label for="type-name" class="am-u-sm-12 am-form-label am-text-left">类型名称<span class="tpl-form-line-small-title">&nbsp;TypeName</span></label>
+                            	<label for="type-name" class="am-u-sm-12 am-form-label am-text-left">课程名称<span class="tpl-form-line-small-title">&nbsp;CourseName</span></label>
                                 	<div class="am-u-sm-12">
-	                                    <input type="text" class="tpl-form-input am-margin-top-xs" name="typename" value="${courseType.typename }" placeholder="请输入类型名称" minlength="3" maxlength="15" required/>
-	                                    <small>请填写类型名称最多15字</small>
+	                                    <input type="text" class="tpl-form-input am-margin-top-xs" name="name" value="${course.name }" placeholder="请输入类型名称" minlength="3" maxlength="15" required/>
+	                                    <small>请填写课程名称最多15字</small>
                                     </div>
                            	</div>
                            	<!-- <div class="am-form-group">
@@ -120,11 +124,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div> -->
 							
 							<div class="am-form-group">
-                            	<label class="am-u-sm-12 am-form-label  am-text-left">类型描述
-                            		<span class="tpl-form-line-small-title">Describe</span>
+                            	<label class="am-u-sm-12 am-form-label  am-text-left">课程介绍
+                            		<span class="tpl-form-line-small-title">Introduce</span>
                             	</label>
                                 <div class="am-u-sm-12">
-                                	<input type="text" class="am-margin-top-xs" name="description" value="${courseType.description }" placeholder="输入Describe" minlength="3" maxlength="15" required/>
+                                	<input type="text" class="am-margin-top-xs" name="introduce" value="${course.introduce }" placeholder="输入Describe" minlength="3" maxlength="15" required/>
                                 </div>
                             </div>
 							<div class="am-form-group">
@@ -135,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            <div class="am-u-sm-12 am-margin-top-xs">
 		                            <div class="am-form-group am-form-file">
 		                            	<div class="tpl-form-file-">
-			                            	<img id="realPic" src="${courseType.imgPath }" alt="">
+			                            	<img id="realPic" src="${course.img }" alt="">
 			                            </div>
                             			<button id="fileButton" type="button" class="am-btn am-btn-danger am-btn-sm " >
     										<i class="am-icon-cloud-upload"></i> 选择图片
@@ -158,14 +162,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
                             </div>
                             <div class="am-form-group">
-                                <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">课程列表</label>
+                                <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">课程内容列表</label>
                                 <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">
-                                	<a href="backstagemanager/CourseForm.jsp?typename=${courseType.typename }&id=${courseType.id }"><button type="button" class="am-btn am-btn-success">新增课程</button></a>
-                                	
+                                	<button type="button" class="am-btn am-btn-primary js-modal-open">新增课程内容</button>
                                 </label>
                                 <div class="am-u-sm-12 am-margin-top-xs" style="position:relative;left:8px;"> 
                                 	<div class="am-g">
-  										<c:forEach items="${courses }" var="c">
+  										<c:forEach items="${courseContents }" var="c">
 	  										<div class="am-u-sm-3" style="float:left;">
 	    										<div class="am-thumbnail">
 		      										<a href="#"><img src="${c.img }" alt=""/></a>
@@ -196,6 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          </div>
       </div>
    </div>
+
    <!-- 动态显示上传图片 -->
    <script>
 	function xmTanUploadImg(obj) {
@@ -226,9 +230,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="backstagemanager/assets/js/amazeui.datatables.min.js"></script>
     <script src="backstagemanager/assets/js/dataTables.responsive.min.js"></script>
     <script src="backstagemanager/assets/js/app.js"></script>
-    <!-- alert -->
-	<script src="backstagemanager/assets/js/alert/zeroModal.min.js"></script>
-	<script src="backstagemanager/assets/js/alert/mustache.js"></script>
-	<script src="backstagemanager/assets/js/alert/zeroModal.js"></script>
 </body>
 </html>
