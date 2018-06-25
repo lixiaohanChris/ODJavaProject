@@ -38,7 +38,7 @@ public class InfromationController {
 		this.informationServiceImpl.insertInfo(uInfo,Add);
 		User u = this.userServiceImpl.registCheck(user.getEmail());
 		session.setAttribute("user", u);
-		return "personal";
+		return "personal"; 
 	}
 	
 	//注册时完善用户信息,Ajax验证是否选择地址
@@ -68,16 +68,7 @@ public class InfromationController {
 	public String getUserInfo(Model model,HttpSession session){
 		User user = (User) session.getAttribute("user");
 		User u = this.userServiceImpl.registCheck(user.getEmail());
-		model.addAttribute("user", u);
-		return "personal";
-	}
-	
-	@RequestMapping(value="/getInfoAjax",method=RequestMethod.POST)
-	public String getInfoAjax(HttpSession session,Model model){
-		User u= (User) session.getAttribute("user");
-		String id = u.getEmail();
-		User user = this.userServiceImpl.registCheck(id);
-		model.addAttribute("userInfo", user);
+		model.addAttribute("userInfo", u);
 		return "personalModel";
 	}
 }

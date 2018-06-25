@@ -27,6 +27,7 @@ public class CommendController {
 		User u = this.userServiceImpl.registCheck(user.getEmail());
 		Set<Course> courses =this.commendServiceImpl.getCommend(u);
 		model.addAttribute("course",courses);
-		return "personal";
+		return "personalModel";
 	}
+	
 }

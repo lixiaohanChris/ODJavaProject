@@ -57,10 +57,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		$('.show-2').click(function(){
     			$.ajax({
     				ansyc:false,
-    				url:'info/getInfoAjax',
+    				url:'info/getUserInfo',
     				type:'post',
     				success : function (data){
-    					$('#test').html(data);
+    					$('#menu-2').html(data);
     				},
     				error : function (data){
     					alert('b');
@@ -68,6 +68,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				}
     			})
     		})
+    		$('.show-3').click(function(){
+    			$.ajax({
+    				ansyc:false,
+    				url:'classes/getMyCourse',
+    				type:'post',
+    				success : function (data){
+    					$('#Grid').html(data);
+    				},
+    				error : function (data){
+    					alert('b');
+    					alert(data);
+    				}
+    			})
+    		})
+    		$('.show-4').click(function(){
+    			$.ajax({
+    				ansyc:false,
+    				url:'commend/getCommend',
+    				type:'post',
+    				success : function (data){
+    					$('#menu-4').html(data);
+    				},
+    				error : function (data){
+    					alert('b');
+    					alert(data);
+    				}
+    			})
+    		})
+    		$('.mainBtn').click(function(){
+    			$.ajax({
+    				ansyc:false,
+    				url:'feedback/insertFeedback',
+    				type:'post',
+    				data:$("#feedbackForm").serialize(),
+    				success : function (data){
+    					alert('感谢您的意见')
+    					$("#resetButton").click();
+    				},
+    				error : function (data){
+    					alert('b');
+    					alert(data);
+    				}
+    			})
+    			return false;
+    		})
+    		
     	})
     </script>
 </head>
@@ -219,101 +265,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div> <!-- /.homepage -->
 
                         <div id="menu-2" class="content about-us">
-                            <div class="page-header">
-                                <h2 class="page-title">个人信息</h2>
-                            </div> <!-- /.page-header -->
-                            <div class="content-inner" id="test">
-                                <div class="row">
-                                    <div class="left">
-                                            <div>
-                                                <table>
-                                                    <tr>
-                                                        <th>姓名：</th>
-                                                        <th>${user.information.name }</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>性别：</th>
-                                                        <th>${user.information.sex }</th>
-                                                    </tr>
-                                                     <tr>
-                                                        <th>身高：</th>
-                                                        <th>${user.information.height }cm</th>
-                                                    </tr>
-                                                     <tr>
-                                                        <th>体重：</th>
-                                                        <th>${user.information.weight }kg</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>邮箱：</th>
-                                                        <th>${user.email }</th>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                    </div>
-                                    <div class="left">
-                                        <table>
-                                            <tr>
-                                                <th>生日：</th>
-                                                <th>${user.information.birthday }</th>
-                                            </tr>
-                                            <tr>
-                                                <th>所在地：</th>
-                                                <th>${user.information.address.province }${user.information.address.city }${user.information.address.area }</th>
-                                            </tr>
-                                            <tr>
-                                                <th>BMI指数：</th>
-                                                <th>${user.information.bmi }</th>
-                                            </tr>
-                                            <tr>
-                                                <th>运动基础：</th>
-                                                <th>${user.information.sports_base }</th>
-                                            </tr>
-                                            <tr>
-                                                <th>联系方式：</th>
-                                                <th>${user.phone_number }&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="info/getInfo" class="button">完善信息</a></th>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="our-team">
-                                    
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="team-member">
-                                                <div class="member-thumb">
-                                                    <img src="images/personal/team1.jpg" alt="">
-                                                </div>
-                                                <div class="member-infos">
-                                                    <h4 class="member-name">坚持运动</h4>
-                                                    <p class="member-desc">防止脂肪堆积</p>
-                                                </div>
-                                            </div>
-                                        </div> <!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="team-member">
-                                                <div class="member-thumb">
-                                                    <img src="images/personal/team2.jpg" alt="">
-                                                </div>
-                                                <div class="member-infos">
-                                                    <h4 class="member-name">健康饮食</h4>      
-                                                    <p class="member-desc">严格控制热量摄入.</p>
-                                                </div>
-                                            </div>
-                                        </div> <!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="team-member">
-                                                <div class="member-thumb">
-                                                    <img src="images/personal/team3.jpg" alt="">
-                                                </div>
-                                                <div class="member-infos">
-                                                    <h4 class="member-name">科学减肥</h4>
-                                                    <p class="member-desc">掌握新陈代谢规律减肥更快.</p>
-                                                </div>
-                                            </div>
-                                        </div> <!-- /.col-md-4 -->
-                                    </div> <!-- /.row -->
-                                </div> <!-- /.our-team -->
-                            </div> <!-- /.content-inner -->
                         </div> <!-- /.about-us -->
                         <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" ></a></div>
 
@@ -340,90 +291,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div> <!-- /.row -->
                                 <div class="row">
                                     <div id="Grid">
-                                        <div class="col-md-4 col-sm-6 mix graphic">
-                                            <div class="gallery-item">
-                                                <div class="gallery-thumb">
-                                                    <img src="images/personal/gallery/p1.jpg" alt="">
-                                                    <div class="overlay-g">
-                                                        <a href="images/personal/gallery/p1.jpg" data-rel="lightbox" class="fa fa-search"></a>
-                                                    </div>
-                                                </div> <!-- /.gallery-thumb -->
-                                                <div class="gallery-content">
-                                                    <h4 class="gallery-title">成员一</h4>    
-                                                    <span class="gallery-category">哈哈哈哈1</span>
-                                                </div> <!-- /.gallery-content -->
-                                            </div> <!-- /.gallery-item -->
-                                        </div> <!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-6 mix branding">
-                                            <div class="gallery-item">
-                                                <div class="gallery-thumb">
-                                                    <img src="images/personal/gallery/p2.jpg" alt="">
-                                                    <div class="overlay-g">
-                                                        <a href="images/personal/gallery/p2.jpg" data-rel="lightbox" class="fa fa-search"></a>
-                                                    </div>
-                                                </div> <!-- /.gallery-thumb -->
-                                                <div class="gallery-content">
-                                                    <h4 class="gallery-title">成员二</h4>    
-                                                    <span class="gallery-category">哈哈哈哈2</span>
-                                                </div> <!-- /.gallery-content -->
-                                            </div> <!-- /.gallery-item -->
-                                        </div> <!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-6 mix nature">
-                                            <div class="gallery-item">
-                                                <div class="gallery-thumb">
-                                                    <img src="images/personal/gallery/p3.jpg" alt="">
-                                                    <div class="overlay-g">
-                                                        <a href="images/personal/gallery/p3.jpg" data-rel="lightbox" class="fa fa-search"></a>
-                                                    </div>
-                                                </div> <!-- /.gallery-thumb -->
-                                                <div class="gallery-content">
-                                                    <h4 class="gallery-title">成员三</h4>    
-                                                    <span class="gallery-category">哈哈哈哈3</span>
-                                                </div> <!-- /.gallery-content -->
-                                            </div> <!-- /.gallery-item -->
-                                        </div> <!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-6 mix branding">
-                                            <div class="gallery-item">
-                                                <div class="gallery-thumb">
-                                                    <img src="images/personal/gallery/p4.jpg" alt="">
-                                                    <div class="overlay-g">
-                                                        <a href="images/personal/gallery/p4.jpg" data-rel="lightbox" class="fa fa-search"></a>
-                                                    </div>
-                                                </div> <!-- /.gallery-thumb -->
-                                                <div class="gallery-content">
-                                                    <h4 class="gallery-title">成员四</h4>    
-                                                    <span class="gallery-category">哈哈哈哈1</span>
-                                                </div> <!-- /.gallery-content -->
-                                            </div> <!-- /.gallery-item -->
-                                        </div> <!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-6 mix graphic">
-                                            <div class="gallery-item">
-                                                <div class="gallery-thumb">
-                                                    <img src="images/personal/gallery/p5.jpg" alt="">
-                                                    <div class="overlay-g">
-                                                        <a href="images/personal/gallery/p5.jpg" data-rel="lightbox" class="fa fa-search"></a>
-                                                    </div>
-                                                </div> <!-- /.gallery-thumb -->
-                                                <div class="gallery-content">
-                                                    <h4 class="gallery-title">成员五</h4>    
-                                                    <span class="gallery-category">哈哈哈哈3</span>
-                                                </div> <!-- /.gallery-content -->
-                                            </div> <!-- /.gallery-item -->
-                                        </div> <!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-6 mix nature">
-                                            <div class="gallery-item">
-                                                <div class="gallery-thumb">
-                                                    <img src="images/personal/gallery/p6.jpg" alt="">
-                                                    <div class="overlay-g">
-                                                        <a href="images/personal/gallery/p6.jpg" data-rel="lightbox" class="fa fa-search"></a>
-                                                    </div>
-                                                </div> <!-- /.gallery-thumb -->
-                                                <div class="gallery-content">
-                                                    <h4 class="gallery-title">成员六</h4>    
-                                                    <span class="gallery-category">哈哈哈哈2</span>
-                                                </div> <!-- /.gallery-content -->
-                                            </div> <!-- /.gallery-item -->
-                                        </div> <!-- /.col-md-4 -->
                                     </div> <!-- /#Grid -->
                                 </div> <!-- /.row -->
                             </div> <!-- /.content-inner -->
@@ -431,78 +298,79 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div> <!-- /.our-gallery -->
 
                         <div id="menu-4" class="content">
-                            <div class="page-header">
-                                <h2 class="page-title">猜你喜欢</h2>
-                            </div> <!-- /.page-header -->
-                            <div class="content-inner">
-                                <div class="row services">
-                                <c:forEach items="${course }" var="c">
-                                    <div class="col-md-4 col-sm-6" style="background-image: url(${c.img });height:300px;margin-top:0px;background-size:100% 100%;">
-                                            <div class="header"style="opacity:0.7;">
-                                                <div class="header-bg"></div>
-                                                <div class="service-header">
-                                                    <div class="icon">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </div>
-                                                    <h3 class="service-title"style="color: #FFF">&nbsp&nbsp<b>${c.name }</b></h3>
-                                                </div>
-                                            </div>
-                                    </div> <!-- /.col-md-4 -->
-                                    </c:forEach>
-                                </div> <!-- /.row -->
-                            </div> <!-- /.content-inner -->
-
                         </div> <!-- /.services -->
 
                         <div id="menu-5" class="content">
-                            <div class="page-header">
-                                <h2 class="page-title">联系我们</h2>
-                            </div> <!-- /.page-header -->
-                            <div class="content-inner">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <h3 class="widget-title">发送信息</h3>
-                                        <p>发送你的信息帮我们更好的了解你。</a> </p>
-                                        <div class="row contact-form">
-                                        <form action="feedback/insertFeedback">
-                                            <div class="col-md-4" weight="300px">
-                                                <label for="title">题目:</label>
-                                                <input name="title" type="text" id="name-id" maxlength="50" value="问题" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue; this.style.color='#999'}" style="color:#999" ">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="type">类型:</label>
-                                                <input name="type" type="text" id="subject-id" maxlength="20" value="问题"onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue; this.style.color='#999'}" style="color:#999" ">
-                                            </div>
-                                         
-                                        </div> <!-- /.contact-form -->
-                                        <p class="full-row">
-                                            <label for="message">具体信息:</label>
-                                            <textarea name="content" id="message" rows="6" maxlength="200" value="" onkeyup="this.value=this.value.substring(0, 200)" placeholder="最多可输入200字"></textarea><span id="text-count2" value="">0</span>/200
-                                        </p>
-                                        <input class="mainBtn" type="submit" name="" value="发送">
-                                        </form>
-                                    </div> <!-- /.col-md-8 -->
-                                    <div class="col-md-4">
-                                        <div class="information">
-                                            <h3 class="widget-title">信息</h3>
-                                            <ul class="our-location">
-                                                <li><span><i class="fa fa-map-marker"></i>地址:</span>河北师范大学软件学院</li>
-                                                <li><span><i class="fa fa-map-marker"></i>电话:</span>17731139669</li>
-                                                <li><span><i class="fa fa-map-marker"></i>邮箱:</span><a href="mailto:info@company.com">ODLW@outlook.com</a></li>
-                                            </ul>
-                                        </div> <!-- /.information -->
-                                        <div class="google-map">
-                                            <h3 class="widget-title">我们的位置</h3>
-                                            <div class="contact-map">
-                                                <div class="google-map-canvas" id="map-canvas" style="height: 200px;">
-                                                </div>
-                                            </div> <!-- /.contact-map -->
-                                        </div> <!-- /.google-map -->
-                                    </div> <!-- /.col-md-4 -->
-                                </div> <!-- /.row -->
-                            </div> <!-- /.content-inner -->
+								<div class="page-header">
+									<h2 class="page-title">联系我们</h2>
+								</div>
+								<!-- /.page-header -->
+								<div class="content-inner">
+									<div class="row">
+										<div class="col-md-8">
+											<h3 class="widget-title">发送信息</h3>
+											<p>
+												发送你的信息帮我们更好的了解你。</a>
+											</p>
+											<div class="row contact-form">
+												<form action="a" method="post" id="feedbackForm">
+													<input type="reset" id="resetButton" style="display:none;"/>
+													<div class="col-md-4" weight="300px">
+														<label for="title">题目:</label> <input name="title"
+															type="text" id="name-id" maxlength="50" value="" placeholder="题目"
+															onFocus="if(value==defaultValue){value='';this.style.color='#000'}"
+															onBlur="if(!value){value=defaultValue; this.style.color='#999'}"
+															style="color: #999""/>
+													</div>
+													<div class="col-md-4">
+														<label for="type">类型:</label> <input name="type"
+															type="text" id="subject-id" maxlength="20" value="" placeholder="类型"
+															onFocus="if(value==defaultValue){value='';this.style.color='#000'}"
+															onBlur="if(!value){value=defaultValue; this.style.color='#999'}"
+															style="color: #999""/>
+													</div>
+											</div>
+											<!-- /.contact-form -->
+											<p class="full-row">
+												<label for="message">具体信息:</label>
+												<textarea name="content" id="message" rows="6"
+													maxlength="200" value=""
+													onkeyup="this.value=this.value.substring(0, 200)"
+													placeholder="最多可输入200字"></textarea>
+												<span id="text-count2" value="">0</span>/200
+											</p>
+											<input class="mainBtn" type="submit" name="" value="发送">
+												</form>
+										</div>
+										<!-- /.col-md-8 -->
+										<div class="col-md-4">
+											<div class="information">
+												<h3 class="widget-title">信息</h3>
+												<ul class="our-location">
+													<li><span><i class="fa fa-map-marker"></i>地址:</span>河北师范大学软件学院</li>
+													<li><span><i class="fa fa-map-marker"></i>电话:</span>17731139669</li>
+													<li><span><i class="fa fa-map-marker"></i>邮箱:</span><a
+														href="mailto:info@company.com">ODLW@outlook.com</a></li>
+												</ul>
+											</div>
+											<!-- /.information -->
+											<div class="google-map">
+												<h3 class="widget-title">我们的位置</h3>
+												<div class="contact-map">
+													<div class="google-map-canvas" id="map-canvas"
+														style="height: 200px;"></div>
+												</div>
+												<!-- /.contact-map -->
+											</div>
+											<!-- /.google-map -->
+										</div>
+										<!-- /.col-md-4 -->
+									</div>
+									<!-- /.row -->
+								</div>
+								<!-- /.content-inner -->
 
-                        </div> <!-- /.stay-in-touch -->
+							</div> <!-- /.stay-in-touch -->
                         
                         <div class="site-footer">
                             <div class="row">
