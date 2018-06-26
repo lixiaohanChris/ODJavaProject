@@ -22,7 +22,16 @@ public class FeedbackController {
 	private Boolean insertFeedback(Model model,HttpSession session,String title,String type,String content){
 		User user = (User) session.getAttribute("user");
 		this.feedbackServiceImpl.insertFeedback(user,title,type,content);
-		System.out.println("success");
 		return false;
 	}
+	@RequestMapping(value="/insertFeedback1",method=RequestMethod.POST)
+	private String insertFeedback1(Model model,HttpSession session,String title,String type,String content){
+		User user = (User) session.getAttribute("user");
+		if(user==null){
+			return"login";
+		}
+		this.feedbackServiceImpl.insertFeedback(user,title,type,content);
+		return "index";
+	}
+	
 }
