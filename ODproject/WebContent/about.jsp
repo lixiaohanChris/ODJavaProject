@@ -57,6 +57,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<style type="text/css"> 
+	#aboutcenter{
+	margin-left: auto;
+	margin-right: auto;
+	text-align:center;
+	}
+	</style> 
 
 	</head>
 	<body>
@@ -75,8 +82,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 						<div class="fh5co-intro fh5co-table-cell animate-box">
-							<h1 class="text-center">文字一</h1>
-							<p>文字二 <a href="#">文字三</a></p>
+							<h1 class="text-center">关于我们</h1>
+							
 						</div>
 					</div>
 				</div>
@@ -90,11 +97,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<img class="img-responsive animate-box" src="images/home-image-3.jpg" alt="About">
 					</div>
 					<div class="col-md-12 col-md-offset-0 animate-box">
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</p>
-						<blockquote>
-						  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-						</blockquote>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</p>
+						<p>由于社会的发展，人们的物质生活水平逐渐提高，生活的智能化却使人们所需要的劳动越来越少，加之物质生活条件的改善和饮食结构的不尽合理，肥胖病在发达国家及经济迅速发展的发展中国家象瘟疫一样蔓延开来，发病率逐年攀升，且出现年轻化态势。导致肥胖人数与日俱增，许多人为了自身健康，开始踏上减肥之路</p>
+						<p>然而网络上的减肥、健身网站种类繁多，初次接触减肥网站的人们很难找到适合自己的网站，找到适合自己的、科学的减肥方法。</p>
+						<p>在这个年代里，人民的健康意识正在觉醒，应该有更专业的工具，更科学的网站，让减肥健身变得更加科学。这就是od减肥网要做的事情，我们希望通过科学的方法，让受到肥胖症困扰的人群用科学的方法去减肥、追求健康，让人们保持健康的体魄。</p>
+						<p>OD，我们的团队，我们致力于广大肥胖症患者，针对不同人群推荐不同的减肥方法，量体裁衣让肥胖症人群建立健康的生活习惯</p>
+						<div id="aboutcenter">
+							<span align="center">
+							<a href="contact.jsp" class="btn btn-default" >如有兴趣，请联系我们</a>
+							</span>
+						</div>>
 					</div>
 				</div>
 				<div class="row">
@@ -296,6 +307,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<!-- Main JS (Do not remove) -->
 	<script src="js/main.js"></script>
+	
 
 	</body>
 </html>
