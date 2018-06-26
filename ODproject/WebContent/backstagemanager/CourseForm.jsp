@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     	<small>Course</small>
                     </div>
                     <ol class="am-breadcrumb">
-  						<li><a href="course/backstage/courseTypeUpdate?courseTypeId=${param.id }">${param.typename }</a></li>
+  						<li><a href="course/backstage/courseTypeUpdate?courseTypeId=${courseType.id }">${courseType.typename }</a></li>
   						<li><a href="#">${course.name }</a></li>
   						<li class="am-active">新增/修改课程</li>
 					</ol>
@@ -162,10 +162,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
                             </div>
                             <div class="am-form-group">
+                            	<c:if test="${course!=null }">
                                 <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">课程内容列表</label>
                                 <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">
                                 	<button type="button" class="am-btn am-btn-primary js-modal-open">新增课程内容</button>
                                 </label>
+                                </c:if>
                                 <div class="am-u-sm-12 am-margin-top-xs" style="position:relative;left:8px;"> 
                                 	<div class="am-g">
   										<c:forEach items="${courseContents }" var="c">

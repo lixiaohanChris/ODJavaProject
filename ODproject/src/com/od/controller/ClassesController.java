@@ -53,6 +53,31 @@ public class ClassesController {
 	private CourseServiceImpl courseServiceImpl;
 	@Resource
 	private UserServiceImpl userServiceImpl;
+	
+	/**
+	 * 删除课程
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/deleteCourse",method=RequestMethod.POST)
+	public String deleteCourse(HttpSession session,Model model,String CourseId){
+		User user =(User) session.getAttribute("user");
+		if(user==null){
+			model.addAttribute("errorLogin","请登录后进行选课");
+			return "login";
+		}
+		User u =this.userServiceImpl.registCheck(user.getEmail());
+		
+		int id = Integer.parseInt(CourseId);
+		this.classesServiceImpl.deleteCourse(u,id);
+		Set<Classes> classes = u.getOdMethod().getClasses();
+		Set<CourseType> courseTypes = new HashSet<CourseType>();
+		for(Classes c:classes){
+			courseTypes.add(c.getCourse().getCourseType());
+		}
+		model.addAttribute("CourseTypes",courseTypes);
+		return "personalModel";
+	}
 	/**
 	 * @param session
 	 * @param model

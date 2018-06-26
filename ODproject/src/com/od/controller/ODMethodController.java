@@ -20,14 +20,5 @@ public class ODMethodController {
 	@Resource
 	private UserServiceImpl userServiceImpl;
 	
-	//Test,Method与User连接。
-	@RequestMapping("/muTest")
-	public String muTest(User user){
-		ODMethod md = new ODMethod();
-		user = userServiceImpl.registCheck("139420121@qq.com");
-		user.setOdMethod(md);
-		md.setUser(user);
-		userServiceImpl.updateUser(user);
-		return "test";
-	}
+	
 }
