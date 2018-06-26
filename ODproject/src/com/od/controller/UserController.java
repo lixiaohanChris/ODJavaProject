@@ -1,6 +1,7 @@
 package com.od.controller;
 
 import java.io.IOException;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.el.ValueExpressionLiteral;
+import org.eclipse.jdt.internal.compiler.batch.Main;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,7 @@ import com.od.entity.Information;
 import com.od.entity.ODMethod;
 import com.od.entity.User;
 import com.od.service.UserServiceImpl;
+import com.od.util.MailUtil;
 
 @Controller
 @RequestMapping("/user")
@@ -93,6 +97,31 @@ public class UserController {
 			return false;
 		}
 	}
-	
+	String verificationCode;
+	@RequestMapping(value="/verificationCode",method=RequestMethod.POST)
+	@ResponseBody
+	public Boolean verificationCode(@RequestParam("email")String email) throws Exception{
+		MailUtil mailUtil=new MailUtil();
+		String str="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		StringBuilder sb=new StringBuilder(4);
+		for(int i=0;i<4;i++)
+		{
+		char ch=str.charAt(new Random().nextInt(str.length()));
+		sb.append(ch);
+		}
+		verificationCode = sb.toString();
+		mailUtil.sendMail(email, "od减肥验证码", verificationCode);
+		System.out.println(verificationCode);
+		return false;	
+	}
+	@RequestMapping(value="/registVerificationCode",method = RequestMethod.POST)
+	@ResponseBody
+	public boolean registVerificationCode(@RequestParam("verification_code")String verification_code) throws ServletException, IOException{
+		if(verification_code!=verificationCode){
+			return false;
+		}else {
+			return true;
+		}
+	}
 	
 }

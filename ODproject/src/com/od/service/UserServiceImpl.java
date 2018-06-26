@@ -30,4 +30,5 @@ public class UserServiceImpl {
 	public void updateUser(User u) {
 		this.userDaoImpl.updateUser(u);
 	}
+
 }

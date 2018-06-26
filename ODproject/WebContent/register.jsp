@@ -9,12 +9,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>注册</title>
 <link rel="stylesheet" href="css/loginRegister/style.css" />
 <!-- alert js and css -->
 <link rel="stylesheet" type="text/css" href="css/alert/zeroModal.css" />
+<script>
+	    function verificationCode(id){
+	    	$.ajax({
+				ansyc:false,
+				url:"user/verificationCode?email="+$("#email").val(),
+				type:'post',
+				success : function (data){
+					alert('发送成功')
+				},
+				error : function (data){
+					alert('b');
+					alert(data);
+					alert($("#email").val())
+				}
+			})
+		}
+	    </script>
 </head>
 <body onload="openInfo()">
 <a href="index.jsp">
@@ -45,7 +63,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<input type="text" name="phone_number" class="phone_number" placeholder="输入手机号码" autocomplete="off" id="number"/>
 		</div>
 		<div>
-			<input type="email" name="email" class="email" placeholder="输入邮箱地址" oncontextmenu="return false" onpaste="return false" />
+			<input type="email" name="email" id="email" class="email" placeholder="输入邮箱地址" oncontextmenu="return false" onpaste="return false" />
+		</div>
+		<div>
+			<input type="text" name="verification_code" class="verification_code" placeholder="输入验证码" oncontextmenu="return false" onpaste="return false" /><button type="button" onclick="verificationCode()">获取验证码</button>
 		</div>
 		<p><button id="submit" type="submit">注 册</button></p>
 	</form>
