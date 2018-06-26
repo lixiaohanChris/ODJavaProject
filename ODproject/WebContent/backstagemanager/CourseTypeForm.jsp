@@ -158,10 +158,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
                             </div>
                             <div class="am-form-group">
+                            	<c:if test="${courseType!=null }">
                                 <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">课程列表</label>
                                 <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">
-                                	<a href="course/backstage/courseInsert"><button type="button" class="am-btn am-btn-success">新增课程</button></a>
+                                	<a href="course/backstage/courseInsert?courseTypeId=${courseType.id }"><button type="button" class="am-btn am-btn-success">新增课程</button></a>
                                 </label>
+                                </c:if>
                                 <div class="am-u-sm-12 am-margin-top-xs" style="position:relative;left:8px;"> 
                                 	<div class="am-g">
   										<c:forEach items="${courses }" var="c">

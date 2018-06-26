@@ -53,6 +53,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         } 
     </style>
     <script>
+    	function deleteClick(id){
+    		$.ajax({
+				ansyc:false,
+				url:"classes/deleteCourse?CourseId="+id,
+				type:'post',
+				success : function (data){
+					$('#Grid').html(data); 
+				},
+				error : function (data){
+					alert('b');
+					alert(data);
+				}
+			})
+    	}
 	    function imgClick1(id){
 	    	$.ajax({
 				ansyc:false,
@@ -216,8 +230,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="col-md-12">
                             <div class="templatemo_logo">
                                 <a href="index.jsp">
-                                    <img src="images/personal/templatemo_logo.png" alt="Genius">
-                                </a>
+									<h1 style="color:white">Back Home</h1>
+								</a>
                             </div> <!-- /.logo -->
                         </div> <!-- /.col-md-12 -->
                     </div> <!-- /.row -->

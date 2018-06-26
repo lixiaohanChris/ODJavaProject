@@ -28,4 +28,8 @@ public class ClassesDaoImpl {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from Classes where courseId="+courseid+" and odmethodId="+odMethodid);
 		return (Classes) query.uniqueResult();
 	}
+
+	public void deleteCourse(Classes classes) {
+		this.sessionFactory.getCurrentSession().delete(classes);
+	}
 }

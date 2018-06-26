@@ -17,11 +17,18 @@ import com.od.service.ScoreServiceImpl;
 @Controller
 @RequestMapping("/score")
 public class ScoreController {
-	// 若注册用户时完善信息
+	
 
 	@Resource 
 	private ScoreServiceImpl scoreServiceImpl;
 	
+	/**
+	 * 评分
+	 * @param score
+	 * @param courseid
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/getScore/{courseid}",method=RequestMethod.POST)
 	@ResponseBody
 	public String getScore(@RequestParam("score")int score,@PathVariable int courseid,HttpSession session){

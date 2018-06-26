@@ -290,9 +290,8 @@ public class CourseController {
 	}
 	
 	@RequestMapping(value="backstage/courseInsert",method=RequestMethod.GET)
-	public String CourseInsert(HttpServletRequest request,Model model){
-		CourseType courseType = (CourseType) request.getAttribute("courseType");
-		System.out.println(courseType.getTypename());
+	public String CourseInsert(HttpServletRequest request,Model model,int courseTypeId){
+		CourseType courseType = this.courseServiceImpl.getCourseTypeById(courseTypeId);
 		model.addAttribute("courseType", courseType);
 		return "backstagemanager/CourseForm";
 	}

@@ -152,6 +152,7 @@
 				<div class="gallery-content" style="height:90px">
 					<h4 class="gallery-title">${c.name }</h4>
 					<span class="gallery-category">${c.introduce }</span>
+					<span style="color:red" onclick="deleteClick('${c.id }')">删除该课程</span>
 				</div><!-- /.gallery-content -->
 			</div><!-- /.gallery-item -->
 		</div><!-- /.col-md-4 -->
@@ -163,7 +164,7 @@
 			<div class="gallery-item">
 				<div class="gallery-thumb" style="height:300px">
 					<img src="${c.img }" alt="">
-				</div>
+				</div>	
 				<!-- /.gallery-thumb -->
 				<div class="gallery-content" style="height:90px">
 					<h4 class="gallery-title">${c.name }</h4>

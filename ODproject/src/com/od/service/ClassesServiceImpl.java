@@ -1,5 +1,7 @@
 package com.od.service;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -70,5 +72,20 @@ public class ClassesServiceImpl {
 
 	public Classes checkCourse(int courseid, int odMethodid) {
 		return this.classesDaoImpl.checkCourse(courseid, odMethodid);
+	}
+
+	public void deleteCourse(User u, int id) {
+		Classes classes1 = new Classes();
+		Set<Classes> uClasses =u.getOdMethod().getClasses();
+		Iterator<Classes> iterator = uClasses.iterator();
+		while (iterator.hasNext()) {
+			Classes classes = (Classes) iterator.next();
+			if(classes.getCourse().getId()==id){
+				classes1=classes;
+				iterator.remove();
+			}
+		}
+		u.getOdMethod().setClasses(uClasses);
+		this.classesDaoImpl.deleteCourse(classes1);
 	}
 }
