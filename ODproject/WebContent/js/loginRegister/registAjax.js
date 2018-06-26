@@ -97,7 +97,16 @@ $(document).ready(function(){
 				phone_number:true,//自定义的规则
 				digits:true,//整数
 			},
-		},
+			verification_code:{
+				required:true,
+				remote:"user/registVerificationCode",
+				remote:{
+					//ajax设置为同步验证解决，submit按钮需要提交两次才进行页面跳转的问题
+					async:false,
+					url:"user/registVerificationCode",
+					type:"post",
+				},
+			},
 		//错误信息提示
 		messages:{
 			username:{
@@ -124,11 +133,15 @@ $(document).ready(function(){
 				required:"请输入手机号码",
 				digits:"请输入正确的手机号码",
 			},
+			verification_code:{
+				required:"必须填写验证码",
+				remote: "验证码不正确"
+			}
 		},
 		submitHandler: function(form) {
 			ajaxSubmit();
 		},
-	});
+		}});
 	//添加自定义验证规则
 	jQuery.validator.addMethod("phone_number", function(value, element) { 
 		var length = value.length; 
