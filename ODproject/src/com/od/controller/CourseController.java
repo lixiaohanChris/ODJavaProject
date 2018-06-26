@@ -187,6 +187,10 @@ public class CourseController {
 			String typename,String lasttime,String description,
 			HttpServletRequest request
 			) throws IOException{
+		//获取当前时间
+		Date date = new Date();
+		SimpleDateFormat nowd = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss");
+		lasttime = nowd.format(date);
 		//根据id获取 CourseType
 		int id = Integer.parseInt(courseTypeId);
 		CourseType courseType = this.courseServiceImpl.getCourseTypeById(id);
@@ -335,6 +339,93 @@ public class CourseController {
 			}
 		}
 		return "backstagemanager/CourseForm";
+	}
+	
+	/**
+	 * 后台管理,显示Course,编辑Course.
+	 * @param model 
+	 * @param courseId
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="/backstage/courseUpdate",method=RequestMethod.GET)
+	public String courseUpdate(Model model
+			,@RequestParam("courseId")String courseId
+			) {
+		//根据id获取 CourseType
+		int id = Integer.parseInt(courseId);
+		Course course = this.courseServiceImpl.getCourseById1(id);
+		//return model 到编辑表单
+		Set<CourseContent> courseContents = course.getCourseContents();
+		model.addAttribute("course", course);
+		model.addAttribute("courseContents", courseContents);
+		return "backstagemanager/CourseForm";
+	}
+	
+	/**
+	 * 课程分类信息更新
+	 * @param model
+	 * @param courseId
+	 * @param file
+	 * @param name
+	 * @param lasttime
+	 * @param introduce
+	 * @param request
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value="/backstage/courseUpdate",method=RequestMethod.POST)
+	public String courseUpdate(Model model
+			,@RequestParam("courseId")String courseId,
+			@RequestParam(value="imgPath") MultipartFile file,
+			String name,String lasttime,String introduce,
+			HttpServletRequest request
+			) throws IOException{
+		//获取当前时间
+		Date date = new Date();
+		SimpleDateFormat nowd = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss");
+		lasttime = nowd.format(date);
+		//根据id获取 CourseType
+		int id = Integer.parseInt(courseId);
+		Course course = this.courseServiceImpl.getCourseById1(id);
+		if(file.getSize()>0){
+			//获取文件路径和名称
+			String imgPath = course.getImg();
+			String path = request.getServletContext().getRealPath("/images/course/");
+			String imgname=imgPath.substring(imgPath.lastIndexOf("/")+1);
+			String pathname=path+"\\"+imgname;
+			//删除服务器中的静态资源
+			File f = new File(pathname);
+			if(f.exists()&&f.isFile()){
+				f.delete();
+			}
+			//判断文件是否为 图片格式 
+			String realfilename = file.getOriginalFilename();
+			String lastfilename = realfilename.substring(realfilename.lastIndexOf("."));
+			if(lastfilename.equals(".jpg")==false&&lastfilename.equals(".png")==false&&lastfilename.equals(".jpeg")==false){
+				model.addAttribute("error","请上传正确的图片");
+				return "backstagemanager/CourseForm";
+			}
+			this.courseServiceImpl.updateCourse(file, request, course,lasttime,name,introduce);
+			return "redirect:/course/backstage/courseUpdate?courseId="+courseId;
+		}
+		this.courseServiceImpl.updateCourse(file, request, course,lasttime,name,introduce);
+		return "redirect:/course/backstage/courseUpdate?courseId="+courseId;
+	}
+	
+	/**
+	 * 后台管理 ，删除course By Id
+	 * @param courseId
+	 * @return
+	 */
+	@RequestMapping(value="backstage/courseDelete")
+	public String courseDelete(@RequestParam("courseId")String courseId,
+			HttpServletRequest request){
+		//根据id获取courseType
+		int id = Integer.parseInt(courseId); 
+		Course course = this.courseServiceImpl.getCourseById1(id);
+		//删除数据库中的数据
+		this.courseServiceImpl.deleteCourseById(course,request);
+		return "forward:/course/backstage/courseTypeShow/header";
 	}
 	
 	//课程分页展示 by courseid

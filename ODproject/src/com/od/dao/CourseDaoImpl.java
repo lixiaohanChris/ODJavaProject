@@ -106,6 +106,14 @@ public class CourseDaoImpl {
 	public void updateCourseType(CourseType courseType) {
 		this.sessionFactory.getCurrentSession().update(courseType);
 	}
+
+	public void updateCourse(Course course) {
+		this.sessionFactory.getCurrentSession().update(course);
+	}
+
+	public void deleteCourseById(Course course) {
+		this.sessionFactory.getCurrentSession().delete(course);
+	}
 	
 	
 

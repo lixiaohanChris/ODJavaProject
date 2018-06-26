@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,61 @@ public class CourseServiceImpl {
 	@Resource
 	private CourseDaoImpl courseDaoImpl;
 	
+	/**
+	 * @param course
+	 * @param request
+	 */
+	public void deleteCourseById(Course course, HttpServletRequest request) {
+		// TODO 删除课程
+		//获取文件路径和名称
+		String imgPath = course.getImg();
+		String path = request.getServletContext().getRealPath("/images/course/");
+		String name=imgPath.substring(imgPath.lastIndexOf("/")+1);
+		String pathname=path+"\\"+name;
+		//删除静态资源
+		File file = new File(pathname);
+		if(file.exists()&&file.isFile()){
+			file.delete();
+		} 
+		//删除数据库中的数据
+		this.courseDaoImpl.deleteCourseById(course);
+	}
+	
+	/**
+	 * 更新课程
+	 * @param file
+	 * @param request
+	 * @param course
+	 * @param lasttime
+	 * @param name
+	 * @param introduce
+	 */
+	public void updateCourse(MultipartFile file, HttpServletRequest request, Course course, String lasttime,
+			String name, String introduce)throws IOException {
+		if(file.getSize()>0){
+			//设置图片路径
+			Date date = new Date();
+			SimpleDateFormat nowd = new SimpleDateFormat("yyyyMMdd_HHmmss");
+			//获取文件名作为保存到服务器的文件名()
+			String filename=nowd.format(date)+"_"+file.getOriginalFilename();
+			//前半部分路径，目录，将WebRoot下一个名称为images/coursetype文件夹转换为绝对路径
+			String leftPath=request.getServletContext().getRealPath("/images/course");
+			//文件路径拼接
+			File newFile=new File(leftPath,filename);
+			//上传文件 
+			file.transferTo(newFile);
+			course.setImg("images/coursetype/"+filename);
+			course.setName(name);
+			course.setFirsttime(lasttime);
+			course.setIntroduce(introduce);
+			this.courseDaoImpl.updateCourse(course);
+		}
+		course.setName(name);
+		course.setFirsttime(lasttime);
+		course.setIntroduce(introduce);
+		this.courseDaoImpl.updateCourse(course);
+		
+	}
 	
 	/**
 	 * 文件上传
@@ -115,6 +171,18 @@ public class CourseServiceImpl {
 		if(file.exists()&&file.isFile()){
 			file.delete();
 		} 
+		Set<Course> courses = courseType.getCourses();
+		for(Course c:courses){
+			 imgPath = c.getImg();
+			 path = request.getServletContext().getRealPath("/images/course/");
+			 name=imgPath.substring(imgPath.lastIndexOf("/")+1);
+			 pathname=path+"\\"+name;
+			//删除静态资源
+			file = new File(pathname);
+			if(file.exists()&&file.isFile()){
+				file.delete();
+			} 
+		}
 		//删除数据库中的数据
 		this.courseDaoImpl.deleteCourseTypeById(courseType);
 	}
@@ -151,7 +219,7 @@ public class CourseServiceImpl {
 			this.courseDaoImpl.updateCourseType(courseType);
 		}
 		courseType.setTypename(typename);
-		courseType.setFirsttime(lasttime);
+		courseType.setLasttime(lasttime);
 		courseType.setDescription(description);
 		this.courseDaoImpl.updateCourseType(courseType);
 	}
@@ -168,7 +236,7 @@ public class CourseServiceImpl {
 	 */
 	public void CourseInsert(CourseType courseType, Course course, String filename, String name, String introduce,
 			String firsttime, String lasttime) {
-		course.setImg("images/coursetype/"+filename);
+		course.setImg("images/course/"+filename);
 		course.setName(name);
 		course.setFirsttime(firsttime);
 		course.setLasttime(lasttime);
@@ -240,6 +308,10 @@ public class CourseServiceImpl {
 		// TODO Auto-generated method stub
 		return this.courseDaoImpl.getCourseById1(courseid);
 	}
+
+	
+
+	
 
 	
 	

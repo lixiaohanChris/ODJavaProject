@@ -77,10 +77,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td class="am-text-middle">最后修改时间</td>
    							<td class="am-text-middle">
       							<div class="tpl-table-black-operation">
-			             			<a href="javascript:;">
+			             			<a href="course/backstage/courseUpdate?courseId=${c.id }">
 			                			<i class="am-icon-pencil"></i> 编辑
 			              			</a>
-			              			<a href="javascript:;" class="tpl-table-black-operation-del">
+			              			<a href="course/backstage/courseDelete?courseId=${c.id }" class="tpl-table-black-operation-del">
 			                  			<i class="am-icon-trash"></i> 删除
 			              			</a>
        							</div>

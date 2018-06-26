@@ -172,8 +172,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      										<a href="#"><img src="${c.img }" alt=""/></a>
 		      										<h3 class="am-thumbnail-caption">${c.name }</h3>
 		      										<h3 class="am-thumbnail-caption">${c.introduce }</h3>
-		      										<button type="button" class="am-btn am-btn-primary am-round" style="position:relative;left:40px;">编辑</button>
-		      										<button type="button" class="am-btn am-btn-danger am-round" style="position:relative;left:70px;">删除</button>
+		      										<a href="course/backstage/courseUpdate?courseId=${c.id }"><button type="button" class="am-btn am-btn-primary am-round" style="position:relative;left:40px;">编辑</button></a>
+		      										<a href="course/backstage/courseDelete?courseId=${c.id }"><button type="button" class="am-btn am-btn-danger am-round" style="position:relative;left:70px;">删除</button></a>
 	    										</div>
 	  										</div>
   										</c:forEach>

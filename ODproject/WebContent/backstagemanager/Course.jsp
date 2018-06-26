@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title  am-cf">文章列表</div>
+                                <div class="widget-title  am-cf">课程列表</div>
 							</div>
                             <div class="widget-body  am-fr">
 
@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <div class="am-form-group">
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <a href="backstagemanager/CourseTypeForm.jsp"><button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button></a>
+                                                <a href="course/backstage/courseInsert?courseTypeId=${courseTypeId }"><button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -89,14 +89,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					      							</td>
 												  	<td class="am-text-middle"><a href="course/backstage/courseContentShow/header/${c.id }">${c.name }</a></td>
 													<td class="am-text-middle">${c.introduce }</td>
-													<td class="am-text-middle">发布时间</td>
-													<td class="am-text-middle">最后修改时间</td>
+													<td class="am-text-middle">${c.firsttime }</td>
+													<td class="am-text-middle">${c.lasttime }间</td>
 					      							<td class="am-text-middle">
 					          							<div class="tpl-table-black-operation">
-											             	<a href="javascript:;">
+											             	<a href="course/backstage/courseUpdate?courseId=${c.id }">
 											                	<i class="am-icon-pencil"></i> 编辑
 											              	</a>
-											              	<a href="javascript:;" class="tpl-table-black-operation-del">
+											              	<a href="course/backstage/courseDelete?courseId=${c.id }" class="tpl-table-black-operation-del">
 											                  	<i class="am-icon-trash"></i> 删除
 											              	</a>
 					          							</div>

@@ -93,6 +93,9 @@ public class ClassesController {
 		}
 		ODMethod odMethod=user.getOdMethod();
 		Course course = courseServiceImpl.getCourseById1(courseid);
+		if(course==null){
+			return "redirect:/course/backstage/courseTypeShow/classes/";
+		}
 		//判断课程是否被选择
 		Classes classes = this.classesServiceImpl.checkCourse(courseid,odMethod.getId());
 		if(classes!=null){

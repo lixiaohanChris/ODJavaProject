@@ -72,8 +72,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     	<small>Course</small>
                     </div>
                     <ol class="am-breadcrumb">
-  						<li><a href="course/backstage/courseTypeUpdate?courseTypeId=${courseType.id }">${courseType.typename }</a></li>
-  						<li><a href="#">${course.name }</a></li>
+  						<li><a href="course/backstage/courseTypeUpdate?courseTypeId=${courseType.id }${course.courseType.id }">${courseType.typename }${course.courseType.typename }</a></li>
+  						<li><a href="course/backstage/courseUpdate?courseId=${course.id }">${course.name }</a></li>
   						<li class="am-active">新增/修改课程</li>
 					</ol>
                 </div>
@@ -92,10 +92,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        
                        <div class="widget-body am-fr">
                        <c:if test="${course==null }">
-                       		<form class="am-form tpl-form-border-form"  action="course/backstage/courseTypeInsert" method="post" id="insertCourseType" enctype="multipart/form-data">
+                       		<form class="am-form tpl-form-border-form"  action="course/backstage/courseInsert?courseTypeId=${courseType.id }" method="post" id="insertCourse" enctype="multipart/form-data">
                        </c:if>
 					   <c:if test="${course!=null }">
-					   		<form class="am-form tpl-form-border-form"  action="course/backstage/courseTypeUpdate?courseTypeId=${courseType.id }" method="post" enctype="multipart/form-data">
+					   		<form class="am-form tpl-form-border-form"  action="course/backstage/courseUpdate?courseId=${course.id }" method="post" enctype="multipart/form-data">
 					   </c:if>
                        		<div class="am-form-group">
                             	<label for="type-name" class="am-u-sm-12 am-form-label am-text-left">课程名称<span class="tpl-form-line-small-title">&nbsp;CourseName</span></label>
