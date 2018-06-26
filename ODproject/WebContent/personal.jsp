@@ -53,6 +53,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         } 
     </style>
     <script>
+	    function imgClick1(id){
+	    	$.ajax({
+				ansyc:false,
+				url:"classes/getMyCourse/courseByTypeId?getId="+id,
+				type:'post',
+				success : function (data){
+					$('#Grid').html(data); 
+				},
+				error : function (data){
+					alert('b');
+					alert(data);
+				}
+			})
+		}
+	    function imgClick2(id){
+	    	$.ajax({
+				ansyc:false,
+				url:"classes/getMyCourse/courseContent?getId="+id,
+				type:'post',
+				success : function (data){
+					$('#Grid').html(data); 
+				},
+				error : function (data){
+					alert('b');
+					alert(data);
+				}
+			})
+		}
     	$(document).ready(function(){
     		$('.show-2').click(function(){
     			$.ajax({
@@ -70,11 +98,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		})
     		$('.show-3').click(function(){
     			$.ajax({
-    				ansyc:false,
-    				url:'classes/getMyCourse',
+    				ansyc:true,
+    				url:'classes/getMyCourse/courseType?getId=null',
     				type:'post',
     				success : function (data){
-    					$('#Grid').html(data);
+    					$('#Grid').html(data); 
+    				},
+    				error : function (data){
+    					alert('b');
+    					alert(data);
+    				}
+    			})
+    		})
+    		$('#courseTypeLi').click(function(){
+    			$.ajax({
+    				ansyc:true,
+    				url:'classes/getMyCourse/courseType?getId=null',
+    				type:'post',
+    				success : function (data){
+    					$('#Grid').html(data); 
+    				},
+    				error : function (data){
+    					alert('b');
+    					alert(data);
+    				}
+    			})
+    		})
+    		$('#courseLi').click(function(){
+    			$.ajax({
+    				ansyc:true,
+    				url:'classes/getMyCourse/course?getId=null',
+    				type:'post',
+    				success : function (data){
+    					$('#Grid').html(data); 
     				},
     				error : function (data){
     					alert('b');
@@ -266,36 +322,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                         <div id="menu-2" class="content about-us">
                         </div> <!-- /.about-us -->
-                        <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" ></a></div>
+                       
 
                         <div id="menu-3" class="content our-gallery">
                             <div class="page-header">
-                                <h2 class="page-title">我们的团队</h2>
+                                <h2 class="page-title">选取的课程</h2>
                             </div> <!-- /.page-header -->
                             <div class="content-inner">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h3 class="widget-title">团队成员</h3>
+                                        <h3 class="widget-title">展示</h3>
                                     </div> <!-- /.col-md-6 -->
                                     <div class="col-md-6">
                                         <div class="filter-work pull-right">
                                             <a href="#nogo" class="toggle-filter">筛选</a>
                                             <ul class="filter-controls controls">
-                                                <li class="filter" data-filter="all">显示所有</li>
-                                                <li class="filter" data-filter="branding">哈哈哈哈1</li>
-                                                <li class="filter" data-filter="graphic">哈哈哈哈2</li>
-                                                <li class="filter" data-filter="nature">哈哈哈哈3</li>
+                                                <li class="filter" data-filter="branding" id="courseTypeLi">课程类型</li>
+                                                <li class="filter" data-filter="graphic" id="courseLi">课程</li>
                                             </ul>
                                         </div> <!-- /.filter-work -->
                                     </div> <!-- /.col-md-6 -->
                                 </div> <!-- /.row -->
                                 <div class="row">
-                                    <div id="Grid">
-                                    </div> <!-- /#Grid -->
+                                    <div id="Grid"></div><!-- /#Grid -->
                                 </div> <!-- /.row -->
                             </div> <!-- /.content-inner -->
-
-                        </div> <!-- /.our-gallery -->
+						</div> <!-- /.our-gallery -->
 
                         <div id="menu-4" class="content">
                         </div> <!-- /.services -->

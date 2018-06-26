@@ -94,47 +94,47 @@ jQuery(document).ready(function($){
 	});
 
 	$(".main_menu .show-1").click(function(){
-		$(".bg-image").fadeOut('slow', function(){
+		$(".bg-image").fadeOut('normal', function(){
 			$(this).css({
 				'background-image' : 'url(images/personal/bg-homepage.jpg)',
-			}).fadeIn('slow');
+			}).fadeIn('normal');
 		});
 		return false;
 	});
 
 	$(".main_menu .show-2").click(function(){
-		$(".bg-image").fadeOut('slow', function(){
+		$(".bg-image").fadeOut('normal', function(){
 			$(this).css({
 				'background-image' : 'url(images/personal/bg-about.jpg)',
-			}).fadeIn('slow');
+			}).fadeIn('normal');
 		});
 		return false;
 	});
 
 	$(".main_menu .show-3").click(function(){
-		$(".bg-image").fadeOut('slow', function(){
+		$(".bg-image").fadeOut('normal', function(){
 			$(this).css({
 				'background-image' : 'url(images/personal/bg-gallery.jpg)',
-			}).fadeIn('slow');
+			}).fadeIn('normal');
 		});
 		return false;
 	});
 
 	$(".main_menu .show-4").click(function(){
-		$(".bg-image").fadeOut('slow', function(){
+		$(".bg-image").fadeOut('normal', function(){
 			$(this).css({
 				'background-image' : 'url(images/personal/bg-services.jpg)',
-			}).fadeIn('slow');
+			}).fadeIn('normal');
 		});
 		return false;
 	});
 
 	$(".main_menu .show-5").click(function(){
 		loadScript();
-		$(".bg-image").fadeOut('slow', function(){
+		$(".bg-image").fadeOut('normal', function(){
 			$(this).css({
 				'background-image' : 'url(images/personal/bg-contact.jpg)',
-			}).fadeIn('slow');
+			}).fadeIn('normal');
 		});
 		return false;
 	});

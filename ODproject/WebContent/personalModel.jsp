@@ -125,26 +125,68 @@
 	</div>
 	<!-- /.content-inner -->
 </c:if>
-<c:if test="${myCourse!=null }">
-	<c:forEach items="${myCourse }" var="c">
-		<div class="col-md-4 col-sm-6 mix graphic">
+<c:if test="${CourseTypes!=null }">
+	<c:forEach items="${CourseTypes }" var="c">
+		<div class="col-md-4 col-sm-6">
 			<div class="gallery-item">
-				<div class="gallery-thumb">
-					<img src="images/personal/gallery/p1.jpg" alt="">
-					<div class="overlay-g">
-						<a href="images/personal/gallery/p1.jpg" data-rel="lightbox"
-							class="fa fa-search"></a>
-					</div>
+				<div class="gallery-thumb" onclick="imgClick1('${c.id }')" style="height:300px">
+					<img src="${c.imgPath }" alt="">
 				</div>
 				<!-- /.gallery-thumb -->
-				<div class="gallery-content">
-					<h4 class="gallery-title">${c.name }</h4>
-					<span class="gallery-category">哈哈哈哈1</span>
+				<div class="gallery-content" style="height:90px">
+					<h4 class="gallery-title">${c.typename }</h4>
+					<span class="gallery-category">${c.description }</span>
+				</div><!-- /.gallery-content -->
+			</div><!-- /.gallery-item -->
+		</div><!-- /.col-md-4 -->
+	</c:forEach>
+</c:if>
+<c:if test="${coursesByTypeId!=null }">
+	<c:forEach items="${coursesByTypeId }" var="c">
+		<div class="col-md-4 col-sm-6">
+			<div class="gallery-item">
+				<div class="gallery-thumb" style="height:300px" onclick="imgClick2('${c.id }')">
+					<img src="${c.img }" alt="">
 				</div>
-				<!-- /.gallery-content -->
-			</div>
-			<!-- /.gallery-item -->
-		</div>
-		<!-- /.col-md-4 -->
+				<!-- /.gallery-thumb -->
+				<div class="gallery-content" style="height:90px">
+					<h4 class="gallery-title">${c.name }</h4>
+					<span class="gallery-category">${c.introduce }</span>
+				</div><!-- /.gallery-content -->
+			</div><!-- /.gallery-item -->
+		</div><!-- /.col-md-4 -->
+	</c:forEach>
+</c:if>
+<c:if test="${courses!=null }">
+	<c:forEach items="${courses }" var="c">
+		<div class="col-md-4 col-sm-6">
+			<div class="gallery-item">
+				<div class="gallery-thumb" style="height:300px">
+					<img src="${c.img }" alt="">
+				</div>
+				<!-- /.gallery-thumb -->
+				<div class="gallery-content" style="height:90px">
+					<h4 class="gallery-title">${c.name }</h4>
+					<span class="gallery-category">${c.introduce }</span>
+				</div><!-- /.gallery-content -->
+			</div><!-- /.gallery-item -->
+		</div><!-- /.col-md-4 -->
+	</c:forEach>
+</c:if>
+<c:if test="${courseContents!=null }">
+	<c:forEach items="${courseContents }" var="c">
+		<div class="col-md-4 col-sm-6">
+			<div class="gallery-item">
+				<div class="gallery-thumb" style="height:300px">
+					<img src="${c.img }" alt="">
+				</div>
+				<!-- /.gallery-thumb -->
+				<div class="gallery-content" style="height:90px">
+					<h4 class="gallery-title">${c.name }</h4>
+					<span class="gallery-category">${c.introduce }</span>
+					<a href="${c.path }" target="_blank">点击查看视频</a>
+				</div><!-- /.gallery-content -->
+			</div><!-- /.gallery-item -->
+		</div><!-- /.col-md-4 -->
 	</c:forEach>
 </c:if>

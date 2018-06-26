@@ -1,7 +1,11 @@
 package com.od.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -9,13 +13,17 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.od.entity.Classes;
 import com.od.entity.Course;
+import com.od.entity.CourseContent;
+import com.od.entity.CourseType;
 import com.od.entity.ODMethod;
 import com.od.entity.User;
 import com.od.service.ClassesServiceImpl;
@@ -90,17 +98,54 @@ public class ClassesController {
 		this.classesServiceImpl.chooseCourse(courses,odMethod);
 		return "redirect:/course/backstage/courseTypeShow/classes";
 	}
-	@RequestMapping(value="/getMyCourse")
-	public String getMyCourse(HttpSession session,Model model) {
+	
+	/**
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/getMyCourse/{showType}",method=RequestMethod.POST)
+	public String getMyCourse(HttpSession session,Model model,
+			@PathVariable String showType,
+			@RequestParam("getId")String getId) {
 		User user = (User) session.getAttribute("user");
 		User u = this.userServiceImpl.registCheck(user.getEmail());
-		List<Course> courses = new ArrayList<Course>();
 		Set<Classes> classes = u.getOdMethod().getClasses();
-		for(Classes c:classes){
-			courses.add(c.getCourse());
-			System.out.println(c.getCourse().getName());
+		System.out.println(showType);
+		if(showType.equals("courseType")){
+			Set<CourseType> courseTypes = new HashSet<CourseType>();
+			for(Classes c:classes){
+				courseTypes.add(c.getCourse().getCourseType());
+			}
+			model.addAttribute("CourseTypes",courseTypes);
 		}
-		model.addAttribute("myCourse",courses);
+		if(showType.equals("courseByTypeId")){
+			int id =Integer.parseInt(getId);
+			Set<Course> courses = new HashSet<Course>();
+			for(Classes c:classes){
+				if(c.getCourse().getCourseType().getId()==id){
+					courses.add(c.getCourse());
+				}
+			}
+			model.addAttribute("coursesByTypeId",courses);
+		}
+		if(showType.equals("courseContent")){
+			int id =Integer.parseInt(getId);
+			for(Classes c:classes){
+				if(c.getCourse().getId()==id){
+					Set<CourseContent> courseContents=c.getCourse().getCourseContents();
+					model.addAttribute("courseContents",courseContents);
+					return "personalModel";
+				}
+			}
+		}
+		if(showType.equals("course")){
+			Set<Course> courses = new HashSet<Course>();
+			for(Classes c:classes){
+				courses.add(c.getCourse());
+			}
+			model.addAttribute("courses",courses);
+		}
 		return "personalModel";
 	}
 }
