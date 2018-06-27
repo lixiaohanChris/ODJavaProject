@@ -97,10 +97,11 @@ public class UserController {
 			return false;
 		}
 	}
-	String verificationCode;
+	
 	@RequestMapping(value="/verificationCode",method=RequestMethod.POST)
 	@ResponseBody
-	public Boolean verificationCode(@RequestParam("email")String email) throws Exception{
+	public Boolean verificationCode(@RequestParam("email")String email,
+			HttpSession session) throws Exception{
 		MailUtil mailUtil=new MailUtil();
 		String str="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		StringBuilder sb=new StringBuilder(4);
@@ -109,15 +110,17 @@ public class UserController {
 		char ch=str.charAt(new Random().nextInt(str.length()));
 		sb.append(ch);
 		}
-		verificationCode = sb.toString();
+		String verificationCode = sb.toString();
 		mailUtil.sendMail(email, "od减肥验证码", verificationCode);
-		System.out.println(verificationCode);
+		session.setAttribute("registVail", verificationCode);
 		return false;	
 	}
 	@RequestMapping(value="/registVerificationCode",method = RequestMethod.POST)
 	@ResponseBody
-	public boolean registVerificationCode(@RequestParam("verification_code")String verification_code) throws ServletException, IOException{
-		if(verification_code!=verificationCode){
+	public boolean registVerificationCode(@RequestParam("verification_code")String verification_code,
+			HttpSession session) throws ServletException, IOException{
+		System.out.println("跳转");
+		if(verification_code.equals(session.getAttribute("registVail"))==false){
 			return false;
 		}else {
 			return true;

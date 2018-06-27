@@ -107,6 +107,7 @@ $(document).ready(function(){
 					type:"post",
 				},
 			},
+		},
 		//错误信息提示
 		messages:{
 			username:{
@@ -141,7 +142,7 @@ $(document).ready(function(){
 		submitHandler: function(form) {
 			ajaxSubmit();
 		},
-		}});
+	});
 	//添加自定义验证规则
 	jQuery.validator.addMethod("phone_number", function(value, element) { 
 		var length = value.length; 

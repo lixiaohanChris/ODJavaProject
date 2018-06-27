@@ -32,9 +32,9 @@
 								<li><a href="#">仰卧起坐</a></li> 
 							</ul> -->
 						</li>
-						<li>
+						<!-- <li>
 							<a href="schedule.jsp">时间表</a>
-						</li>
+						</li> -->
 						
 						<li><a href="about.jsp">关于我们</a></li>
 						<li><a href="contact.jsp">联系我们</a></li>

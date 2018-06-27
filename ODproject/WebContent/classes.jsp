@@ -92,7 +92,7 @@
 							<div class="fh5co-intro fh5co-table-cell animate-box">
 								<h1 class="text-center">课程</h1>
 								<p>
-									文字一 <a href="#">文字二</a>
+									不积跬步 <a href="#"> 无以至千里</a>
 								</p>
 							</div>
 						</div>
@@ -303,8 +303,7 @@
 						class="">下一页</a></li>
 				</ul>
 			</c:if>
-			<!-- footer.jsp -->
-			<%@ include file="footer.jsp"%>
+			
 
 		</div>
 		<!-- END fh5co-page -->

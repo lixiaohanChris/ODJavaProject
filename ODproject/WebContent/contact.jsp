@@ -132,8 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- END fh5co-contact -->
 		<div id="map" class="fh5co-map"></div>
 		<!-- END map -->  
-    <!-- footer.jsp -->
-	<%@ include file="footer.jsp" %>
+   
 	
 	</div>
 	<!-- END fh5co-page -->

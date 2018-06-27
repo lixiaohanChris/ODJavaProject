@@ -66,7 +66,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<input type="email" name="email" id="email" class="email" placeholder="输入邮箱地址" oncontextmenu="return false" onpaste="return false" />
 		</div>
 		<div>
-			<input type="text" name="verification_code" class="verification_code" placeholder="输入验证码" oncontextmenu="return false" onpaste="return false" /><button type="button" onclick="verificationCode()">获取验证码</button>
+			<input type="text" name="verification_code" class="verification_code" placeholder="输入验证码" oncontextmenu="return false" onpaste="return false" />
+			<button type="button" onclick="verificationCode()">获取验证码</button>
 		</div>
 		<p><button id="submit" type="submit">注 册</button></p>
 	</form>
